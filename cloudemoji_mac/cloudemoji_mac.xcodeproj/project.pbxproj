@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00ACFEEF18719681008CDF3B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFEEE18719681008CDF3B /* Cocoa.framework */; };
+		00ACFEF918719681008CDF3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00ACFEF718719681008CDF3B /* InfoPlist.strings */; };
+		00ACFEFB18719681008CDF3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFEFA18719681008CDF3B /* main.m */; };
+		00ACFEFF18719681008CDF3B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 00ACFEFD18719681008CDF3B /* Credits.rtf */; };
+		00ACFF0218719681008CDF3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFF0118719681008CDF3B /* AppDelegate.m */; };
+		00ACFF0518719682008CDF3B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00ACFF0318719682008CDF3B /* MainMenu.xib */; };
+		00ACFF0718719682008CDF3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00ACFF0618719682008CDF3B /* Images.xcassets */; };
+		00ACFF0E18719682008CDF3B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFF0D18719682008CDF3B /* XCTest.framework */; };
+		00ACFF0F18719682008CDF3B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFEEE18719681008CDF3B /* Cocoa.framework */; };
+		00ACFF1718719682008CDF3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00ACFF1518719682008CDF3B /* InfoPlist.strings */; };
+		00ACFF1918719682008CDF3B /* cloudemoji_macTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFF1818719682008CDF3B /* cloudemoji_macTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00ACFF1018719682008CDF3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00ACFEE318719681008CDF3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00ACFEEA18719681008CDF3B;
+			remoteInfo = cloudemoji_mac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00ACFEEB18719681008CDF3B /* cloudemoji_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloudemoji_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00ACFEEE18719681008CDF3B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		00ACFEF118719681008CDF3B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		00ACFEF218719681008CDF3B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		00ACFEF318719681008CDF3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00ACFEF618719681008CDF3B /* cloudemoji_mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cloudemoji_mac-Info.plist"; sourceTree = "<group>"; };
+		00ACFEF818719681008CDF3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00ACFEFA18719681008CDF3B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00ACFEFC18719681008CDF3B /* cloudemoji_mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cloudemoji_mac-Prefix.pch"; sourceTree = "<group>"; };
+		00ACFEFE18719681008CDF3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		00ACFF0018719681008CDF3B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		00ACFF0118719681008CDF3B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		00ACFF0418719682008CDF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		00ACFF0618719682008CDF3B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		00ACFF0C18719682008CDF3B /* cloudemoji_macTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cloudemoji_macTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00ACFF0D18719682008CDF3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		00ACFF1418719682008CDF3B /* cloudemoji_macTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cloudemoji_macTests-Info.plist"; sourceTree = "<group>"; };
+		00ACFF1618719682008CDF3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00ACFF1818719682008CDF3B /* cloudemoji_macTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cloudemoji_macTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00ACFEE818719681008CDF3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00ACFEEF18719681008CDF3B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00ACFF0918719682008CDF3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00ACFF0F18719682008CDF3B /* Cocoa.framework in Frameworks */,
+				00ACFF0E18719682008CDF3B /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00ACFEE218719681008CDF3B = {
+			isa = PBXGroup;
+			children = (
+				00ACFEF418719681008CDF3B /* cloudemoji_mac */,
+				00ACFF1218719682008CDF3B /* cloudemoji_macTests */,
+				00ACFEED18719681008CDF3B /* Frameworks */,
+				00ACFEEC18719681008CDF3B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00ACFEEC18719681008CDF3B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFEEB18719681008CDF3B /* cloudemoji_mac.app */,
+				00ACFF0C18719682008CDF3B /* cloudemoji_macTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00ACFEED18719681008CDF3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFEEE18719681008CDF3B /* Cocoa.framework */,
+				00ACFF0D18719682008CDF3B /* XCTest.framework */,
+				00ACFEF018719681008CDF3B /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00ACFEF018719681008CDF3B /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFEF118719681008CDF3B /* AppKit.framework */,
+				00ACFEF218719681008CDF3B /* CoreData.framework */,
+				00ACFEF318719681008CDF3B /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		00ACFEF418719681008CDF3B /* cloudemoji_mac */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFF0018719681008CDF3B /* AppDelegate.h */,
+				00ACFF0118719681008CDF3B /* AppDelegate.m */,
+				00ACFF0318719682008CDF3B /* MainMenu.xib */,
+				00ACFF0618719682008CDF3B /* Images.xcassets */,
+				00ACFEF518719681008CDF3B /* Supporting Files */,
+			);
+			path = cloudemoji_mac;
+			sourceTree = "<group>";
+		};
+		00ACFEF518719681008CDF3B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFEF618719681008CDF3B /* cloudemoji_mac-Info.plist */,
+				00ACFEF718719681008CDF3B /* InfoPlist.strings */,
+				00ACFEFA18719681008CDF3B /* main.m */,
+				00ACFEFC18719681008CDF3B /* cloudemoji_mac-Prefix.pch */,
+				00ACFEFD18719681008CDF3B /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00ACFF1218719682008CDF3B /* cloudemoji_macTests */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFF1818719682008CDF3B /* cloudemoji_macTests.m */,
+				00ACFF1318719682008CDF3B /* Supporting Files */,
+			);
+			path = cloudemoji_macTests;
+			sourceTree = "<group>";
+		};
+		00ACFF1318719682008CDF3B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00ACFF1418719682008CDF3B /* cloudemoji_macTests-Info.plist */,
+				00ACFF1518719682008CDF3B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00ACFEEA18719681008CDF3B /* cloudemoji_mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00ACFF1C18719682008CDF3B /* Build configuration list for PBXNativeTarget "cloudemoji_mac" */;
+			buildPhases = (
+				00ACFEE718719681008CDF3B /* Sources */,
+				00ACFEE818719681008CDF3B /* Frameworks */,
+				00ACFEE918719681008CDF3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cloudemoji_mac;
+			productName = cloudemoji_mac;
+			productReference = 00ACFEEB18719681008CDF3B /* cloudemoji_mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00ACFF0B18719682008CDF3B /* cloudemoji_macTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00ACFF1F18719682008CDF3B /* Build configuration list for PBXNativeTarget "cloudemoji_macTests" */;
+			buildPhases = (
+				00ACFF0818719682008CDF3B /* Sources */,
+				00ACFF0918719682008CDF3B /* Frameworks */,
+				00ACFF0A18719682008CDF3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00ACFF1118719682008CDF3B /* PBXTargetDependency */,
+			);
+			name = cloudemoji_macTests;
+			productName = cloudemoji_macTests;
+			productReference = 00ACFF0C18719682008CDF3B /* cloudemoji_macTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00ACFEE318719681008CDF3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Yashi;
+				TargetAttributes = {
+					00ACFF0B18719682008CDF3B = {
+						TestTargetID = 00ACFEEA18719681008CDF3B;
+					};
+				};
+			};
+			buildConfigurationList = 00ACFEE618719681008CDF3B /* Build configuration list for PBXProject "cloudemoji_mac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00ACFEE218719681008CDF3B;
+			productRefGroup = 00ACFEEC18719681008CDF3B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00ACFEEA18719681008CDF3B /* cloudemoji_mac */,
+				00ACFF0B18719682008CDF3B /* cloudemoji_macTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00ACFEE918719681008CDF3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00ACFEF918719681008CDF3B /* InfoPlist.strings in Resources */,
+				00ACFF0718719682008CDF3B /* Images.xcassets in Resources */,
+				00ACFEFF18719681008CDF3B /* Credits.rtf in Resources */,
+				00ACFF0518719682008CDF3B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00ACFF0A18719682008CDF3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00ACFF1718719682008CDF3B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00ACFEE718719681008CDF3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00ACFF0218719681008CDF3B /* AppDelegate.m in Sources */,
+				00ACFEFB18719681008CDF3B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00ACFF0818719682008CDF3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00ACFF1918719682008CDF3B /* cloudemoji_macTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00ACFF1118719682008CDF3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00ACFEEA18719681008CDF3B /* cloudemoji_mac */;
+			targetProxy = 00ACFF1018719682008CDF3B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00ACFEF718719681008CDF3B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00ACFEF818719681008CDF3B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00ACFEFD18719681008CDF3B /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00ACFEFE18719681008CDF3B /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		00ACFF0318719682008CDF3B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00ACFF0418719682008CDF3B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		00ACFF1518719682008CDF3B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00ACFF1618719682008CDF3B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00ACFF1A18719682008CDF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		00ACFF1B18719682008CDF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		00ACFF1D18719682008CDF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cloudemoji_mac/cloudemoji_mac-Prefix.pch";
+				INFOPLIST_FILE = "cloudemoji_mac/cloudemoji_mac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		00ACFF1E18719682008CDF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cloudemoji_mac/cloudemoji_mac-Prefix.pch";
+				INFOPLIST_FILE = "cloudemoji_mac/cloudemoji_mac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		00ACFF2018719682008CDF3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cloudemoji_mac.app/Contents/MacOS/cloudemoji_mac";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cloudemoji_mac/cloudemoji_mac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "cloudemoji_macTests/cloudemoji_macTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		00ACFF2118719682008CDF3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cloudemoji_mac.app/Contents/MacOS/cloudemoji_mac";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cloudemoji_mac/cloudemoji_mac-Prefix.pch";
+				INFOPLIST_FILE = "cloudemoji_macTests/cloudemoji_macTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00ACFEE618719681008CDF3B /* Build configuration list for PBXProject "cloudemoji_mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00ACFF1A18719682008CDF3B /* Debug */,
+				00ACFF1B18719682008CDF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00ACFF1C18719682008CDF3B /* Build configuration list for PBXNativeTarget "cloudemoji_mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00ACFF1D18719682008CDF3B /* Debug */,
+				00ACFF1E18719682008CDF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		00ACFF1F18719682008CDF3B /* Build configuration list for PBXNativeTarget "cloudemoji_macTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00ACFF2018719682008CDF3B /* Debug */,
+				00ACFF2118719682008CDF3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00ACFEE318719681008CDF3B /* Project object */;
+}
