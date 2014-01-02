@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OnlineLibraryTVC.h"
+#import "LibraryTVC.h"
 
-@interface MainViewController : UIViewController <UITabBarControllerDelegate>
+@interface MainViewController : UIViewController <UITabBarControllerDelegate,OnlineLibraryDelegate,LibraryDelegate>
 @property (nonatomic, retain) UITabBarController *tab;
 @end

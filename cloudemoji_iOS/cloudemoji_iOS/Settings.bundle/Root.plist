@@ -99,14 +99,10 @@
 		<dict>
 			<key>Titles</key>
 			<array>
-				<string>KTachibanaTest</string>
-				<string>_KT_Current</string>
-				<string>使用自定义源</string>
+				<string>使用源管理器</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>http://dl.dropboxusercontent.com/u/120725807/test.xml</string>
-				<string>http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml</string>
 				<string>&lt;c&gt;</string>
 			</array>
 			<key>Type</key>
@@ -116,39 +112,7 @@
 			<key>Key</key>
 			<string>sources</string>
 			<key>DefaultValue</key>
-			<string>http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string>http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml</string>
-			<key>KeyboardType</key>
-			<string>URL</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>自定源地址</string>
-			<key>Key</key>
-			<string>customSource</string>
-		</dict>
-		<dict>
-			<key>Titles</key>
-			<array>
-				<string>XML</string>
-				<string>JSON</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<string>XML</string>
-				<string>JSON</string>
-			</array>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>自定源数据格式</string>
-			<key>Key</key>
-			<string>dataformat</string>
-			<key>DefaultValue</key>
-			<string>XML</string>
+			<string>&lt;c&gt;</string>
 		</dict>
 		<dict>
 			<key>Type</key>

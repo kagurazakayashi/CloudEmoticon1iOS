@@ -1,0 +1,102 @@
+//
+//  LibraryCell.m
+//  cloudemoji_iOS
+//
+//  Created by 神楽坂雅詩 on 14-1-1.
+//  Copyright (c) 2014年 Yashi. All rights reserved.
+//
+
+#import "LibraryCell.h"
+#define kBK 10.0f
+
+@implementation LibraryCell
+@synthesize name,info,btnDel,btnFrv,cellBGView,btnEdit;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.backgroundColor = [UIColor clearColor];
+        cellBGView = [[UIView alloc] init];
+        cellBGView.backgroundColor = [UIColor whiteColor];
+        cellBGView.alpha = 0.5;
+        cellBGView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+        cellBGView.layer.shadowOpacity = 1;
+        cellBGView.layer.shadowRadius = 10;
+        cellBGView.layer.shadowOffset = CGSizeMake(0, 0);
+        cellBGView.layer.cornerRadius = 10;
+        cellBGView.layer.masksToBounds = NO;
+//        UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kBK * 0.5)];
+//        foot.backgroundColor = [UIColor lightGrayColor];
+//        foot.layer.cornerRadius = 10;
+//        [cellBGView addSubview:foot];
+        [self addSubview:cellBGView];
+        name = [[UILabel alloc] initWithFrame:CGRectMake(kBK * 2, kBK * 2, self.frame.size.width * 0.5, 30)];
+        name.font = [UIFont boldSystemFontOfSize:20.0f];
+        name.textColor = [UIColor blueColor];
+        name.layer.shadowColor = [name.textColor CGColor];
+        name.layer.shadowOffset = CGSizeMake(1, 1);
+        name.layer.shadowOpacity = 1;
+        name.layer.shadowRadius = 2;
+        [self addSubview:name];
+        info = [[UILabel alloc] init];
+        info.font = [UIFont boldSystemFontOfSize:15.0f];
+        info.numberOfLines = 0;
+        info.textColor = [UIColor purpleColor];
+        info.lineBreakMode = NSLineBreakByCharWrapping;
+        info.layer.shadowColor = [info.textColor CGColor];
+        info.layer.shadowOffset = CGSizeMake(1, 1);
+        info.layer.shadowOpacity = 1;
+        info.layer.shadowRadius = 2;
+        [self addSubview:info];
+        btnDel = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnDel setImage:[UIImage imageNamed:@"pdel.png"] forState:UIControlStateNormal];
+        //[btnDel setImage:[UIImage imageNamed:@"pdel2.png"] forState:UIControlStateHighlighted];
+        btnDel.frame = CGRectMake(self.frame.size.width - kBK * 2 - 30, kBK * 2, 30, 30);
+        btnDel.layer.shadowColor = [[UIColor redColor] CGColor];
+        btnDel.layer.shadowOpacity = 1;
+        btnDel.layer.shadowRadius = 5;
+        [btnDel addTarget:self action:@selector(btnDel:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:btnDel];
+        btnEdit = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnEdit setImage:[UIImage imageNamed:@"pwri.png"] forState:UIControlStateNormal];
+        btnEdit.frame = CGRectMake(self.frame.size.width * 2 - btnDel.frame.origin.x - btnDel.frame.size.width * 2 - 74, btnDel.frame.origin.y, 30, 30);
+        btnEdit.layer.shadowColor = [[UIColor yellowColor] CGColor];
+        btnEdit.layer.shadowOpacity = 1;
+        btnEdit.layer.shadowRadius = 5;
+        [btnEdit addTarget:self action:@selector(btnEdit:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:btnEdit];
+        btnFrv = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnFrv setImage:[UIImage imageNamed:@"pok.png"] forState:UIControlStateNormal];
+        //[btnFrv setImage:[UIImage imageNamed:@"pok2.png"] forState:UIControlStateHighlighted];
+        btnFrv.frame = CGRectMake(self.frame.size.width * 2 - btnDel.frame.origin.x - btnDel.frame.size.width * 3 - 85 , btnDel.frame.origin.y, 30, 30);
+        btnFrv.layer.shadowColor = [[UIColor greenColor] CGColor];
+        btnFrv.layer.shadowOpacity = 1;
+        btnFrv.layer.shadowRadius = 5;
+        [btnFrv addTarget:self action:@selector(btnFrv:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:btnFrv];
+    }
+    return self;
+}
+
+- (void)btnDel:(id)sender
+{
+    [self.delegate btnDelete:self.info.text];
+}
+- (void)btnEdit:(id)sender
+{
+    [self.delegate btnEdit:self.info.text];
+}
+- (void)btnFrv:(id)sender
+{
+    [self.delegate btnSelect:self.info.text];
+}
+
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end
