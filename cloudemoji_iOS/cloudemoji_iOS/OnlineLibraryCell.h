@@ -15,9 +15,11 @@
 @property (nonatomic,retain) UILabel *name;
 @property (nonatomic,retain) UILabel *info;
 @property (nonatomic,retain) UIButton *btnFrv;
+@property (nonatomic,retain) UIButton *btnEdit;
 @property (nonatomic,retain) UIView *cellBGView;
 @property (nonatomic,assign) BOOL isfaved;
 @property (nonatomic,assign) int cellmode;
+
 - (void)loadFrame:(float)width;
 - (void)fav;
 - (void)startWithMode:(int)changemode;

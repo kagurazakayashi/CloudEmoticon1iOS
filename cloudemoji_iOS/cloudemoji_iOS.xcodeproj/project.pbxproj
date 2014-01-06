@@ -32,10 +32,15 @@
 		0025F0E118740F3800ABC753 /* psent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0025F0DD18740F3800ABC753 /* psent@2x.png */; };
 		0025F0E5187410EF00ABC753 /* TypeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025F0E4187410EF00ABC753 /* TypeMenuView.m */; };
 		0025F0E81874141A00ABC753 /* OnlineLibraryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025F0E71874141A00ABC753 /* OnlineLibraryTVC.m */; };
+		0051CC66187B071400D498BA /* psun2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC62187B071400D498BA /* psun2.png */; };
+		0051CC67187B071400D498BA /* psun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC63187B071400D498BA /* psun@2x.png */; };
+		0051CC68187B071400D498BA /* psun2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC64187B071400D498BA /* psun2@2x.png */; };
+		0051CC69187B071400D498BA /* psun.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC65187B071400D498BA /* psun.png */; };
 		0059FAE7187436460021BE91 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059FAE6187436460021BE91 /* XMLReader.m */; };
 		0059FAEA187436630021BE91 /* NetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059FAE9187436630021BE91 /* NetWork.m */; };
 		0059FAEF187439C30021BE91 /* LibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059FAEE187439C30021BE91 /* LibraryCell.m */; };
 		0084108C18758C9800806872 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0084108B18758C9800806872 /* MD5.m */; };
+		0097FB4C187A9BA60034843E /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097FB4B187A9BA60034843E /* EditViewController.m */; };
 		00ACFE6B18719649008CDF3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFE6A18719649008CDF3B /* Foundation.framework */; };
 		00ACFE6D18719649008CDF3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFE6C18719649008CDF3B /* CoreGraphics.framework */; };
 		00ACFE6F18719649008CDF3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFE6E18719649008CDF3B /* UIKit.framework */; };
@@ -62,6 +67,8 @@
 		00ACFF421871D285008CDF3B /* FavoritesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFF411871D285008CDF3B /* FavoritesTVC.m */; };
 		00ACFF451871D29F008CDF3B /* HistoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFF441871D29F008CDF3B /* HistoryTVC.m */; };
 		00ACFF481871D2BF008CDF3B /* CustomTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFF471871D2BF008CDF3B /* CustomTVC.m */; };
+		00B66961187B01D50076D1CE /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B6695F187B01D50076D1CE /* SettingViewController.m */; };
+		00B66962187B01D50076D1CE /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B66960187B01D50076D1CE /* SettingViewController.xib */; };
 		00E50DDE18727C12003BE168 /* pbook.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E50DCC18727C12003BE168 /* pbook.png */; };
 		00E50DDF18727C12003BE168 /* pbook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E50DCD18727C12003BE168 /* pbook@2x.png */; };
 		00E50DE018727C12003BE168 /* pbook2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E50DCE18727C12003BE168 /* pbook2.png */; };
@@ -167,6 +174,10 @@
 		0025F0E61874141A00ABC753 /* OnlineLibraryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineLibraryTVC.h; sourceTree = "<group>"; };
 		0025F0E71874141A00ABC753 /* OnlineLibraryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineLibraryTVC.m; sourceTree = "<group>"; };
 		004E16C318751A1000DF3AB3 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		0051CC62187B071400D498BA /* psun2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psun2.png; sourceTree = "<group>"; };
+		0051CC63187B071400D498BA /* psun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "psun@2x.png"; sourceTree = "<group>"; };
+		0051CC64187B071400D498BA /* psun2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "psun2@2x.png"; sourceTree = "<group>"; };
+		0051CC65187B071400D498BA /* psun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psun.png; sourceTree = "<group>"; };
 		0059FAE5187436460021BE91 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		0059FAE6187436460021BE91 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		0059FAE8187436630021BE91 /* NetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork.h; sourceTree = "<group>"; };
@@ -175,6 +186,8 @@
 		0059FAEE187439C30021BE91 /* LibraryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCell.m; sourceTree = "<group>"; };
 		0084108A18758C9800806872 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		0084108B18758C9800806872 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
+		0097FB4A187A9BA60034843E /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		0097FB4B187A9BA60034843E /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		00ACFE6718719649008CDF3B /* cloudemoji_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloudemoji_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00ACFE6A18719649008CDF3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00ACFE6C18719649008CDF3B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -210,6 +223,9 @@
 		00ACFF441871D29F008CDF3B /* HistoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTVC.m; sourceTree = "<group>"; };
 		00ACFF461871D2BF008CDF3B /* CustomTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTVC.h; sourceTree = "<group>"; };
 		00ACFF471871D2BF008CDF3B /* CustomTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTVC.m; sourceTree = "<group>"; };
+		00B6695E187B01D50076D1CE /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		00B6695F187B01D50076D1CE /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		00B66960187B01D50076D1CE /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		00E50DCC18727C12003BE168 /* pbook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbook.png; sourceTree = "<group>"; };
 		00E50DCD18727C12003BE168 /* pbook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pbook@2x.png"; sourceTree = "<group>"; };
 		00E50DCE18727C12003BE168 /* pbook2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbook2.png; sourceTree = "<group>"; };
@@ -446,6 +462,10 @@
 		00ACFF24187199DC008CDF3B /* img */ = {
 			isa = PBXGroup;
 			children = (
+				0051CC62187B071400D498BA /* psun2.png */,
+				0051CC63187B071400D498BA /* psun@2x.png */,
+				0051CC64187B071400D498BA /* psun2@2x.png */,
+				0051CC65187B071400D498BA /* psun.png */,
 				623EE1491878151F008FCD42 /* psz0.jpg */,
 				623EE14A1878151F008FCD42 /* psz1.jpg */,
 				0025F0DA18740F3800ABC753 /* pkey@2x.png */,
@@ -639,6 +659,9 @@
 				626480BD1877C44800A3484C /* DIYViewController.m */,
 				623EE1461877F3B1008FCD42 /* BackgroundImg.h */,
 				623EE1471877F3B1008FCD42 /* BackgroundImg.m */,
+				00B6695E187B01D50076D1CE /* SettingViewController.h */,
+				00B6695F187B01D50076D1CE /* SettingViewController.m */,
+				00B66960187B01D50076D1CE /* SettingViewController.xib */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -682,6 +705,8 @@
 				621659ED1879A3F400770D3D /* iPhone:iPod */,
 				00ACFF461871D2BF008CDF3B /* CustomTVC.h */,
 				00ACFF471871D2BF008CDF3B /* CustomTVC.m */,
+				0097FB4A187A9BA60034843E /* EditViewController.h */,
+				0097FB4B187A9BA60034843E /* EditViewController.m */,
 			);
 			name = "自定义";
 			sourceTree = "<group>";
@@ -782,9 +807,11 @@
 				621659FC1879A3F400770D3D /* Keyboard_Shift@2x.png in Resources */,
 				0025F0CF18740DC900ABC753 /* pok.png in Resources */,
 				0025F0D418740DC900ABC753 /* psearch@2x.png in Resources */,
+				00B66962187B01D50076D1CE /* SettingViewController.xib in Resources */,
 				00E50DEC18727C12003BE168 /* psetting2.png in Resources */,
 				0025F0DE18740F3800ABC753 /* pkey@2x.png in Resources */,
 				623EE14B1878151F008FCD42 /* psz0.jpg in Resources */,
+				0051CC68187B071400D498BA /* psun2@2x.png in Resources */,
 				00E50DE418727C12003BE168 /* pclock2.png in Resources */,
 				00ACFE7518719649008CDF3B /* InfoPlist.strings in Resources */,
 				0025F0E018740F3800ABC753 /* pre@2x.png in Resources */,
@@ -792,6 +819,7 @@
 				00E50DE718727C12003BE168 /* pcould@2x.png in Resources */,
 				62165A031879A3F400770D3D /* iOS_Keyboard@2x.png in Resources */,
 				0025F0D618740DC900ABC753 /* pstar.png in Resources */,
+				0051CC67187B071400D498BA /* psun@2x.png in Resources */,
 				62165A001879A3F400770D3D /* delete@2x.png in Resources */,
 				00E50DE818727C12003BE168 /* pcould2.png in Resources */,
 				00ACFF2D187199DC008CDF3B /* ic_launcher-29.png in Resources */,
@@ -799,6 +827,7 @@
 				00E50DE518727C12003BE168 /* pclock2@2x.png in Resources */,
 				0025F0D218740DC900ABC753 /* pok2@2x.png in Resources */,
 				0025F0CB18740DC900ABC753 /* pdel2@2x.png in Resources */,
+				0051CC69187B071400D498BA /* psun.png in Resources */,
 				00ACFF3A18719ECF008CDF3B /* Settings.bundle in Resources */,
 				00E50DEF18727C12003BE168 /* pwri@2x.png in Resources */,
 				0025F0D118740DC900ABC753 /* pok2.png in Resources */,
@@ -852,6 +881,7 @@
 				00ACFF30187199DC008CDF3B /* ic_launcher-80.png in Resources */,
 				00E50DDE18727C12003BE168 /* pbook.png in Resources */,
 				0025F0CD18740DC900ABC753 /* pkey2.png in Resources */,
+				0051CC66187B071400D498BA /* psun2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,6 +902,7 @@
 			files = (
 				62165A061879A3F400770D3D /* PMCustomKeyboard.m in Sources */,
 				621659D6187965AE00770D3D /* IASKAppSettingsWebViewController.m in Sources */,
+				00B66961187B01D50076D1CE /* SettingViewController.m in Sources */,
 				621659DD187965AE00770D3D /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				00ACFF421871D285008CDF3B /* FavoritesTVC.m in Sources */,
 				0059FAEF187439C30021BE91 /* LibraryCell.m in Sources */,
@@ -900,6 +931,7 @@
 				0059FAE7187436460021BE91 /* XMLReader.m in Sources */,
 				621659DC187965AE00770D3D /* IASKSpecifier.m in Sources */,
 				0025F0B518740DB400ABC753 /* SearchTVC.m in Sources */,
+				0097FB4C187A9BA60034843E /* EditViewController.m in Sources */,
 				00ACFE7718719649008CDF3B /* main.m in Sources */,
 				621659D9187965AE00770D3D /* IASKSettingsStore.m in Sources */,
 				00E50DF518728109003BE168 /* AboutViewController.m in Sources */,

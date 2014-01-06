@@ -7,8 +7,6 @@
 //
 
 #import "LibraryCell.h"
-#define kBK 10.0f
-
 @implementation LibraryCell
 @synthesize name,info,btnDel,btnFrv,cellBGView,btnEdit;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

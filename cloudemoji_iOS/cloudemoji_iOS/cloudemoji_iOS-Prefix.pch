@@ -13,4 +13,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+#define kLY0 34
+#define kLY1 45
+#define kBK 10.0f
 #endif

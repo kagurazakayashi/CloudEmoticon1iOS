@@ -8,7 +8,6 @@
 
 #import "FavoritesTVC.h"
 #import "BackgroundImg.h"
-#define kBK 10.0f
 
 @interface FavoritesTVC ()
 
@@ -97,9 +96,9 @@
     NSArray *nowcell = [data objectAtIndex:indexPath.row];
     cell.name.text = [nowcell objectAtIndex:1];
     cell.info.text = [nowcell objectAtIndex:2];
-    float infoY = kBK * 2;
+    float infoY = kLY1;
     if (cell.name.text.length == 0) {
-        infoY = kBK + 15;
+        infoY = kLY0;
     }
     cell.info.frame = CGRectMake(kBK * 2, infoY, self.tableView.frame.size.width - kBK * 3, [[height objectAtIndex:indexPath.row] floatValue] + kBK * 0.5);
     cell.cellBGView.frame = CGRectMake(kBK, kBK * 1.5, self.tableView.frame.size.width - kBK * 2, cell.name.frame.origin.x + cell.name.frame.size.height + cell.info.frame.origin.x + cell.info.frame.size.height - kBK * 3);

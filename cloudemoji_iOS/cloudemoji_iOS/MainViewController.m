@@ -11,7 +11,8 @@
 #import "HistoryTVC.h"
 #import "FavoritesTVC.h"
 #import "CustomTVC.h"
-#import "IASKAppSettingsViewController.h"
+//#import "IASKAppSettingsViewController.h"
+#import "SettingViewController.h"
 #import "AboutViewController.h"
 #import "SearchTVC.h"
 #import "RefreshView.h"
@@ -65,9 +66,10 @@
     UINavigationController *sn = [[UINavigationController alloc] initWithRootViewController:s];
     UITabBarItem *sI = [[UITabBarItem alloc] initWithTitle:s.title image:[UIImage imageNamed:@"psearch.png"] selectedImage:nil];
     s.tabBarItem = sI;
-    IASKAppSettingsViewController *setView = [[IASKAppSettingsViewController alloc] init];
-    setView.showCreditsFooter = NO;
-    setView.showDoneButton = NO;
+    SettingViewController *setView = [[SettingViewController alloc] init];
+//    IASKAppSettingsViewController *setView = [[IASKAppSettingsViewController alloc] init];
+//    setView.showCreditsFooter = NO;
+//    setView.showDoneButton = NO;
     setView.title = @"设置";
     UINavigationController *setn = [[UINavigationController alloc] initWithRootViewController:setView];
     UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting2.png"] selectedImage:nil];
@@ -162,7 +164,10 @@
     
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     
-    for (NSArray *nowArr in [S s].allinfo) {
+    NSMutableArray *sh = [NSMutableArray arrayWithArray:[S s].allinfo];
+    NSArray *hisData = [setting objectForKey:@"diy"];
+    [sh addObjectsFromArray:hisData];
+    for (NSArray *nowArr in sh) {
         NSString *nowStr = [nowArr objectAtIndex:2];
         if ([nowStr isEqualToString:str]) {
             NSMutableArray *his = [setting mutableArrayValueForKey:@"his"];

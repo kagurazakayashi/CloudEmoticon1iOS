@@ -8,10 +8,9 @@
 
 #import "OnlineLibraryCell.h"
 #import "S.h"
-#define kBK 10.0f
 
 @implementation OnlineLibraryCell
-@synthesize name, info, btnFrv, cellBGView, isfaved, cellmode;
+@synthesize name, info, btnFrv, cellBGView, isfaved, cellmode, btnEdit;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -54,6 +53,13 @@
         [btnFrv addTarget:self action:@selector(btnFrv:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:btnFrv];
     }
+    if (cellmode == 4)
+    {
+        btnEdit = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnEdit setImage:[UIImage imageNamed:@"pwri.png"] forState:UIControlStateNormal];
+        [btnEdit addTarget:self action:@selector(btnEdit:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:btnEdit];
+    }
     if (cellmode == 3 || cellmode == 4) {
         [btnFrv setImage:[UIImage imageNamed:@"pdel.png"] forState:UIControlStateNormal];
     }
@@ -75,6 +81,11 @@
         if (cellmode < 5) {
             btnFrv.layer.shadowOpacity = 1;
             btnFrv.layer.shadowRadius = 5;
+        }
+        if (cellmode == 4) {
+            btnEdit.layer.shadowColor = [[UIColor yellowColor] CGColor];
+            btnEdit.layer.shadowOpacity = 1;
+            btnEdit.layer.shadowRadius = 5;
         }
     }
     [self addSubview:name];
@@ -111,10 +122,41 @@
         [self isFav:isfaved];
         [setting setObject:fav forKey:@"fav"];
         [setting synchronize];
+    } else if (cellmode == 4) {
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *userdata = [setting mutableArrayValueForKey:@"diy"];
+        for (int i = 0; i < [userdata count]; i++) {
+            NSArray *nowArr = [userdata objectAtIndex:i];
+            NSString *nowStr = [nowArr objectAtIndex:2];
+            if ([nowStr isEqualToString:info.text]) {
+                [userdata removeObjectAtIndex:i];
+                [setting setObject:[NSArray arrayWithArray:userdata] forKey:@"diy"];
+                [setting synchronize];
+                break;
+            }
+        }
+    } else if (cellmode == 3) {
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *userdata = [setting mutableArrayValueForKey:@"his"];
+        for (int i = 0; i < [userdata count]; i++) {
+            NSArray *nowArr = [userdata objectAtIndex:i];
+            NSString *nowStr = [nowArr objectAtIndex:2];
+            if ([nowStr isEqualToString:info.text]) {
+                [userdata removeObjectAtIndex:i];
+                [setting setObject:[NSArray arrayWithArray:userdata] forKey:@"his"];
+                [setting synchronize];
+                break;
+            }
+        }
     }
+    
     if (cellmode >= 2 && cellmode != 5) {
         [self.delegate btnSelect:@""];
     }
+}
+- (void)btnEdit:(id)sender
+{
+    [self.delegate btnSelect:info.text];
 }
 //外部调用
 - (void)fav
@@ -158,12 +200,11 @@
 {
     name.frame = CGRectMake(kBK * 2, kBK * 2, width * 0.5, 30);
     btnFrv.frame = CGRectMake(width - kBK * 2 - 30, kBK * 2, 30, 30);
+    if (cellmode == 4) {
+        btnEdit.frame = CGRectMake(btnFrv.frame.origin.x - btnFrv.frame.size.width - 10, btnFrv.frame.origin.y, btnFrv.frame.size.width, btnFrv.frame.size.height);
+    }
 }
 
-- (void)btnEdit:(id)sender
-{
-    [self.delegate btnSelect:@""];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
+#import "EditViewController.h"
 #import "S.h"
-#import "PKCustomKeyboard.h"
-#import "PMCustomKeyboard.h"
 @protocol CustomTVCDelegate <NSObject>
 - (void)loadInfo:(NSString*)type;
 @end
-@interface CustomTVC : UITableViewController <OnlineLibraryCellDelegate>
+@interface CustomTVC : UITableViewController <OnlineLibraryCellDelegate,UIAlertViewDelegate,EditViewDelegate>
 @property (nonatomic, retain) NSMutableArray *data;
 @property (nonatomic, retain) NSMutableArray *height;
 @property (nonatomic, assign) id<CustomTVCDelegate> delegate;
+@property (nonatomic, assign) NSUInteger alertMode;
+@property (nonatomic, assign) NSUInteger editNow;
+@property (nonatomic, assign) int mode;
 @end

@@ -181,7 +181,7 @@
                 NSDictionary *item = [entry objectAtIndex:iitem];
                 NSString *string = [[item objectForKey:@"string"] objectForKey:@"text"];
                 NSString *nameT = [self removeFirstReturn:name removeT:YES];
-                NSString *stringT = [self removeFirstReturn:string removeT:NO];
+                NSString *stringT = [self removeFirstReturn:string removeT:YES];
                 if ([item count] == 3) {
                     NSString *note = [[item objectForKey:@"note"] objectForKey:@"text"];
                     NSString *noteT = [self removeFirstReturn:note removeT:YES];
@@ -200,20 +200,52 @@
 }
 - (NSString*)removeFirstReturn:(NSString*)str removeT:(BOOL)rT
 {
-    //NSMutableString *oldChar = [NSMutableString string];
+    NSLog(@"str=%@",str);
+    NSMutableString *oldChar = [NSMutableString string];
+    int n = 3;
+    int n0 = 0;
+    for (int i = 0; i < [str length]; i++) {
+        NSString *nowChar = [str substringWithRange:NSMakeRange(i, 1)];
+        if ([nowChar isEqualToString:@"\n"]) {
+            n0++;
+        }
+    }
+    if (n0 > 3) {
+        n--;
+    }
     for (int i = 0; i < [str length]; i++) {
         NSString *nowChar = [str substringWithRange:NSMakeRange(i, 1)];
         BOOL okey = YES;
-        if ([nowChar isEqualToString:@"\n"]) {
+        if ([nowChar isEqualToString:@"\n"] && n > 0) {
             okey = NO;
+            [oldChar setString:nowChar];
+            n--;
         }
-        if ([nowChar isEqualToString:@"\t"] && rT) {
+        if ([nowChar isEqualToString:@"\t"]) {
             okey = NO;
+            [oldChar setString:nowChar];
+        }
+        if ([nowChar isEqualToString:@"	"]) {
+            okey = NO;
+            [oldChar setString:nowChar];
         }
         if (okey) {
-            return [str substringFromIndex:i];
+            NSMutableString *rstr = [NSMutableString stringWithString:[str substringFromIndex:i]];
+//            NSString *delStr = [str substringToIndex:i];
+//            NSMutableString *delStrM = [NSMutableString string];
+//            int delStart = 0;
+//            for (int j = [delStr length]-1; j >= 0; j--) {
+//                NSString *nowDelStr = [delStr substringWithRange:NSMakeRange(j, 1)];
+//                if ([nowDelStr isEqualToString:@"\t"]) {
+//                    [delStrM setString:nowDelStr];
+//                    delStart = 1;
+//                } else if (delStart == 1) {
+//                    break;
+//                }
+//            }
+//            [rstr insertString:delStrM atIndex:0];
+            return rstr;
         }
-        //[oldChar setString:nowChar];
     }
     return @"";
 }

@@ -9,7 +9,6 @@
 #import "LibraryTVC.h"
 #import "BackgroundImg.h"
 #import "S.h"
-#define kBK 10.0f
 @interface LibraryTVC ()
 
 @end

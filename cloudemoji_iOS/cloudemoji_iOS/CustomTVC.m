@@ -8,14 +8,14 @@
 
 #import "CustomTVC.h"
 #import "BackgroundImg.h"
-#define kBK 10.0f
+//#import "CXAlertView.h"
 
 @interface CustomTVC ()
 
 @end
 
 @implementation CustomTVC
-@synthesize data, height;
+@synthesize data, height, mode;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -31,6 +31,7 @@
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
@@ -39,27 +40,52 @@
     [self loadInfo];
     UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
     self.navigationItem.rightBarButtonItem = rightbtn;
-    
-    
+}
+
+- (void)addData:(NSArray*)arr
+{
+    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *userdata = [setting mutableArrayValueForKey:@"diy"];
+    NSString *tagStr = [arr objectAtIndex:3];
+    for (int i = 0; i < [userdata count]; i++) {
+        NSArray *nowArr = [userdata objectAtIndex:i];
+        NSString *nowStr = [nowArr objectAtIndex:2];
+        //NSString *thisStr = [arr objectAtIndex:2];
+        if ([nowStr isEqualToString:tagStr]) {
+            [userdata removeObjectAtIndex:i];
+        }
+    }
+    [userdata insertObject:[NSArray arrayWithObjects:[arr objectAtIndex:0],[arr objectAtIndex:1],[arr objectAtIndex:2], nil] atIndex:0];
+    [setting setObject:[NSArray arrayWithArray:userdata] forKey:@"diy"];
+    [setting synchronize];
+    [self loadInfo];
+    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"不能添加" message:@"这个颜文字已经存在了。" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+    //[alert show];
 }
 
 - (void)rightbtn:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"源网址" message:@"请输入数据源网址，支持以XML和JSON为基础的专用数据源。\n源名称将被自动识别。" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"保存源",nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *atxt = [alert textFieldAtIndex:0];
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
-    {
-        PMCustomKeyboard *customKeyboard = [[PMCustomKeyboard alloc] init];
-        [customKeyboard setTextView:atxt];
-        
-    }
-    else {
-        PKCustomKeyboard *customKeyboard = [[PKCustomKeyboard alloc] init];
-        [customKeyboard setTextView:atxt];
-    }
-    [alert show];
+    mode = 1;
+    self.navigationController.navigationBar.translucent = NO;
+    EditViewController *edit = [[EditViewController alloc] init];
+    edit.tagStr = @"";
+    edit.delegate = self;
+    [self.navigationController pushViewController:edit animated:YES];
+    edit.title = @"自定义颜文字";
+//    [alert show];
 }
+//- (void)willPresentAlertView:(UIAlertView *)alertView
+//{
+//    CGRect frame = alertView.frame;
+//    UITextView *accoutName = [[UITextView alloc] initWithFrame: CGRectMake( 0, 0,160, 160 )];
+////    [alertView addSubview:accoutName];
+//    
+//}
+
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    NSLog(@"SB=%@",[alertView subviews]);
+//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -71,7 +97,6 @@
     [data removeAllObjects];
     [height removeAllObjects];
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSArray *userdata = [setting objectForKey:@"diy"];
     [data addObjectsFromArray:userdata];
     for (NSArray *nowArr in data) {
@@ -84,7 +109,26 @@
 
 -(void)btnSelect:(NSString*)name
 {
-    [self.tableView reloadData];
+    if ([name isEqualToString:@""]) {
+        [self loadInfo];
+    } else {
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *userdata = [setting mutableArrayValueForKey:@"diy"];
+        for (int i = 0; i < [userdata count]; i++) {
+            NSArray *nowArr = [userdata objectAtIndex:i];
+            NSString *nowStr = [nowArr objectAtIndex:2];
+            if ([nowStr isEqualToString:name]) {
+                self.navigationController.navigationBar.translucent = NO;
+                EditViewController *edit = [[EditViewController alloc] init];
+                edit.tagStr = nowStr;
+                edit.edit.text = nowStr;
+                edit.ename.text = [nowArr objectAtIndex:1];
+                edit.delegate = self;
+                [self.navigationController pushViewController:edit animated:YES];
+                edit.title = @"自定义颜文字";
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +156,7 @@
     if (cell == nil) {
         cell = [[OnlineLibraryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         [cell startWithMode:4];
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //        cell.delegate = self;
         [cell loadFrame:self.tableView.frame.size.width];
@@ -119,13 +164,13 @@
     NSArray *nowcell = [data objectAtIndex:indexPath.row];
     cell.name.text = [nowcell objectAtIndex:1];
     cell.info.text = [nowcell objectAtIndex:2];
-    float infoY = kBK * 2;
+    float infoY = kLY1;
     if (cell.name.text.length == 0) {
-        infoY = kBK + 15;
+        infoY = kLY0;
     }
     cell.info.frame = CGRectMake(kBK * 2, infoY, self.tableView.frame.size.width - kBK * 3, [[height objectAtIndex:indexPath.row] floatValue] + kBK * 0.5);
     cell.cellBGView.frame = CGRectMake(kBK, kBK * 1.5, self.tableView.frame.size.width - kBK * 2, cell.name.frame.origin.x + cell.name.frame.size.height + cell.info.frame.origin.x + cell.info.frame.size.height - kBK * 3);
-    [cell fav];
+    //[cell fav];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
