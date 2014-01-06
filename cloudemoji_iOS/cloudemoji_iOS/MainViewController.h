@@ -12,4 +12,5 @@
 
 @interface MainViewController : UIViewController <UITabBarControllerDelegate,OnlineLibraryDelegate,LibraryDelegate>
 @property (nonatomic, retain) UITabBarController *tab;
+//@property (nonatomic, retain) UIView *hudView;
 @end

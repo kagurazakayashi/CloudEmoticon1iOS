@@ -7,6 +7,8 @@
 //
 
 #import "LibraryTVC.h"
+#import "BackgroundImg.h"
+#import "S.h"
 #define kBK 10.0f
 @interface LibraryTVC ()
 
@@ -26,13 +28,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     alertMode = 0;
     editNow = 99999999;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [bg loadSetting:1];
+    [bg loadSettingImg:1];
+    self.tableView.backgroundView = bg;
+    
+    
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(r:) name:@"r" object:nil];
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     
     NSArray *userdata = [setting objectForKey:@"sourcelist"];
@@ -53,31 +62,13 @@
     for (NSArray *nowArr in data) {
         NSString *nowUrl = [nowArr objectAtIndex:1];
         //CGSize strSize0=[nowUrl sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(self.tableView.frame.size.width - kBK *4, 99999) lineBreakMode:NSLineBreakByWordWrapping];
-        float txtheight = [self txtHeightWithText:nowUrl MaxWidth:self.tableView.frame.size.width];
+        float txtheight = [S txtHeightWithText:nowUrl MaxWidth:self.tableView.frame.size.width];
         [height addObject:[NSNumber numberWithFloat:txtheight]];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
 }
 
-- (float)txtHeightWithText:(NSString*)text MaxWidth:(float)width
-{
-    UILabel *textView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, CGFLOAT_MAX)];
-    textView.font = [UIFont boldSystemFontOfSize:15.0f];
-    textView.text = text;
-    textView.numberOfLines = 0;
-    textView.lineBreakMode = NSLineBreakByCharWrapping;
-    CGRect txtFrame = textView.frame;
-    return [[NSString stringWithFormat:@"%@\n",textView.text] boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:textView.font,NSFontAttributeName, nil] context:nil].size.height;
-    
-    NSAttributedString *attrStr = [[NSAttributedString alloc] initWithString:text];
-    textView.attributedText = attrStr;
-    NSRange range = NSMakeRange(0, attrStr.length);
-    NSDictionary *dic = [attrStr attributesAtIndex:0 effectiveRange:&range];   // 获取该段attributedString的属性字典
-    // 计算文本的大小
-    CGSize textSize = [textView.text boundingRectWithSize:textView.bounds.size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return textSize.height;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -105,13 +96,14 @@
         cell = [[LibraryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
+        [cell loadFrame:tableView.frame.size.width];
     }
     //刷新显示内容
     NSArray *nowcell = [data objectAtIndex:indexPath.row];
     cell.name.text = [nowcell objectAtIndex:0];
     cell.info.text = [nowcell objectAtIndex:1];
-    cell.info.frame = CGRectMake(kBK * 2, kBK * 2 + 30, cell.frame.size.width - kBK * 3, [[height objectAtIndex:indexPath.row] floatValue] + kBK * 0.5);
-    cell.cellBGView.frame = CGRectMake(kBK, kBK * 1.5, cell.frame.size.width - kBK * 2, cell.name.frame.origin.x + cell.name.frame.size.height + cell.info.frame.origin.x + cell.info.frame.size.height - kBK * 3);
+    cell.info.frame = CGRectMake(kBK * 2, kBK * 2 + 30, tableView.frame.size.width - kBK * 3, [[height objectAtIndex:indexPath.row] floatValue] + kBK * 0.5);
+    cell.cellBGView.frame = CGRectMake(kBK, kBK * 1.5, tableView.frame.size.width - kBK * 2, cell.name.frame.origin.x + cell.name.frame.size.height + cell.info.frame.origin.x + cell.info.frame.size.height - kBK * 3);
     NSString *nowURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"];
     if ([cell.info.text isEqualToString:nowURL]) {
         [cell.btnFrv setHidden:YES];
@@ -120,6 +112,7 @@
         [cell.btnFrv setHidden:NO];
         cell.cellBGView.layer.shadowColor = [[UIColor whiteColor] CGColor];
     }
+    //[cell loadFrame:tableView.frame.size.width];
     return cell;
 }
 
@@ -234,8 +227,6 @@
             //NSDictionary *kinfo = [infoos objectForKey:@"info"];
             [cName setString:[infoos objectForKey:@"text"]];
         }
-        [cName setString:[cName stringByReplacingOccurrencesOfString: @"\t" withString:@""]];
-        [cName setString:[cName stringByReplacingOccurrencesOfString: @"\n" withString:@""]];
         if (editNow < 99999999) {
             [data removeObjectAtIndex:editNow];
             editNow = 99999999;
@@ -278,6 +269,12 @@
     editNow = 99999999;
     [alert show];
 }
+
+- (void)r:(id)sender
+{
+    [self.tableView reloadData];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

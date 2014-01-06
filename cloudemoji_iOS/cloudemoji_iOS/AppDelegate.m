@@ -16,6 +16,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
+    //allinfo = [[NSMutableArray alloc] init];
+    
     MainViewController *mvc = [[MainViewController alloc] init];
     self.window.rootViewController = mvc;
     

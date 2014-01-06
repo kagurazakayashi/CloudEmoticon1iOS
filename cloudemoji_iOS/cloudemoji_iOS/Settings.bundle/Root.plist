@@ -40,7 +40,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>界面设置</string>
+			<string>界面设置(需要重启程序)</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -51,6 +51,96 @@
 			<string>cpic</string>
 			<key>DefaultValue</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>启用阴影和发光效果</string>
+			<key>Key</key>
+			<string>css</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Titles</key>
+			<array>
+				<string>缩放拉伸</string>
+				<string>缩放居中</string>
+				<string>填充(推荐)</string>
+				<string>居中</string>
+				<string>底端对齐</string>
+				<string>顶端对齐</string>
+				<string>左对齐</string>
+				<string>右对齐</string>
+				<string>左上对齐</string>
+				<string>右上对齐</string>
+				<string>左下对齐</string>
+				<string>右下对齐</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>后底图缩放方式</string>
+			<key>Key</key>
+			<string>psz0</string>
+			<key>DefaultValue</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>Titles</key>
+			<array>
+				<string>缩放拉伸</string>
+				<string>缩放居中</string>
+				<string>填充(推荐)</string>
+				<string>居中</string>
+				<string>底端对齐</string>
+				<string>顶端对齐</string>
+				<string>左对齐</string>
+				<string>右对齐</string>
+				<string>左上对齐</string>
+				<string>右上对齐</string>
+				<string>左下对齐</string>
+				<string>右下对齐</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>前底图缩放方式</string>
+			<key>Key</key>
+			<string>psz1</string>
+			<key>DefaultValue</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>Type</key>

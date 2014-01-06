@@ -9,6 +9,7 @@
 #import "RefreshView.h"
 #import "XMLReader.h"
 #import "MD5.h"
+#import "S.h"
 @implementation RefreshView
 @synthesize info, connData, mode, cURL, mURL, loc;
 - (id)initWithFrame:(CGRect)frame
@@ -161,8 +162,60 @@
     }
     [self infoShow:@"正在处理数据..."];
     NSArray *cinf = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedInteger:mode],cURL,dataDic, nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"conok" object:cinf];
+    
+    if (([cinf count] > 2) && ([[cinf objectAtIndex:0] unsignedIntegerValue] == 1))
+    {
+        [[S s].allinfo removeAllObjects];
+        //NSString *cURL = [cinf objectAtIndex:1];
+        NSDictionary *info = [cinf objectAtIndex:2];
+        NSDictionary *emoji = [info objectForKey:@"emoji"];
+        NSArray *category = [emoji objectForKey:@"category"];
+        
+        //NSLog(@"category(%d)=%@",[category count], category);
+        for (int icate = 0; icate < [category count]; icate++) {
+            NSDictionary *cate = [category objectAtIndex:icate];
+            NSString *name = [cate objectForKey:@"name"];
+            NSArray *entry = [cate objectForKey:@"entry"];
+            
+            for (int iitem = 0; iitem < [entry count]; iitem++) {
+                NSDictionary *item = [entry objectAtIndex:iitem];
+                NSString *string = [[item objectForKey:@"string"] objectForKey:@"text"];
+                NSString *nameT = [self removeFirstReturn:name removeT:YES];
+                NSString *stringT = [self removeFirstReturn:string removeT:NO];
+                if ([item count] == 3) {
+                    NSString *note = [[item objectForKey:@"note"] objectForKey:@"text"];
+                    NSString *noteT = [self removeFirstReturn:note removeT:YES];
+                    NSArray *l = [NSArray arrayWithObjects:nameT,noteT,stringT, nil];
+                    [[S s].allinfo addObject:l];
+                } else {
+                    NSArray *l = [NSArray arrayWithObjects:nameT,@"",stringT, nil];
+                    [[S s].allinfo addObject:l];
+                }
+            }
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"conok" object:nil];
     [self exit];
+}
+- (NSString*)removeFirstReturn:(NSString*)str removeT:(BOOL)rT
+{
+    //NSMutableString *oldChar = [NSMutableString string];
+    for (int i = 0; i < [str length]; i++) {
+        NSString *nowChar = [str substringWithRange:NSMakeRange(i, 1)];
+        BOOL okey = YES;
+        if ([nowChar isEqualToString:@"\n"]) {
+            okey = NO;
+        }
+        if ([nowChar isEqualToString:@"\t"] && rT) {
+            okey = NO;
+        }
+        if (okey) {
+            return [str substringFromIndex:i];
+        }
+        //[oldChar setString:nowChar];
+    }
+    return @"";
 }
 - (void)exit
 {

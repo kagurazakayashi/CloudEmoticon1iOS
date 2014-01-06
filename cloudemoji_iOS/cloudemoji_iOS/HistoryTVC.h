@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HistoryTVC : UITableViewController
-
+#import "OnlineLibraryCell.h"
+#import "S.h"
+@protocol HistoryTVCDelegate <NSObject>
+- (void)loadInfo:(NSString*)type;
+@end
+@interface HistoryTVC : UITableViewController <OnlineLibraryCellDelegate>
+@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, retain) NSMutableArray *height;
+@property (nonatomic, assign) id<HistoryTVCDelegate> delegate;
 @end

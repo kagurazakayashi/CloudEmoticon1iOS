@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TypeMenuView : UIView
+@protocol TypeMenuViewDelegate <NSObject>
+- (void)loadInfo:(NSString*)type;
+@end
 
+@interface TypeMenuView : UIView <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, assign) id<TypeMenuViewDelegate> delegate;
+@property (nonatomic, retain) UITableView *tableview;
+@property (nonatomic, retain) NSMutableArray *data;
+//@property (nonatomic, retain) NSMutableArray *height;
 @end

@@ -8,18 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "TypeMenuView.h"
-
+#import "BackgroundImg.h"
+#import "OnlineLibraryCell.h"
 @protocol OnlineLibraryDelegate <NSObject>
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local;
 @end
 
-@interface OnlineLibraryTVC : UIViewController
+@interface OnlineLibraryTVC : UIViewController <UITableViewDataSource, UITableViewDelegate, TypeMenuViewDelegate>
 @property (nonatomic, assign) id<OnlineLibraryDelegate> delegate;
 @property (nonatomic, retain) TypeMenuView *typemenu;
 @property (nonatomic, retain) UITableView *tableView;
-@property (nonatomic, retain) UIImageView *typemenuD;
-@property (nonatomic, retain) UIImageView *tableViewD;
-@property (nonatomic, retain) UIView *tableViewD2;
-
-- (void)reloadDataOK;
+@property (nonatomic, retain) BackgroundImg *typemenuD;
+@property (nonatomic, retain) BackgroundImg *tableViewD;
+@property (nonatomic, retain) UIView *blackView;
+@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, retain) NSMutableArray *height;
+@property (nonatomic, assign) NSUInteger alertMode;
+@property (nonatomic, assign) NSUInteger editNow;
+@property (nonatomic, assign) BOOL showTool;
 @end

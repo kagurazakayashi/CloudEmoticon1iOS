@@ -15,6 +15,9 @@
 #import "AboutViewController.h"
 #import "SearchTVC.h"
 #import "RefreshView.h"
+#import "DIYViewController.h"
+#import "ProgressHUD.h"
+#import "S.h"
 @interface MainViewController ()
 
 @end
@@ -38,6 +41,7 @@
     OnlineLibraryTVC *ol = [[OnlineLibraryTVC alloc] init];
     ol.title = @"云颜文字";
     UINavigationController *oln = [[UINavigationController alloc] initWithRootViewController:ol];
+    oln.navigationBar.translucent = NO;
     UITabBarItem *olI = [[UITabBarItem alloc] initWithTitle:ol.title image:[UIImage imageNamed:@"pcould.png"] selectedImage:[UIImage imageNamed:@"pcould2.png"]];
     ol.delegate = self;
     ol.tabBarItem = olI;
@@ -66,8 +70,13 @@
     setView.showDoneButton = NO;
     setView.title = @"设置";
     UINavigationController *setn = [[UINavigationController alloc] initWithRootViewController:setView];
-    UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting.png"] selectedImage:[UIImage imageNamed:@"psetting2.png"]];
+    UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting2.png"] selectedImage:nil];
     setView.tabBarItem = setViewI;
+    DIYViewController *diy = [[DIYViewController alloc] init];
+    diy.title = @"个性化";
+    UINavigationController *diyn = [[UINavigationController alloc] initWithRootViewController:diy];
+    UITabBarItem *diyi = [[UITabBarItem alloc] initWithTitle:diy.title image:[UIImage imageNamed:@"psetting.png"] selectedImage:nil];
+    diy.tabBarItem = diyi;
     LibraryTVC *lib = [[LibraryTVC alloc] init];
     lib.title = @"源管理";
     UINavigationController *libn = [[UINavigationController alloc] initWithRootViewController:lib];
@@ -82,9 +91,10 @@
     about.tabBarItem = aboutI;
     self.tab = [[UITabBarController alloc] init];
     self.tab.delegate = self;
-    self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,setn,libn,aboutn, nil];
+    self.tab.tabBar.translucent = NO;
+    self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,aboutn,setn,diyn, nil];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];
     
     [self.view addSubview:self.tab.view];
 }
@@ -113,6 +123,11 @@
         [setting setObject:nowDate forKey:@"oldApp"];
         NSString *nowURL = @"http://dl.dropboxusercontent.com/u/120725807/test.xml";
         [setting setObject:nowURL forKey:@"nowURL"];
+        
+        [setting setObject:[NSMutableArray array] forKey:@"fav"];
+        [setting setObject:[NSMutableArray array] forKey:@"his"];
+        [setting setObject:[NSMutableArray array] forKey:@"diy"];
+        [self defaultImageFile];
     }else{
         NSDate *oldData = [setting objectForKey:@"oldData"];
         NSDate *oldApp = [setting objectForKey:@"oldApp"];
@@ -135,6 +150,77 @@
     }
     [setting synchronize];
 }
+- (void)alt:(NSNotification*)notification
+{
+    [ProgressHUD shared];
+    NSArray *info = [notification object];
+    NSNumber *num = [info objectAtIndex:0];
+    NSString *str = [info objectAtIndex:1];
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    [pasteboard setString:str];
+    
+    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+    
+    for (NSArray *nowArr in [S s].allinfo) {
+        NSString *nowStr = [nowArr objectAtIndex:2];
+        if ([nowStr isEqualToString:str]) {
+            NSMutableArray *his = [setting mutableArrayValueForKey:@"his"];
+            for (int i = 0; i < [his count]; i++) {
+                NSArray *nowArr2 = [his objectAtIndex:i];
+                NSString *str1 = [nowArr objectAtIndex:2];
+                NSString *str2 = [nowArr2 objectAtIndex:2];
+                if ([str1 isEqualToString:str2]) {
+                    [his removeObjectAtIndex:i];
+                }
+            }
+            [his addObject:nowArr];
+            [setting setObject:his forKey:@"his"];
+            [setting synchronize];
+            break;
+        }
+    }
+    
+    int mode = [num intValue];
+    if (mode == 0) {
+        [ProgressHUD show:@"内容已复制到剪贴板"];
+    } else if (mode == 1) {
+        [ProgressHUD showSuccess:@"内容已复制到剪贴板"];
+    } else if (mode == 2) {
+        [ProgressHUD showError:@"内容已复制到剪贴板"];
+    }
+    
+    BOOL iexit = [[setting objectForKey:@"copyclose"] boolValue];
+    if (iexit) {
+        [self exit];
+    }
+}
+
+- (void)exit
+{
+    self.view.backgroundColor = [UIColor blackColor];
+    [UIView animateWithDuration:1 animations:^{
+        self.tab.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        exit(0);
+    }];
+}
+
+- (void)defaultImageFile
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *f0 = [[NSBundle mainBundle] pathForResource:@"psz0" ofType:@"jpg"];
+    NSString *f1 = [[NSBundle mainBundle] pathForResource:@"psz1" ofType:@"jpg"];
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *t0 = [NSString stringWithFormat:@"%@/bg0.cxc",documentDirectory];
+    NSString *t1 = [NSString stringWithFormat:@"%@/bg1.cxc",documentDirectory];
+    if (![fileManager fileExistsAtPath:t0]) {
+        [fileManager copyItemAtPath:f0 toPath:t0 error:nil];
+    }
+    if (![fileManager fileExistsAtPath:t1]) {
+        [fileManager copyItemAtPath:f1 toPath:t1 error:nil];
+    }
+}
 
 - (void)registerDefaultsFromSettingsBundle {
     NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
@@ -155,6 +241,31 @@
     }
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    UIImageView *cc = [[UIImageView alloc] init];
+    cc.contentMode = UIViewContentModeBottom;
+}
+
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"r" object:nil];
+    
+//    if(fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+//    {
+//        NSLog(@"左右");
+//    }
+//    if (self.interfaceOrientation == UIDeviceOrientationPortrait){
+//        NSLog(@"竖直");
+//    }
+//    else if(self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+//    {
+//        NSLog(@"水平向左");
+//    }
+//    else if(self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+//    {
+//        NSLog(@"水平向左");
+//    }
 }
 
 - (void)didReceiveMemoryWarning

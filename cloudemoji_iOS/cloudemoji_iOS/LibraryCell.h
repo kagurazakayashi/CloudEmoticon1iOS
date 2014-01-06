@@ -20,4 +20,5 @@
 @property (nonatomic,retain) UIButton *btnFrv;
 @property (nonatomic,retain) UIButton *btnEdit;
 @property (nonatomic,retain) UIView *cellBGView;
+- (void)loadFrame:(float)width;
 @end
