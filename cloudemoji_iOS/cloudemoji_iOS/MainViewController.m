@@ -14,17 +14,19 @@
 //#import "IASKAppSettingsViewController.h"
 #import "SettingViewController.h"
 #import "AboutViewController.h"
+#import "XAboutViewController.h"
 #import "SearchTVC.h"
 #import "RefreshView.h"
 #import "DIYViewController.h"
 #import "ProgressHUD.h"
 #import "S.h"
+#import "AnimationPauseViewController.h"
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
-
+@synthesize tab, size7title, size7toolbar;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,72 +39,94 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"数据文件夹：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = NO;
+//        self.modalPresentationCapturesStatusBarAppearance = NO;
+//        self.automaticallyAdjustsScrollViewInsets = YES;
+//    }
+    //NSLog(@"数据文件夹：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
+//    self.tabBarController.tabBar.translucent = NO;
     [self didInit];
     OnlineLibraryTVC *ol = [[OnlineLibraryTVC alloc] init];
-    ol.title = @"云颜文字";
+    ol.title = NSLocalizedString(@"SoftwareName", nil);
     UINavigationController *oln = [[UINavigationController alloc] initWithRootViewController:ol];
-    oln.navigationBar.translucent = NO;
-    UITabBarItem *olI = [[UITabBarItem alloc] initWithTitle:ol.title image:[UIImage imageNamed:@"pcould.png"] selectedImage:[UIImage imageNamed:@"pcould2.png"]];
+//    oln.navigationBar.translucent = NO;
+    //UITabBarItem *olI = [[UITabBarItem alloc] initWithTitle:ol.title image:[UIImage imageNamed:@"pcould.png"] selectedImage:[UIImage imageNamed:@"pcould2.png"]];
+    UITabBarItem *olI = [[UITabBarItem alloc] initWithTitle:ol.title image:[UIImage imageNamed:@"pcould.png"] tag:0];
     ol.delegate = self;
     ol.tabBarItem = olI;
     FavoritesTVC *f = [[FavoritesTVC alloc] init];
-    f.title = @"收藏夹";
+    f.title = NSLocalizedString(@"Favorites", nil);
     UINavigationController *fn = [[UINavigationController alloc] initWithRootViewController:f];
-    UITabBarItem *fI = [[UITabBarItem alloc] initWithTitle:f.title image:[UIImage imageNamed:@"pbook.png"] selectedImage:[UIImage imageNamed:@"pbook2.png"]];
+    UITabBarItem *fI = [[UITabBarItem alloc] initWithTitle:f.title image:[UIImage imageNamed:@"pbook.png"] tag:0];
     f.tabBarItem = fI;
     HistoryTVC *h = [[HistoryTVC alloc] init];
-    h.title = @"历史记录";
+    h.title = NSLocalizedString(@"History", nil);
     UINavigationController *hn = [[UINavigationController alloc] initWithRootViewController:h];
-    UITabBarItem *hI = [[UITabBarItem alloc] initWithTitle:h.title image:[UIImage imageNamed:@"pclock.png"] selectedImage:[UIImage imageNamed:@"pclock2.png"]];
+    UITabBarItem *hI = [[UITabBarItem alloc] initWithTitle:h.title image:[UIImage imageNamed:@"pclock.png"] tag:0];
     h.tabBarItem = hI;
     CustomTVC *c = [[CustomTVC alloc] init];
-    c.title = @"自定义";
+    c.title = NSLocalizedString(@"Custom", nil);
     UINavigationController *cn = [[UINavigationController alloc] initWithRootViewController:c];
-    UITabBarItem *cI = [[UITabBarItem alloc] initWithTitle:c.title image:[UIImage imageNamed:@"pwri.png"] selectedImage:nil];
+    UITabBarItem *cI = [[UITabBarItem alloc] initWithTitle:c.title image:[UIImage imageNamed:@"pwri.png"] tag:0];
     c.tabBarItem = cI;
     SearchTVC *s = [[SearchTVC alloc] init];
-    s.title = @"搜索";
+    s.title = NSLocalizedString(@"Search", nil);
     UINavigationController *sn = [[UINavigationController alloc] initWithRootViewController:s];
-    UITabBarItem *sI = [[UITabBarItem alloc] initWithTitle:s.title image:[UIImage imageNamed:@"psearch.png"] selectedImage:nil];
+    UITabBarItem *sI = [[UITabBarItem alloc] initWithTitle:s.title image:[UIImage imageNamed:@"psearch.png"] tag:0];
     s.tabBarItem = sI;
     SettingViewController *setView = [[SettingViewController alloc] init];
 //    IASKAppSettingsViewController *setView = [[IASKAppSettingsViewController alloc] init];
 //    setView.showCreditsFooter = NO;
 //    setView.showDoneButton = NO;
-    setView.title = @"设置";
+    setView.title = NSLocalizedString(@"Setup", nil);
     UINavigationController *setn = [[UINavigationController alloc] initWithRootViewController:setView];
-    UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting2.png"] selectedImage:nil];
+    UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting2.png"] tag:0];
     setView.tabBarItem = setViewI;
     DIYViewController *diy = [[DIYViewController alloc] init];
-    diy.title = @"个性化";
+    diy.title = NSLocalizedString(@"Individuation", nil);
     UINavigationController *diyn = [[UINavigationController alloc] initWithRootViewController:diy];
-    UITabBarItem *diyi = [[UITabBarItem alloc] initWithTitle:diy.title image:[UIImage imageNamed:@"psetting.png"] selectedImage:nil];
+    UITabBarItem *diyi = [[UITabBarItem alloc] initWithTitle:diy.title image:[UIImage imageNamed:@"psetting.png"] tag:0];
     diy.tabBarItem = diyi;
     LibraryTVC *lib = [[LibraryTVC alloc] init];
-    lib.title = @"源管理";
+    lib.title = NSLocalizedString(@"SourceManagement", nil);
     UINavigationController *libn = [[UINavigationController alloc] initWithRootViewController:lib];
-    UITabBarItem *libI = [[UITabBarItem alloc] initWithTitle:lib.title image:[UIImage imageNamed:@"pweb.png"] selectedImage:nil];
+    UITabBarItem *libI = [[UITabBarItem alloc] initWithTitle:lib.title image:[UIImage imageNamed:@"pweb.png"] tag:0];
     lib.delegate = self;
     lib.tabBarItem = libI;
     AboutViewController *about = [[AboutViewController alloc] init];
-    about.title = @"更新和在线信息";
+    about.title = NSLocalizedString(@"UpdatesAndOnlineInformation", nil);
     UINavigationController *aboutn = [[UINavigationController alloc] initWithRootViewController:about];
-    UITabBarItem *aboutI = [[UITabBarItem alloc] initWithTitle:about.title image:[UIImage imageNamed:@"pinfo.png"] selectedImage:[UIImage imageNamed:@"pinfo2.png"]];
-
+    UITabBarItem *aboutI = [[UITabBarItem alloc] initWithTitle:about.title image:[UIImage imageNamed:@"info2.png"] tag:0];
+    about.tabBarItem = aboutI;
+    XAboutViewController *xabout = [[XAboutViewController alloc] init];
+    xabout.title = NSLocalizedString(@"About", nil);
+    UINavigationController *xaboutn = [[UINavigationController alloc] initWithRootViewController:xabout];
+    UITabBarItem *xaboutI = [[UITabBarItem alloc] initWithTitle:xabout.title image:[UIImage imageNamed:@"pinfo.png"] tag:0];
+    xabout.tabBarItem = xaboutI;
+    AnimationPauseViewController *yao = [[AnimationPauseViewController alloc] init];
+    yao.title = NSLocalizedString(@"Shake", nil);
+    UINavigationController *yaon = [[UINavigationController alloc] initWithRootViewController:yao];
+    UITabBarItem *yaoI = [[UITabBarItem alloc] initWithTitle:yao.title image:[UIImage imageNamed:@"psun.png"] tag:0];
+    yao.tabBarItem = yaoI;
     about.tabBarItem = aboutI;
     self.tab = [[UITabBarController alloc] init];
     self.tab.delegate = self;
-    self.tab.tabBar.translucent = NO;
-    self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,aboutn,setn,diyn, nil];
-    
+//    self.tab.tabBar.translucent = NO;
+    self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn, nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];
     
     [self.view addSubview:self.tab.view];
 }
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
-    RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    float rfY = 0;
+    if ([S s].ios < 7.0) {
+        rfY = 20.0;
+    }
+    RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, rfY, self.view.frame.size.width, self.view.frame.size.height)];
     
     rf.alpha = 0;
     [self.view addSubview:rf];
@@ -119,11 +143,11 @@
     NSDate *nowDate = [NSDate date];
     [self registerDefaultsFromSettingsBundle];
     if(![setting boolForKey:@"firstStart"]){
-        NSLog(@"第一次启动");
+        //NSLog(@"第一次启动");
         [setting setBool:YES forKey:@"firstStart"];
         [setting setObject:nowDate forKey:@"oldData"];
-        [setting setObject:nowDate forKey:@"oldApp"];
-        NSString *nowURL = @"http://dl.dropboxusercontent.com/u/120725807/test.xml";
+//        [setting setObject:nowDate forKey:@"oldApp"];
+        NSString *nowURL = @"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml";
         [setting setObject:nowURL forKey:@"nowURL"];
         
         [setting setObject:[NSMutableArray array] forKey:@"fav"];
@@ -132,23 +156,24 @@
         [self defaultImageFile];
     }else{
         NSDate *oldData = [setting objectForKey:@"oldData"];
-        NSDate *oldApp = [setting objectForKey:@"oldApp"];
+//        NSDate *oldApp = [setting objectForKey:@"oldApp"];
         float oldDataI = [oldData timeIntervalSinceNow];
-        float oldAppI = [oldApp timeIntervalSinceNow];
-        NSLog(@"TTT=%@",[setting objectForKey:@"dataformat"]);
+//        float oldAppI = [oldApp timeIntervalSinceNow];
         float dataI = [(NSNumber*)[setting objectForKey:@"dataupdatemode"] floatValue];
-        float appI = [(NSNumber*)[setting objectForKey:@"dataupdatemode"] floatValue];
-        NSLog(@"上次更新数据%g/%g，上次更新程序%g/%g。",oldDataI,dataI,oldAppI,appI);
+//        float appI = [(NSNumber*)[setting objectForKey:@"dataupdatemode"] floatValue];
+        //NSLog(@"上次更新数据%g/%g，上次更新程序%g/%g。",oldDataI,dataI,oldAppI,appI);
         if ((oldDataI*(-1)) >= dataI) {
             //更新数据
-            
+            [S s].isupdateData = YES;
             [setting setObject:nowDate forKey:@"oldData"];
+        } else {
+            [S s].isupdateData = NO;
         }
-        if ((oldAppI*(-1)) >= appI) {
-            //更新APP
-            
-            [setting setObject:nowDate forKey:@"oldApp"];
-        }
+//        if ((oldAppI*(-1)) >= appI) {
+//            //更新APP
+//            
+//            [setting setObject:nowDate forKey:@"oldApp"];
+//        }
     }
     [setting synchronize];
 }
@@ -187,12 +212,13 @@
     }
     
     int mode = [num intValue];
+    [MobClick event:@"copy"];
     if (mode == 0) {
-        [ProgressHUD show:@"内容已复制到剪贴板"];
+        [ProgressHUD show:NSLocalizedString(@"Clipboard", nil)];
     } else if (mode == 1) {
-        [ProgressHUD showSuccess:@"内容已复制到剪贴板"];
+        [ProgressHUD showSuccess:NSLocalizedString(@"Clipboard", nil)];
     } else if (mode == 2) {
-        [ProgressHUD showError:@"内容已复制到剪贴板"];
+        [ProgressHUD showError:NSLocalizedString(@"Clipboard", nil)];
     }
     
     BOOL iexit = [[setting objectForKey:@"copyclose"] boolValue];
@@ -207,6 +233,20 @@
     [UIView animateWithDuration:1 animations:^{
         self.tab.view.alpha = 0;
     } completion:^(BOOL finished) {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+        BOOL nov = [[setting objectForKey:@"nov"] boolValue];
+        if (nov) {
+            UILocalNotification *newNotification = [[UILocalNotification alloc] init];
+            if (newNotification) {
+                newNotification.timeZone=[NSTimeZone defaultTimeZone];
+                newNotification.fireDate=[[NSDate date] dateByAddingTimeInterval:1];
+                newNotification.alertBody = NSLocalizedString(@"Notification", nil);
+                newNotification.applicationIconBadgeNumber = 0;
+                [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
+            }
+        }
+        [MobClick event:@"exit"];
         exit(0);
     }];
 }

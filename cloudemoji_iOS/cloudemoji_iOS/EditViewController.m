@@ -9,6 +9,7 @@
 #import "EditViewController.h"
 #import "BackgroundImg.h"
 #import "ProgressHUD.h"
+#import "S.h"
 @interface EditViewController ()
 
 @end
@@ -19,18 +20,22 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        float dstitle = 64.0;
+        if ([S s].ios < 7.0) {
+            dstitle = 0;
+        }
         BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [bg loadSetting:1];
         [bg loadSettingImg:1];
         [self.view addSubview:bg];
         
         //bga = [[UIView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, self.view.frame.size.height - 140)];
-        ename = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, 20)];
+        ename = [[UITextField alloc] initWithFrame:CGRectMake(10, 10 + dstitle, self.view.frame.size.width - 20, 20)];
         ename.backgroundColor = [UIColor whiteColor];
         ename.alpha = 0.9;
-        ename.placeholder = @"无标题颜文字";
+        ename.placeholder = NSLocalizedString(@"Untitled", nil);
         ename.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        bga = [[UIView alloc] initWithFrame:CGRectMake(10, 30, self.view.frame.size.width - 20, self.view.frame.size.height * 0.37 - 20)];
+        bga = [[UIView alloc] initWithFrame:CGRectMake(10, 30 + dstitle, self.view.frame.size.width - 20, self.view.frame.size.height * 0.37 - 20)];
         bga.backgroundColor = [UIColor whiteColor];
         bga.alpha = 0.5;
         edit = [[UITextView alloc] initWithFrame:bga.frame];
@@ -46,7 +51,7 @@
         //[self.rightbtn setEnabled:NO];
         self.navigationItem.leftBarButtonItem = leftbtn;
         
-        self.navigationItem.leftBarButtonItem.title = @"保存";
+        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Save", nil);
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         
@@ -98,7 +103,7 @@
 
 - (void)close
 {
-    self.navigationController.navigationBar.translucent = YES;
+//    self.navigationController.navigationBar.translucent = YES;
     //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -116,7 +121,7 @@
 - (void)rightbtn:(id)sender
 {
     if (edit.text.length == 0) {
-        [ProgressHUD showError:@"还没有输入任何内容呢~"];
+        [ProgressHUD showError:NSLocalizedString(@"Blank", nil)];
     } else {
         NSArray *item = [NSArray arrayWithObjects:@"<USER>",ename.text,edit.text,tagStr, nil];
         [self.delegate addData:item];

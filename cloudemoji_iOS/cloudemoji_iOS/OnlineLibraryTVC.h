@@ -26,4 +26,7 @@
 @property (nonatomic, assign) NSUInteger alertMode;
 @property (nonatomic, assign) NSUInteger editNow;
 @property (nonatomic, assign) BOOL showTool;
+@property (nonatomic, assign) float dstitle;
+@property (nonatomic, assign) float dsfoot;
+- (void)rightbtn:(id)sender;
 @end

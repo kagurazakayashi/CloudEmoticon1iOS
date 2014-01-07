@@ -2,7 +2,7 @@
 //  S.h
 //  cloudemoji_iOS
 //
-//  Created by 王 燚 on 14-1-5.
+//  Created by 神楽坂雅詩 on 14-1-5.
 //  Copyright (c) 2014年 Yashi. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 + (float)txtHeightWithText:(NSString*)text MaxWidth:(float)width;
 
 @property (nonatomic, retain) NSMutableArray *allinfo;
-
+@property (nonatomic, assign) BOOL isupdateData;
+@property (nonatomic, assign) float ios;
 @end

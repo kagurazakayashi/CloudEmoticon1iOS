@@ -1,0 +1,97 @@
+//语言包识别：
+"language" = "简体中文";
+"translator" = "神楽坂雅詩";
+"SoftwareName" = "云顏文字"
+//功能表部分：
+"Favorites" = "收藏夹";
+"History" = "历史记录";
+"Custom" = "自定义";
+"Search" = "搜索";
+"Setup" = "设置";
+"Individuation" = "个性化";
+"SourceManagement" = "源管理";
+"UpdatesAndOnlineInformation" = "更新和在线信息";
+"About" = "关于";
+"Shake" = "摇一摇";
+//全局部分：
+"cancel" = "取消";
+"Notification" = "点击打开云颜文字";
+"OK" = "知道了";
+"Save" = "保存";
+"Retry" = "重试。";
+"Clipboard" = "内容已复制到剪贴板";
+//网络部分：
+"PrepareUpdate" = "正在准备更新源，请稍候...";
+"ReadLocal" = "正在读取本地缓存...";
+"CancelOperation" = "取消操作。";
+"WaitServer" = "正在等待服务器响应...";
+"Downloading" = "正在下载数据";
+"DownloadFailed_title" = "下载失败";
+"DownloadFailed_message" = "未能成功下载数据。请确认现在有足够的网速或请求数据源是否配置正确。\n%@";
+"InvalidData_title" = "数据解析失败";
+"InvalidData_message" = "由于源地址设置或目标服务器配置不正确，收到了无效的数据。%@";
+"SuccessfullyReceivedData" = "数据接收成功(数据量%d)";
+"FormattingData" = "正在格式化数据(资源量%d)";
+"TryXML" = "正在尝试使用XML解析数据...";
+"TryXMLFailed" = "尝试使用XML解析数据失败。%@";
+"TryJSON" = "正在尝试使用JSON解析数据...";
+"TryJSONFailed" = "尝试使用JSON解析数据失败。%@";
+"InternalParsingError" = "内部解析错误";
+"SaveLocalCache" = "正在保存本地缓存...";
+"ProcessingData" = "正在处理数据...";
+//搜索部分：
+"search" = "输入颜文字或颜文字名字中的字符";
+//关于部分：
+"VersionText" = "版本：";
+"ThirdPart" = "使用了以下第三方产品\n或有功能来自该产品的修改：";
+"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于安卓系统的版本，请进入“更新和在线信息”功能了解。\n当前语言包作者：%@\n程序作者：神楽坂雅詩 创建于2013-2014";
+//系统设置部分：
+"slbl1" = "程序设置\n已经集成在iOS系统设置中了哦！\n\n你可以按以下指引找到它：";
+"slbl2" = "1.点击：\n\n2.在主屏幕点击“设置”\n\n3.点击“云颜文字”";
+"LocalFile" = "本地缓存存储位置：";
+"exitnow" = "立即退出本程序(推荐)";
+//摇一摇部分：
+"User-defined" = "用户自定义";
+"RandomText_message" = "名称：%@\n所属分组：%@\n---------- 颜文字 ----------\n%@";
+"RandomText_title" = "~摇出来了一个颜文字~";
+"RandomText_btn1" = "复制到剪贴板";
+//自定义颜文字部分：
+"CustomText" = "自定义颜文字";
+"Untitled" = "无标题颜文字";
+"Blank" = "还没有输入任何内容呢~";
+//源管理器部分：
+"AddSource_title" = "源网址";
+"AddSource_message" = "请输入数据源网址，支持以XML和JSON为基础的专用数据源。\n源名称将被自动识别。";
+"AddSource_save" = "保存源";
+"ReplacementSource_title" = "已启用“%@”";
+"ReplacementSource_message" = "下次自动或手动刷新源的时候，\n将从这个源下载数据：\n%@";
+"DeleteSource_title" = "删除源";
+"DeleteSource_message" = "真的要删除源“%@”吗？";
+"DeleteSource_cancel" = "保留";
+"DeleteSource_delete" = "立即删除";
+"ReadOnlySource_title" = "这个源是只读的";
+"ReadOnlySource_message" = "“%@”是软件内置的源，\n不能被修改或删除。\n如果有系统源长期失效，\n请尝试检查软件更新。";
+//自定义主题部分：
+"ContentModeScaleToFill" = "缩放拉伸";
+"ContentModeScaleAspectFit" = "缩放居中";
+"ContentModeScaleAspectFill" = "填充(推荐)";
+"ContentModeRedraw" = "居中";
+"ContentModeCenter" = "居中";
+"ContentModeTop" = "底端对齐";
+"ContentModeBottom" = "顶端对齐";
+"ContentModeLeft" = "左对齐";
+"ContentModeRight" = "右对齐";
+"ContentModeTopLeft" = "左上对齐";
+"ContentModeTopRight" = "右上对齐";
+"ContentModeBottomLeft" = "左下对齐";
+"ContentModeBottomRight" = "右下对齐";
+"CutOut" = "对齐裁剪 >";
+"ReplaceBackground" = "更换背景底图";
+"RestoreDefaultBackground" = "背景底图恢复默认";
+"ReplaceForeground" = "更换前景底图";
+"RestoreDefaultForeground" = "前景底图恢复默认";
+"ImageScalingMode_title" = "请选择图像缩放方式";
+"ImageScalingMode_cancel" = "保持当前设置";
+"Previous" = "< 上一步";
+"Disable_title" = "功能已被禁用";
+"Disable_message" = "由于您在设置中不允许本程序载入背景图片，操作无法继续。\n要继续操作，请转至“iOS系统设置→云颜文字→允许使用自定义图片作为主题”，设置为“启用”，并重启本程序。";

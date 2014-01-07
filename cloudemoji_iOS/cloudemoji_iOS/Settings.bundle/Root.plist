@@ -204,56 +204,6 @@
 			<key>DefaultValue</key>
 			<string>&lt;c&gt;</string>
 		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>当前版本：0.1</string>
-		</dict>
-		<dict>
-			<key>Titles</key>
-			<array>
-				<string>每天</string>
-				<string>每三天</string>
-				<string>每周</string>
-				<string>每半个月</string>
-				<string>每月</string>
-				<string>手动</string>
-			</array>
-			<key>Values</key>
-			<array>
-				<integer>86400</integer>
-				<integer>259200</integer>
-				<integer>604800</integer>
-				<integer>1296000</integer>
-				<integer>2592000</integer>
-				<integer>0</integer>
-			</array>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>程序检查更新方式</string>
-			<key>Key</key>
-			<string>appupdatemode</string>
-			<key>DefaultValue</key>
-			<integer>604800</integer>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>接收ipa版更新</string>
-			<key>Key</key>
-			<string>autoupdate</string>
-			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>程序作者：(null) ← 暂时懒得打自己昵称XD </string>
-		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

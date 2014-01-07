@@ -2,15 +2,13 @@
 //  DIYViewController.m
 //  cloudemoji_iOS
 //
-//  Created by 王 燚 on 14-1-4.
+//  Created by 神楽坂雅詩 on 14-1-4.
 //  Copyright (c) 2014年 Yashi. All rights reserved.
 //
 
 #import "DIYViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#define kZNAME0 @"缩放拉伸",@"缩放居中",@"填充(推荐)",@"居中",@"底端对齐",@"顶端对齐",@"左对齐",@"右对齐",@"左上对齐",@"右上对齐",@"左下对齐",@"右下对齐", nil
-#define kZNAME1 @"缩放拉伸",@"缩放居中",@"填充(推荐)",@"对齐裁剪 >", nil
-#define kZNAME2 @"居中",@"底端对齐",@"顶端对齐",@"左对齐",@"右对齐",@"左上对齐",@"右上对齐",@"左下对齐",@"右下对齐", nil
+
 @interface DIYViewController ()
 
 @end
@@ -22,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.mode = 0;
-        self.zName = [NSArray arrayWithObjects:kZNAME0];
+        self.zName = [NSArray arrayWithObjects:NSLocalizedString(@"ContentModeScaleToFill", nil),NSLocalizedString(@"ContentModeScaleAspectFit", nil),NSLocalizedString(@"ContentModeScaleAspectFill", nil),NSLocalizedString(@"ContentModeRedraw", nil),NSLocalizedString(@"ContentModeTop", nil),NSLocalizedString(@"ContentModeBottom", nil),NSLocalizedString(@"ContentModeLeft", nil),NSLocalizedString(@"ContentModeRight", nil),NSLocalizedString(@"ContentModeTopLeft", nil),NSLocalizedString(@"ContentModeTopRight", nil),NSLocalizedString(@"ContentModeBottomLeft", nil),NSLocalizedString(@"ContentModeBottomRight", nil), nil];
         [self didLoad];
         [self loadSetting];
     }
@@ -42,7 +40,7 @@
     UIButton *btnA = [UIButton buttonWithType:UIButtonTypeCustom];
     btnA.backgroundColor = [UIColor blueColor];
     btnA.frame = CGRectMake(imgA.frame.origin.x, imgA.frame.origin.y + imgA.frame.size.height + 5, imgA.frame.size.width, 50);
-    [btnA setTitle:@"更换背景底图" forState:UIControlStateNormal];
+    [btnA setTitle:NSLocalizedString(@"ReplaceBackground", nil) forState:UIControlStateNormal];
     [btnA addTarget:self action:@selector(btnA:) forControlEvents:UIControlEventTouchDown];
     [scroll addSubview:btnA];
     zoom1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -53,7 +51,7 @@
     UIButton *delA = [UIButton buttonWithType:UIButtonTypeCustom];
     delA.backgroundColor = [UIColor grayColor];
     delA.frame = CGRectMake(imgA.frame.origin.x, zoom1.frame.origin.y + zoom1.frame.size.height + 5, btnA.frame.size.width, btnA.frame.size.height);
-    [delA setTitle:@"背景底图恢复默认" forState:UIControlStateNormal];
+    [delA setTitle:NSLocalizedString(@"RestoreDefaultBackground", nil) forState:UIControlStateNormal];
     [delA addTarget:self action:@selector(delA:) forControlEvents:UIControlEventTouchDown];
     [scroll addSubview:delA];
     
@@ -63,7 +61,7 @@
     UIButton *btnB = [UIButton buttonWithType:UIButtonTypeCustom];
     btnB.backgroundColor = [UIColor blueColor];
     btnB.frame = CGRectMake(imgB.frame.origin.x, imgB.frame.origin.y + imgA.frame.size.height + 5, imgB.frame.size.width, 50);
-    [btnB setTitle:@"更换前景底图" forState:UIControlStateNormal];
+    [btnB setTitle:NSLocalizedString(@"ReplaceForeground", nil) forState:UIControlStateNormal];
     [btnB addTarget:self action:@selector(btnB:) forControlEvents:UIControlEventTouchDown];
     [scroll addSubview:btnB];
     zoom2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -74,7 +72,7 @@
     UIButton *delB = [UIButton buttonWithType:UIButtonTypeCustom];
     delB.backgroundColor = [UIColor grayColor];
     delB.frame = CGRectMake(imgB.frame.origin.x, zoom2.frame.origin.y + zoom2.frame.size.height + 5, btnB.frame.size.width, btnB.frame.size.height);
-    [delB setTitle:@"前景底图恢复默认" forState:UIControlStateNormal];
+    [delB setTitle:NSLocalizedString(@"RestoreDefaultForeground", nil) forState:UIControlStateNormal];
     [delB addTarget:self action:@selector(delB:) forControlEvents:UIControlEventTouchDown];
     [scroll addSubview:delB];
     
@@ -113,7 +111,7 @@
 {
     if ([self canContinue]) {
         alertmode = 1;
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"请选择图像缩放方式" message:nil delegate:self cancelButtonTitle:@"保持当前设置" otherButtonTitles:kZNAME1];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"ImageScalingMode_title", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"ImageScalingMode_cancel", nil) otherButtonTitles:NSLocalizedString(@"ContentModeScaleToFill", nil),NSLocalizedString(@"ContentModeScaleAspectFit", nil),NSLocalizedString(@"ContentModeScaleAspectFill", nil),NSLocalizedString(@"CutOut", nil), nil];
         [alert show];
     }
 }
@@ -130,7 +128,7 @@
         }
         if (buttonIndex == 4 && alertmode == 1) {
             alertmode = 2;
-            UIAlertView *more = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"< 上一步" otherButtonTitles:kZNAME2];
+            UIAlertView *more = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Previous", nil) otherButtonTitles:NSLocalizedString(@"ContentModeCenter", nil),NSLocalizedString(@"ContentModeTop", nil),NSLocalizedString(@"ContentModeBottom", nil),NSLocalizedString(@"ContentModeLeft", nil),NSLocalizedString(@"ContentModeRight", nil),NSLocalizedString(@"ContentModeTopLeft", nil),NSLocalizedString(@"ContentModeTopRight", nil),NSLocalizedString(@"ContentModeBottomLeft", nil),NSLocalizedString(@"ContentModeBottomRight", nil), nil];
             [more show];
         } else {
             if (mode == 1) {
@@ -192,7 +190,7 @@
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     BOOL cpic = [[setting objectForKey:@"cpic"] boolValue];
     if (!cpic) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"功能已被禁用" message:@"由于您在设置中不允许本程序载入背景图片，操作无法继续。\n要继续操作，请转至“iOS系统设置→云颜文字→允许使用自定义图片作为主题”，设置为“启用”，并重启本程序。" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Disable_title", nil) message:NSLocalizedString(@"Disable_message", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
     }
     return cpic;

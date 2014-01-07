@@ -29,7 +29,7 @@
     UIImageView *logoimg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*0.5-icoSize*0.5, self.frame.size.height*0.2, icoSize, icoSize)];
     logoimg.image = [UIImage imageNamed:@"ic_launcher-152.png"];
     info = [[UILabel alloc] initWithFrame:CGRectMake(0, logoimg.frame.origin.y + logoimg.frame.size.height, self.frame.size.width, 20)];
-    [self infoShow:@"正在准备更新源，请稍候..."];
+    [self infoShow:NSLocalizedString(@"PrepareUpdate", nil)];
     info.textColor = [UIColor blueColor];
     info.textAlignment = NSTextAlignmentCenter;
     [self addSubview:logoimg];
@@ -49,7 +49,8 @@
         [fileManager changeCurrentDirectoryPath:[documentDirectory stringByExpandingTildeInPath]];
         NSString *path = [documentDirectory stringByAppendingPathComponent:mURL];
         if ([fileManager fileExistsAtPath:path]) {
-            [self infoShow:@"正在读取本地缓存..."];
+            [self infoShow:NSLocalizedString(@"ReadLocal", nil)];
+            [MobClick event:@"LoadLocal"];
             self.connData = [NSData dataWithContentsOfFile:path];
             [self connectionDidFinishLoading:nil];
         } else {
@@ -62,10 +63,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex) {
-        [self infoShow:@"重试。"];
+        [self infoShow:NSLocalizedString(@"Retry", nil)];
         [self startAsyConnection];
     } else {
-        [self infoShow:@"取消操作。"];
+        [self infoShow:NSLocalizedString(@"CancelOperation", nil)];
         //NSArray *cinf = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedInteger:mode],cURL, nil];
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"conok" object:cinf];
         [self exit];
@@ -73,20 +74,21 @@
 }
 - (void)startAsyConnection
 {
-    [self infoShow:@"正在等待服务器响应..."];
+    [self infoShow:NSLocalizedString(@"WaitServer", nil)];
     //第一步：创建URL
     NSURL *url = [NSURL URLWithString:cURL];
     //第二步：创建请求
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     //第三步：发送请求
+    [MobClick event:@"LoadWeb"];
     [NSURLConnection connectionWithRequest:request delegate:self];
     //接收到服务器回应
 }
 //服务器响应
 - (void)connection:(NSURLConnection *)connection didReceiveReceiveResponse:(NSURLResponse *)response
 {
-    [self infoShow:@"正在下载数据"];
+    [self infoShow:NSLocalizedString(@"Downloading", nil)];
     self.connData = [[NSMutableData alloc] init];
 }
 //接收数据
@@ -98,49 +100,54 @@
 //接收过程中出错
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSString *inf = [NSString stringWithFormat:@"未能成功下载数据。请确认现在有足够的网速或请求数据源是否配置正确。\n%@",[error localizedDescription]];
+    [MobClick event:@"LoadWebError"];
+    NSString *inf = [NSString stringWithFormat:NSLocalizedString(@"DownloadFailed_message", nil),[error localizedDescription]];
     [self infoShow:inf];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"下载失败" message:inf delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"重试", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"DownloadFailed_title", nil) message:inf delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
     [alert show];
 }
 - (void)dataErr:(NSString*)errinfo
 {
-    NSString *inf = [NSString stringWithFormat:@"由于源地址设置或目标服务器配置不正确，收到了无效的数据。%@",errinfo];
+    NSString *inf = [NSString stringWithFormat:NSLocalizedString(@"InvalidData_message", nil),errinfo];
     [self infoShow:inf];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"数据解析失败" message:inf delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidData_title", nil) message:inf delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles: nil];
     [alert show];
 }
 //成功接收
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self infoShow:[NSString stringWithFormat:@"数据接收成功(数据量%d)",[self.connData length]]];
+    [MobClick event:@"LoadWebOK"];
+    [self infoShow:[NSString stringWithFormat:NSLocalizedString(@"SuccessfullyReceivedData", nil),[self.connData length]]];
     NSString *str = [[NSString alloc] initWithData:self.connData encoding:NSUTF8StringEncoding];
-    [self infoShow:[NSString stringWithFormat:@"正在格式化数据(资源量%d)",[str length]]];
+    [self infoShow:[NSString stringWithFormat:NSLocalizedString(@"FormattingData", nil),[str length]]];
     NSDictionary *okdata = nil;
     
-    [self infoShow:@"正在尝试使用XML解析数据..."];
+    [self infoShow:NSLocalizedString(@"TryXML", nil)];
     //将字符串xml转为字典
     NSError *xmlerr = nil;
     NSDictionary *dic = [XMLReader dictionaryForXMLString:str error:&xmlerr];
     if (xmlerr) {
-        [self infoShow:[NSString stringWithFormat:@"尝试使用XML解析数据失败。%@",[xmlerr localizedDescription]]];
-        [self infoShow:@"正在尝试使用JSON解析数据..."];
+        [self infoShow:[NSString stringWithFormat:NSLocalizedString(@"TryXMLFailed", nil),[xmlerr localizedDescription]]];
+        [self infoShow:NSLocalizedString(@"TryJSON", nil)];
         //将json的Data转为字典
         NSError *jsonerr = nil;
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:self.connData options:NSJSONReadingMutableContainers error:&jsonerr];
         if (jsonerr) {
-            [self infoShow:[NSString stringWithFormat:@"尝试使用JSON解析数据失败。%@",[jsonerr localizedDescription]]];
+            [self infoShow:[NSString stringWithFormat:NSLocalizedString(@"TryJSONFailed", nil),[jsonerr localizedDescription]]];
             [self dataErr:[NSString stringWithFormat:@"%@。%@。",[xmlerr localizedDescription],[jsonerr localizedDescription]]];
         } else {
+            [MobClick event:@"ReadJSONok"];
             okdata = jsonDic;
         }
     } else {
+        [MobClick event:@"ReadXMLok"];
         okdata = dic;
     }
     if ([okdata count] > 0) {
         [self readData:okdata];
     } else {
-        [self dataErr:@"内部解析错误"];
+        [MobClick event:@"ReadError"];
+        [self dataErr:NSLocalizedString(@"InternalParsingError", nil)];
     }
 }
 
@@ -155,20 +162,21 @@
     if ([fileManager fileExistsAtPath:path] && loc) {
         
     } else {
-        [self infoShow:@"正在保存本地缓存..."];
+        [self infoShow:NSLocalizedString(@"SaveLocalCache", nil)];
         NSMutableData  *writer = [[NSMutableData alloc] init];
         [writer appendData:self.connData];
         [writer writeToFile:path atomically:YES];
     }
-    [self infoShow:@"正在处理数据..."];
+    [self infoShow:NSLocalizedString(@"ProcessingData", nil)];
     NSArray *cinf = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedInteger:mode],cURL,dataDic, nil];
     
     if (([cinf count] > 2) && ([[cinf objectAtIndex:0] unsignedIntegerValue] == 1))
     {
+        [MobClick event:@"FormatData"];
         [[S s].allinfo removeAllObjects];
         //NSString *cURL = [cinf objectAtIndex:1];
-        NSDictionary *info = [cinf objectAtIndex:2];
-        NSDictionary *emoji = [info objectForKey:@"emoji"];
+        NSDictionary *info0 = [cinf objectAtIndex:2];
+        NSDictionary *emoji = [info0 objectForKey:@"emoji"];
         NSArray *category = [emoji objectForKey:@"category"];
         
         //NSLog(@"category(%d)=%@",[category count], category);
@@ -200,7 +208,7 @@
 }
 - (NSString*)removeFirstReturn:(NSString*)str removeT:(BOOL)rT
 {
-    NSLog(@"str=%@",str);
+//    NSLog(@"str=%@",str);
     NSMutableString *oldChar = [NSMutableString string];
     int n = 3;
     int n0 = 0;
@@ -254,12 +262,13 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
+        [MobClick event:@"FormatDataOK"];
         [self removeFromSuperview];
     }];
 }
 - (void)infoShow:(NSString*)txt
 {
-    NSLog(@"[网络]%@",txt);
+//    NSLog(@"[网络]%@",txt);
     info.text = txt;
 }
 /*

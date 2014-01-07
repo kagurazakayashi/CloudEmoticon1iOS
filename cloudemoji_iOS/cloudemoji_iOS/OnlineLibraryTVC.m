@@ -15,7 +15,7 @@
 @end
 
 @implementation OnlineLibraryTVC
-@synthesize typemenu,tableView,typemenuD,tableViewD,data,height,alertMode,editNow,blackView,showTool;
+@synthesize typemenu,tableView,typemenuD,tableViewD,data,height,alertMode,editNow,blackView,showTool,dstitle,dsfoot;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,12 +32,18 @@
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor blackColor];
+    dstitle = 64.0;
+    dsfoot = 48.0;
+    if ([S s].ios < 7.0) {
+        dstitle = 0;
+        dsfoot = 0;
+    }
     
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     showTool = [[setting objectForKey:@"showLib"] boolValue];
     BOOL css = [[setting objectForKey:@"css"] boolValue];
     
-    typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * bl, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
+    typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot)];
     typemenu.delegate = self;
     typemenuD = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
 //    typemenuD.bg.backgroundColor = [UIColor blackColor];
@@ -50,7 +56,7 @@
     blackView.backgroundColor = [UIColor blackColor];
     blackView.alpha = 0.5f;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot)];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
@@ -86,7 +92,7 @@
     self.navigationItem.leftBarButtonItem = leftbtn;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
-    [self.delegate reloadData:[[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"] ModeTag:1 Local:YES];
+    [self.delegate reloadData:[[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"] ModeTag:1 Local:![S s].isupdateData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(r:) name:@"r" object:nil];
     
     [self swipAction0:nil];
@@ -145,28 +151,28 @@
     //if (swipe.state == UISwipeGestureRecognizerDirectionRight) {  }
     [blackView setHidden:NO];
     [UIView animateWithDuration:0.5 animations:^{
-        typemenu.frame = CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height);
+        typemenu.frame = CGRectMake(0, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot);
         if (showTool) {
-            tableView.frame = CGRectMake(self.view.frame.size.width * 0.3, 0, self.view.frame.size.width, self.view.frame.size.height);
+            tableView.frame = CGRectMake(self.view.frame.size.width * 0.3, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
         } else {
-            tableView.frame = CGRectMake(self.view.frame.size.width * bl, 0, self.view.frame.size.width, self.view.frame.size.height);
+            tableView.frame = CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
             blackView.alpha = 0.5;
         }
         blackView.frame = tableView.frame;
         tableViewD.img.alpha = tableView.alpha;
-        [tableViewD changeFrame:tableView.frame];
+        [tableViewD changeFrame:CGRectMake(tableView.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height)];
     }];
 }
 - (void)swipAction1:(id)sender
 {
     if (tableView.frame.origin.x > 0) {
         [UIView animateWithDuration:0.5 animations:^{
-            typemenu.frame = CGRectMake(self.view.frame.size.width * bl, 0, self.view.frame.size.width * bl, self.view.frame.size.height);
-            tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            typemenu.frame = CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot);
+            tableView.frame = CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
             blackView.frame = tableView.frame;
             blackView.alpha = 0;
 //            tableViewD.img.alpha = 0.5;
-            [tableViewD changeFrame:tableView.frame];
+            [tableViewD changeFrame:CGRectMake(tableView.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height)];
         } completion:^(BOOL finished) {
             [blackView setHidden:YES];
         }];
@@ -230,6 +236,7 @@
     NSString *selectStr = [selectArr objectAtIndex:2];
     NSNumber *num = [NSNumber numberWithInt:1];
     NSArray *arr = [NSArray arrayWithObjects:num,selectStr, nil];
+    [MobClick event:@"copy_main"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"alt" object:arr];
 }
 
@@ -244,10 +251,10 @@
     } else {
         size = bl;
     }
-    typemenu.frame = CGRectMake(self.view.frame.size.width * size, 0, self.view.frame.size.width * size, self.view.frame.size.height);
-    [typemenuD changeFrame:CGRectMake(0, 0, self.view.frame.size.width * size, self.view.frame.size.height)];
-    tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [tableViewD changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    typemenu.frame = CGRectMake(self.view.frame.size.width * size, dstitle, self.view.frame.size.width * size, self.view.frame.size.height - dstitle - dsfoot);
+    [typemenuD changeFrame:CGRectMake(0, dstitle, self.view.frame.size.width * size, self.view.frame.size.height - dstitle - dsfoot)];
+    tableView.frame = CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
+    [tableViewD changeFrame:CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot)];
 }
 /*
  // Override to support conditional editing of the table view.

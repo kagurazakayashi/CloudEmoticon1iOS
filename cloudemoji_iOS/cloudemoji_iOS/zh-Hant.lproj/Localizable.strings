@@ -1,0 +1,97 @@
+//语言包识别：
+"language" = "简体中文";
+"translator" = "神楽坂雅詩";
+"SoftwareName" = "云颜文字"
+//功能表部分：
+"Favorites" = "我的最愛";
+"History" = "歷史記錄";
+"Custom" = "自訂";
+"Search" = "搜索";
+"Setup" = "設置";
+"Individuation" = "個性化";
+"SourceManagement" = "源管理";
+"UpdatesAndOnlineInformation" = "更新和線上資訊";
+"About" = "關於";
+"Shake" = "搖一搖";
+//全域部分：
+"cancel" = "取消";
+"Notification" = "點擊打開雲顏文字";
+"OK" = "知道了";
+"Save" = "保存";
+"Retry" = "重試。";
+"Clipboard" = "內容已複製到剪貼板";
+//網路部分：
+"PrepareUpdate" = "正在準備更新源，請稍候...";
+"ReadLocal" = "正在讀取本地緩存...";
+"CancelOperation" = "取消操作。";
+"WaitServer" = "正在等待伺服器響應...";
+"Downloading" = "正在下載資料";
+"DownloadFailed_title" = "下載失敗";
+"DownloadFailed_message" = "未能成功下載資料。請確認現在有足夠的網速或請求資料來源是否配置正確。\n%@";
+"InvalidData_title" = "數據解析失敗";
+"InvalidData_message" = "由於源位址設置或目標伺服器配置不正確，收到了無效的資料。%@";
+"SuccessfullyReceivedData" = "資料接收成功(資料量%d)";
+"FormattingData" = "正在格式化資料(資源量%d)";
+"TryXML" = "正在嘗試使用XML解析資料...";
+"TryXMLFailed" = "嘗試使用XML解析資料失敗。%@";
+"TryJSON" = "正在嘗試使用JSON解析資料...";
+"TryJSONFailed" = "嘗試使用JSON解析資料失敗。%@";
+"InternalParsingError" = "內部解析錯誤";
+"SaveLocalCache" = "正在保存本地緩存...";
+"ProcessingData" = "正在處理資料...";
+//搜索部分：
+"search" = "輸入顏文字或顏文字名字中的字元";
+//關於部分：
+"VersionText" = "版本：";
+"ThirdPart" = "使用了以下協力廠商產品\n或有功能來自該產品的修改：";
+"AboutInfo" = "如果需要 更多詳細資訊、檢查新版本、回饋意見、或下載適用于安卓系統的版本，請進入“更新和線上資訊”功能瞭解。\n當前語言包作者：%@\n程式作者：神楽阪雅詩 創建於2013-2014";
+//系統設置部分：
+"slbl1" = "程式設置\n已經集成在iOS系統設置中了哦！\n\n你可以按以下指引找到它：";
+"slbl2" = "1.點擊：\n\n2.在主螢幕點擊“設置”\n\n3.點擊“雲顏文字”";
+"LocalFile" = "本地緩存存儲位置：";
+"exitnow" = "立即退出本程式(推薦)";
+//搖一搖部分：
+"User-defined" = "用戶自訂";
+"RandomText_message" = "名稱：%@\n所屬分組：%@\n---------- 顏文字 ----------\n%@";
+"RandomText_title" = "~搖出來了一個顏文字~";
+"RandomText_btn1" = "複製到剪貼板";
+//自訂顏文字部分：
+"CustomText" = "自訂顏文字";
+"Untitled" = "無標題顏文字";
+"Blank" = "還沒有輸入任何內容呢~";
+//源管理器部分：
+"AddSource_title" = "源網址";
+"AddSource_message" = "請輸入資料來源網址，支持以XML和JSON為基礎的專用資料來源。\n源名稱將被自動識別。";
+"AddSource_save" = "保存源";
+"ReplacementSource_title" = "已啟用“%@”";
+"ReplacementSource_message" = "下次自動或手動刷新源的時候，\n將從這個源下載資料：\n%@";
+"DeleteSource_title" = "刪除源";
+"DeleteSource_message" = "真的要刪除源“%@”嗎？";
+"DeleteSource_cancel" = "保留";
+"DeleteSource_delete" = "立即刪除";
+"ReadOnlySource_title" = "這個源是唯讀的";
+"ReadOnlySource_message" = "“%@”是軟體內置的源，\n不能被修改或刪除。\n如果有系統源長期失效，\n請嘗試檢查軟體更新。";
+//自訂主題部分：
+"ContentModeScaleToFill" = "縮放拉伸";
+"ContentModeScaleAspectFit" = "縮放居中";
+"ContentModeScaleAspectFill" = "填充(推薦)";
+"ContentModeRedraw" = "居中";
+"ContentModeCenter" = "居中";
+"ContentModeTop" = "底端對齊";
+"ContentModeBottom" = "頂端對齊";
+"ContentModeLeft" = "左對齊";
+"ContentModeRight" = "右對齊";
+"ContentModeTopLeft" = "左上對齊";
+"ContentModeTopRight" = "右上對齊";
+"ContentModeBottomLeft" = "左下對齊";
+"ContentModeBottomRight" = "右下對齊";
+"CutOut" = "對齊裁剪 >";
+"ReplaceBackground" = "更換背景底圖";
+"RestoreDefaultBackground" = "背景底圖恢復默認";
+"ReplaceForeground" = "更換前景底圖";
+"RestoreDefaultForeground" = "前景底圖恢復默認";
+"ImageScalingMode_title" = "請選擇圖像縮放方式";
+"ImageScalingMode_cancel" = "保持當前設置";
+"Previous" = "< 上一步";
+"Disable_title" = "功能已被禁用";
+"Disable_message" = "由於您在設置中不允許本程式載入背景圖片，操作無法繼續。\n要繼續操作，請轉至“iOS系統設置→雲顏文字→允許使用自訂圖片作為主題”，設置為“啟用”，並重啟本程式。";

@@ -44,6 +44,7 @@
 
 - (void)addData:(NSArray*)arr
 {
+    BOOL isnew = YES;
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     NSMutableArray *userdata = [setting mutableArrayValueForKey:@"diy"];
     NSString *tagStr = [arr objectAtIndex:3];
@@ -53,12 +54,16 @@
         //NSString *thisStr = [arr objectAtIndex:2];
         if ([nowStr isEqualToString:tagStr]) {
             [userdata removeObjectAtIndex:i];
+            isnew = NO;
         }
     }
     [userdata insertObject:[NSArray arrayWithObjects:[arr objectAtIndex:0],[arr objectAtIndex:1],[arr objectAtIndex:2], nil] atIndex:0];
     [setting setObject:[NSArray arrayWithArray:userdata] forKey:@"diy"];
     [setting synchronize];
     [self loadInfo];
+    if (isnew) {
+        [MobClick event:@"newDIY"];
+    }
     //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"不能添加" message:@"这个颜文字已经存在了。" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
     //[alert show];
 }
@@ -66,12 +71,12 @@
 - (void)rightbtn:(id)sender
 {
     mode = 1;
-    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.translucent = NO;
     EditViewController *edit = [[EditViewController alloc] init];
     edit.tagStr = @"";
     edit.delegate = self;
+    edit.title = NSLocalizedString(@"CustomText", nil);
     [self.navigationController pushViewController:edit animated:YES];
-    edit.title = @"自定义颜文字";
 //    [alert show];
 }
 //- (void)willPresentAlertView:(UIAlertView *)alertView
@@ -118,14 +123,14 @@
             NSArray *nowArr = [userdata objectAtIndex:i];
             NSString *nowStr = [nowArr objectAtIndex:2];
             if ([nowStr isEqualToString:name]) {
-                self.navigationController.navigationBar.translucent = NO;
+//                self.navigationController.navigationBar.translucent = NO;
                 EditViewController *edit = [[EditViewController alloc] init];
                 edit.tagStr = nowStr;
                 edit.edit.text = nowStr;
                 edit.ename.text = [nowArr objectAtIndex:1];
                 edit.delegate = self;
                 [self.navigationController pushViewController:edit animated:YES];
-                edit.title = @"自定义颜文字";
+                edit.title = NSLocalizedString(@"CustomText", nil);
             }
         }
     }
@@ -180,6 +185,7 @@
     NSString *selectStr = [selectArr objectAtIndex:2];
     NSNumber *num = [NSNumber numberWithInt:1];
     NSArray *arr = [NSArray arrayWithObjects:num,selectStr, nil];
+    [MobClick event:@"copy_diy"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"alt" object:arr];
 }
 

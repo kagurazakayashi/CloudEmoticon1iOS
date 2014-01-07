@@ -35,11 +35,13 @@
         [self addSubview:cellBGView];
         name = [[UILabel alloc] init];
         name.font = [UIFont boldSystemFontOfSize:20.0f];
+        name.backgroundColor = [UIColor clearColor];
         name.textColor = [UIColor blueColor];
         
         info = [[UILabel alloc] init];
         info.font = [UIFont boldSystemFontOfSize:15.0f];
         info.numberOfLines = 0;
+        info.backgroundColor = [UIColor clearColor];
         info.textColor = [UIColor purpleColor];
         info.lineBreakMode = NSLineBreakByCharWrapping;
         

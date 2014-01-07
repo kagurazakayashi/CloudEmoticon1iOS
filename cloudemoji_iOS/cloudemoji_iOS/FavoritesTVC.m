@@ -113,6 +113,7 @@
     NSString *selectStr = [selectArr objectAtIndex:2];
     NSNumber *num = [NSNumber numberWithInt:1];
     NSArray *arr = [NSArray arrayWithObjects:num,selectStr, nil];
+    [MobClick event:@"copy_fav"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"alt" object:arr];
 }
 

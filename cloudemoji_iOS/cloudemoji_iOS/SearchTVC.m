@@ -37,7 +37,7 @@
     self.tableView.backgroundView = bg;
     
     search = [[UISearchBar alloc] initWithFrame:CGRectMake(0, self.tableView.frame.origin.y, self.tableView.frame.size.width, 40)];
-    search.placeholder = @"输入颜文字或颜文字名字中的字符";
+    search.placeholder = NSLocalizedString(@"search", nil);
     search.delegate = self;
     self.tableView.tableHeaderView = search;
     search.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -59,8 +59,12 @@
 {
     [data removeAllObjects];
     [height removeAllObjects];
-    for (int i = 0; i < [[S s].allinfo count]; i++) {
-        NSArray *nowArr = [[S s].allinfo objectAtIndex:i];
+    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *sh = [NSMutableArray arrayWithArray:[S s].allinfo];
+    NSArray *hisData = [setting objectForKey:@"diy"];
+    [sh addObjectsFromArray:hisData];
+    for (int i = 0; i < [sh count]; i++) {
+        NSArray *nowArr = [sh objectAtIndex:i];
         BOOL han = NO;
         for (NSString *txt in nowArr) {
             NSRange range = [txt rangeOfString:searchText];//判断字符串是否包含
@@ -135,6 +139,7 @@
     NSString *selectStr = [selectArr objectAtIndex:2];
     NSNumber *num = [NSNumber numberWithInt:1];
     NSArray *arr = [NSArray arrayWithObjects:num,selectStr, nil];
+    [MobClick event:@"copy_search"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"alt" object:arr];
 }
 

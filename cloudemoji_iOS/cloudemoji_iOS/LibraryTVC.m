@@ -123,7 +123,7 @@
 - (void)changeAV:(NSString*)defaultURL;
 {
     alertMode = 1;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"源网址" message:@"请输入数据源网址，支持以XML和JSON为基础的专用数据源。\n源名称将被自动识别。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存源",nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"AddSource_title", nil) message:NSLocalizedString(@"AddSource_message", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"AddSource_save", nil),nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *tf = [alert textFieldAtIndex:0];
     if ([defaultURL length] > 0) {
@@ -159,7 +159,7 @@
         if ([nowURL isEqualToString:name]) {
             NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
             [setting setObject:nowURL forKey:@"nowURL"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"已启用“%@”",[nowarr objectAtIndex:0]] message:[NSString stringWithFormat:@"下次自动或手动刷新源的时候，\n将从这个源下载数据：\n%@",nowURL] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ReplacementSource_title", nil),[nowarr objectAtIndex:0]] message:[NSString stringWithFormat:NSLocalizedString(@"ReplacementSource_message", nil),nowURL] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
             [alert show];
             break;
         }
@@ -194,7 +194,7 @@
             } else {
                 alertMode = 2;
                 editNow = i;
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"删除源" message:[NSString stringWithFormat:@"真的要删除源“%@”吗？",tName] delegate:self cancelButtonTitle:@"保留" otherButtonTitles:@"立即删除",nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"DeleteSource_title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"DeleteSource_message", nil),tName] delegate:self cancelButtonTitle:NSLocalizedString(@"DeleteSource_cancel", nil) otherButtonTitles:NSLocalizedString(@"DeleteSource_delete", nil),nil];
                 [alert show];
             }
             break;
@@ -203,7 +203,7 @@
 }
 - (void)sysOnly:(NSString*)name
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"这个源是只读的" message:[NSString stringWithFormat:@"“%@”是软件内置的源，\n不能被修改或删除。\n如果有系统源长期失效，\n请尝试检查软件更新。",name] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ReadOnlySource_title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"ReadOnlySource_message", nil),name] delegate:nil cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:nil];
     [alert show];
 }
 - (void)conok:(NSNotification*)notification
@@ -263,7 +263,7 @@
 - (void)rightbtn:(id)sender
 {
     alertMode = 1;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"源网址" message:@"请输入数据源网址，支持以XML和JSON为基础的专用数据源。\n源名称将被自动识别。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存源",nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"AddSource_title", nil) message:NSLocalizedString(@"AddSource_message", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"AddSource_save", nil),nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     editNow = 99999999;
     [alert show];
