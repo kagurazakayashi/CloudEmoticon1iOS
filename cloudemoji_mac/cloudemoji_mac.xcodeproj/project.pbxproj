@@ -464,6 +464,7 @@
 				00ACFF1E18719682008CDF3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00ACFF1F18719682008CDF3B /* Build configuration list for PBXNativeTarget "cloudemoji_macTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +473,7 @@
 				00ACFF2118719682008CDF3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

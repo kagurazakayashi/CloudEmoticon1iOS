@@ -19,6 +19,10 @@
             s = [[S alloc] init];
             s.allinfo = [[NSMutableArray alloc] init];
             s.ios = [[[UIDevice currentDevice] systemVersion] floatValue];
+            s.correct = CGSizeMake(64, 48);
+            if (s.ios < 7.0) {
+                s.correct = CGSizeMake(0, 0);
+            }
         }
         return s;
     }

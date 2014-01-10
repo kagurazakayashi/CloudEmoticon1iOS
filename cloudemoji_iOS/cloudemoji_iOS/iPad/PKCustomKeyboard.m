@@ -25,7 +25,7 @@
 #define kChar_alt @[ @"੧", @"੨", @"੩", @"੪", @"੫", @"੬", @"੭", @"੮", @"੯", @"੦", @"ੴ", @"-", @"/", @":", @";", @"(", @")", @"$", @"£", @"₹", @"&", @"@", @"ਖ਼", @"ਗ਼", @"ੳ", @"ੲ", @".", @",", @"?", @"!", @"\'", @"\"", @" " ]
 
 - (id)init {
-	UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
 	CGRect frame;
 
 	if(UIDeviceOrientationIsLandscape(orientation))

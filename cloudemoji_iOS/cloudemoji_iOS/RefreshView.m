@@ -9,7 +9,7 @@
 #import "RefreshView.h"
 #import "XMLReader.h"
 #import "MD5.h"
-#import "S.h"
+
 @implementation RefreshView
 @synthesize info, connData, mode, cURL, mURL, loc;
 - (id)initWithFrame:(CGRect)frame
@@ -17,6 +17,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        if ([S s].ios < 7.0) {
+            self.frame = CGRectMake(0, 20, self.frame.size.width, self.frame.size.height);
+        }
         [self didLoad];
     }
     return self;

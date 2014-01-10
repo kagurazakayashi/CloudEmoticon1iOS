@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController
-
+@property (nonatomic, retain) UIWebView *web;
+@property (nonatomic, retain) UIBarButtonItem *rightbtn;
 @end

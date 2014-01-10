@@ -7,7 +7,7 @@
 //
 
 #import "TypeMenuView.h"
-#import "S.h"
+
 @implementation TypeMenuView
 @synthesize tableview,data;
 
@@ -22,13 +22,17 @@
         self.tableview.dataSource = self;
         self.tableview.delegate = self;
         self.tableview.backgroundColor = [UIColor clearColor];
+//        self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:self.tableview];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
     }
     return self;
 }
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)conok:(NSNotification*)notification
 {
     //NSArray *cinf = [notification object];
@@ -66,6 +70,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor yellowColor];
+        cell.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(2, 1, cell.frame.size.width - 4, cell.frame.size.height - 2)];
+        cell.backgroundView.backgroundColor = [UIColor blackColor];
+        cell.backgroundView.alpha = 0.5;
     }
     cell.textLabel.text = [data objectAtIndex:indexPath.row];
     return cell;

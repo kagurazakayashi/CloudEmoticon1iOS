@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
-#import "S.h"
+
 @protocol FavoritesTVCDelegate <NSObject>
 - (void)loadInfo:(NSString*)type;
 @end
 
-@interface FavoritesTVC : UITableViewController <OnlineLibraryCellDelegate>
+@interface FavoritesTVC : UIViewController <OnlineLibraryCellDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) NSMutableArray *data;
 @property (nonatomic, retain) NSMutableArray *height;
+@property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, assign) id<FavoritesTVCDelegate> delegate;
 
 @end

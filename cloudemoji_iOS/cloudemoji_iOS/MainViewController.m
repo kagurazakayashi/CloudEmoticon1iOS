@@ -8,19 +8,18 @@
 
 #import "MainViewController.h"
 #import "RefreshView.h"
-#import "HistoryTVC.h"
-#import "FavoritesTVC.h"
-#import "CustomTVC.h"
+#import "History.h"
+#import "Favorites.h"
+#import "Custom.h"
 //#import "IASKAppSettingsViewController.h"
-#import "SettingViewController.h"
+#import "Setting.h"
 #import "AboutViewController.h"
-#import "XAboutViewController.h"
-#import "SearchTVC.h"
+#import "About.h"
+#import "Search.h"
 #import "RefreshView.h"
-#import "DIYViewController.h"
-#import "ProgressHUD.h"
-#import "S.h"
-#import "AnimationPauseViewController.h"
+#import "Diy.h"
+#import "Toast+UIView.h"
+#import "AnimationPause.h"
 @interface MainViewController ()
 
 @end
@@ -49,7 +48,7 @@
     //NSLog(@"数据文件夹：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
 //    self.tabBarController.tabBar.translucent = NO;
     [self didInit];
-    OnlineLibraryTVC *ol = [[OnlineLibraryTVC alloc] init];
+    OnlineLibrary *ol = [[OnlineLibrary alloc] init];
     ol.title = NSLocalizedString(@"SoftwareName", nil);
     UINavigationController *oln = [[UINavigationController alloc] initWithRootViewController:ol];
 //    oln.navigationBar.translucent = NO;
@@ -57,22 +56,22 @@
     UITabBarItem *olI = [[UITabBarItem alloc] initWithTitle:ol.title image:[UIImage imageNamed:@"pcould.png"] tag:0];
     ol.delegate = self;
     ol.tabBarItem = olI;
-    FavoritesTVC *f = [[FavoritesTVC alloc] init];
+    Favorites *f = [[Favorites alloc] init];
     f.title = NSLocalizedString(@"Favorites", nil);
     UINavigationController *fn = [[UINavigationController alloc] initWithRootViewController:f];
     UITabBarItem *fI = [[UITabBarItem alloc] initWithTitle:f.title image:[UIImage imageNamed:@"pbook.png"] tag:0];
     f.tabBarItem = fI;
-    HistoryTVC *h = [[HistoryTVC alloc] init];
+    History *h = [[History alloc] init];
     h.title = NSLocalizedString(@"History", nil);
     UINavigationController *hn = [[UINavigationController alloc] initWithRootViewController:h];
     UITabBarItem *hI = [[UITabBarItem alloc] initWithTitle:h.title image:[UIImage imageNamed:@"pclock.png"] tag:0];
     h.tabBarItem = hI;
-    CustomTVC *c = [[CustomTVC alloc] init];
+    Custom *c = [[Custom alloc] init];
     c.title = NSLocalizedString(@"Custom", nil);
     UINavigationController *cn = [[UINavigationController alloc] initWithRootViewController:c];
     UITabBarItem *cI = [[UITabBarItem alloc] initWithTitle:c.title image:[UIImage imageNamed:@"pwri.png"] tag:0];
     c.tabBarItem = cI;
-    SearchTVC *s = [[SearchTVC alloc] init];
+    Search *s = [[Search alloc] init];
     s.title = NSLocalizedString(@"Search", nil);
     UINavigationController *sn = [[UINavigationController alloc] initWithRootViewController:s];
     UITabBarItem *sI = [[UITabBarItem alloc] initWithTitle:s.title image:[UIImage imageNamed:@"psearch.png"] tag:0];
@@ -85,12 +84,12 @@
     UINavigationController *setn = [[UINavigationController alloc] initWithRootViewController:setView];
     UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting2.png"] tag:0];
     setView.tabBarItem = setViewI;
-    DIYViewController *diy = [[DIYViewController alloc] init];
+    Diy *diy = [[Diy alloc] init];
     diy.title = NSLocalizedString(@"Individuation", nil);
     UINavigationController *diyn = [[UINavigationController alloc] initWithRootViewController:diy];
     UITabBarItem *diyi = [[UITabBarItem alloc] initWithTitle:diy.title image:[UIImage imageNamed:@"psetting.png"] tag:0];
     diy.tabBarItem = diyi;
-    LibraryTVC *lib = [[LibraryTVC alloc] init];
+    Library *lib = [[Library alloc] init];
     lib.title = NSLocalizedString(@"SourceManagement", nil);
     UINavigationController *libn = [[UINavigationController alloc] initWithRootViewController:lib];
     UITabBarItem *libI = [[UITabBarItem alloc] initWithTitle:lib.title image:[UIImage imageNamed:@"pweb.png"] tag:0];
@@ -101,12 +100,12 @@
     UINavigationController *aboutn = [[UINavigationController alloc] initWithRootViewController:about];
     UITabBarItem *aboutI = [[UITabBarItem alloc] initWithTitle:about.title image:[UIImage imageNamed:@"info2.png"] tag:0];
     about.tabBarItem = aboutI;
-    XAboutViewController *xabout = [[XAboutViewController alloc] init];
+    About *xabout = [[About alloc] init];
     xabout.title = NSLocalizedString(@"About", nil);
     UINavigationController *xaboutn = [[UINavigationController alloc] initWithRootViewController:xabout];
     UITabBarItem *xaboutI = [[UITabBarItem alloc] initWithTitle:xabout.title image:[UIImage imageNamed:@"pinfo.png"] tag:0];
     xabout.tabBarItem = xaboutI;
-    AnimationPauseViewController *yao = [[AnimationPauseViewController alloc] init];
+    AnimationPause *yao = [[AnimationPause alloc] init];
     yao.title = NSLocalizedString(@"Shake", nil);
     UINavigationController *yaon = [[UINavigationController alloc] initWithRootViewController:yao];
     UITabBarItem *yaoI = [[UITabBarItem alloc] initWithTitle:yao.title image:[UIImage imageNamed:@"psun.png"] tag:0];
@@ -120,13 +119,14 @@
     
     [self.view addSubview:self.tab.view];
 }
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
+}
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
-    float rfY = 0;
-    if ([S s].ios < 7.0) {
-        rfY = 20.0;
-    }
-    RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, rfY, self.view.frame.size.width, self.view.frame.size.height)];
+    RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     rf.alpha = 0;
     [self.view addSubview:rf];
@@ -179,7 +179,6 @@
 }
 - (void)alt:(NSNotification*)notification
 {
-    [ProgressHUD shared];
     NSArray *info = [notification object];
     NSNumber *num = [info objectAtIndex:0];
     NSString *str = [info objectAtIndex:1];
@@ -214,11 +213,11 @@
     int mode = [num intValue];
     [MobClick event:@"copy"];
     if (mode == 0) {
-        [ProgressHUD show:NSLocalizedString(@"Clipboard", nil)];
+        [self.view makeToast:NSLocalizedString(@"Clipboard", nil)];
     } else if (mode == 1) {
-        [ProgressHUD showSuccess:NSLocalizedString(@"Clipboard", nil)];
+        [self.view makeToast:NSLocalizedString(@"Clipboard", nil)];
     } else if (mode == 2) {
-        [ProgressHUD showError:NSLocalizedString(@"Clipboard", nil)];
+        [self.view makeToast:NSLocalizedString(@"Clipboard", nil)];
     }
     
     BOOL iexit = [[setting objectForKey:@"copyclose"] boolValue];
@@ -315,7 +314,9 @@
 
 - (void)didReceiveMemoryWarning
 {
+    [MobClick event:@"MemoryWarning"];
     [super didReceiveMemoryWarning];
+    [self.view makeToast:NSLocalizedString(@"MemoryWarning", nil)];
     // Dispose of any resources that can be recreated.
 }
 

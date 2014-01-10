@@ -29,51 +29,64 @@
 
 - (void)didLoad
 {
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    float dstitle = [S s].correct.width;
     
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    
-    imgA = [[BackgroundImg alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width * 0.5 - 15, self.view.frame.size.height * 0.5 - 15)];
+    float fontSize = 15.0;
+    imgA = [[BackgroundImg alloc] init];
+    float iy = 10;
+    if ([S s].ios < 7.0) {
+        iy = 0;
+    }
+    [imgA changeFrame:CGRectMake(10, dstitle + iy, self.view.frame.size.width * 0.5 - 15, self.view.frame.size.height * 0.5 - 15)];
 //    imgA.bg.backgroundColor = [UIColor blackColor];
     imgA.backgroundColor = [UIColor blackColor];
     [scroll addSubview:imgA];
-    UIButton *btnA = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnA.backgroundColor = [UIColor blueColor];
-    btnA.frame = CGRectMake(imgA.frame.origin.x, imgA.frame.origin.y + imgA.frame.size.height + 5, imgA.frame.size.width, 50);
+    UIButton *btnA = [UIButton buttonWithType:UIButtonTypeSystem];
+//    btnA.backgroundColor = [UIColor blueColor];
+    btnA.frame = CGRectMake(imgA.frame.origin.x, imgA.frame.origin.y + imgA.frame.size.height + 5, imgA.frame.size.width, 38);
     [btnA setTitle:NSLocalizedString(@"ReplaceBackground", nil) forState:UIControlStateNormal];
     [btnA addTarget:self action:@selector(btnA:) forControlEvents:UIControlEventTouchDown];
+    btnA.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [scroll addSubview:btnA];
-    zoom1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    zoom1.backgroundColor = [UIColor purpleColor];
+    zoom1 = [UIButton buttonWithType:UIButtonTypeSystem];
+//    zoom1.backgroundColor = [UIColor purpleColor];
     zoom1.frame = CGRectMake(imgA.frame.origin.x, imgA.frame.origin.y + imgA.frame.size.height + btnA.frame.size.height + 10, btnA.frame.size.width, btnA.frame.size.height);
     [zoom1 addTarget:self action:@selector(zoom1:) forControlEvents:UIControlEventTouchDown];
+    zoom1.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [scroll addSubview:zoom1];
-    UIButton *delA = [UIButton buttonWithType:UIButtonTypeCustom];
-    delA.backgroundColor = [UIColor grayColor];
+    UIButton *delA = [UIButton buttonWithType:UIButtonTypeSystem];
+//    delA.backgroundColor = [UIColor grayColor];
     delA.frame = CGRectMake(imgA.frame.origin.x, zoom1.frame.origin.y + zoom1.frame.size.height + 5, btnA.frame.size.width, btnA.frame.size.height);
     [delA setTitle:NSLocalizedString(@"RestoreDefaultBackground", nil) forState:UIControlStateNormal];
     [delA addTarget:self action:@selector(delA:) forControlEvents:UIControlEventTouchDown];
+    delA.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [scroll addSubview:delA];
     
-    imgB = [[BackgroundImg alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.5 + 5, 10, self.view.frame.size.width * 0.5 - 15, self.view.frame.size.height * 0.5 - 15)];
+    imgB = [[BackgroundImg alloc] init];
+    [imgB changeFrame:CGRectMake(self.view.frame.size.width * 0.5 + 5, imgA.frame.origin.y, self.view.frame.size.width * 0.5 - 15, self.view.frame.size.height * 0.5 - 15)];
 //    imgB.bg.backgroundColor = [UIColor whiteColor];
     [scroll addSubview:imgB];
-    UIButton *btnB = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnB.backgroundColor = [UIColor blueColor];
-    btnB.frame = CGRectMake(imgB.frame.origin.x, imgB.frame.origin.y + imgA.frame.size.height + 5, imgB.frame.size.width, 50);
+    UIButton *btnB = [UIButton buttonWithType:UIButtonTypeSystem];
+//    btnB.backgroundColor = [UIColor blueColor];
+    btnB.frame = CGRectMake(imgB.frame.origin.x, imgB.frame.origin.y + imgA.frame.size.height + 5, imgB.frame.size.width, btnA.frame.size.height);
     [btnB setTitle:NSLocalizedString(@"ReplaceForeground", nil) forState:UIControlStateNormal];
     [btnB addTarget:self action:@selector(btnB:) forControlEvents:UIControlEventTouchDown];
+    btnB.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [scroll addSubview:btnB];
-    zoom2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    zoom2.backgroundColor = [UIColor purpleColor];
+    zoom2 = [UIButton buttonWithType:UIButtonTypeSystem];
+//    zoom2.backgroundColor = [UIColor purpleColor];
     zoom2.frame = CGRectMake(imgB.frame.origin.x, imgB.frame.origin.y + imgB.frame.size.height + btnB.frame.size.height + 10, btnB.frame.size.width, btnB.frame.size.height);
     [zoom2 addTarget:self action:@selector(zoom2:) forControlEvents:UIControlEventTouchDown];
+    zoom2.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [scroll addSubview:zoom2];
-    UIButton *delB = [UIButton buttonWithType:UIButtonTypeCustom];
-    delB.backgroundColor = [UIColor grayColor];
+    UIButton *delB = [UIButton buttonWithType:UIButtonTypeSystem];
+//    delB.backgroundColor = [UIColor grayColor];
     delB.frame = CGRectMake(imgB.frame.origin.x, zoom2.frame.origin.y + zoom2.frame.size.height + 5, btnB.frame.size.width, btnB.frame.size.height);
     [delB setTitle:NSLocalizedString(@"RestoreDefaultForeground", nil) forState:UIControlStateNormal];
     [delB addTarget:self action:@selector(delB:) forControlEvents:UIControlEventTouchDown];
+    delB.titleLabel.font = [UIFont systemFontOfSize:fontSize];
     [scroll addSubview:delB];
     
     scroll.contentSize = CGSizeMake(self.view.frame.size.width, delB.frame.origin.y + delB.frame.size.height + 60);
@@ -158,17 +171,7 @@
 - (void)selectPicture
 {
     if ([self canContinue]) {
-        UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
-        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType=sourceType;
-        [self presentViewController:picker animated:YES completion:^{
-            
-        }];
+        [self.delegate openPicID:mode];
     }
 }
 
@@ -196,20 +199,7 @@
     return cpic;
 }
 
--(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-    UIImage * image=[info objectForKey:UIImagePickerControllerEditedImage];
-    [self performSelector:@selector(selectPic:) withObject:image afterDelay:0.1];
-}
-
-
-
 - (void)selectPic:(UIImage*)image
-
 {
     if (mode == 1) {
         [imgA changeImage:image];
@@ -218,18 +208,10 @@
         [imgB changeImage:image];
         [imgB saveSettingImg:1];
     }
-    NSNumber *nmode = [NSNumber numberWithInt:mode-1];
-    NSArray *postinfo = [NSArray arrayWithObjects:nmode, image, nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"bg" object:postinfo];
+//    NSNumber *nmode = [NSNumber numberWithInt:mode-1];
+//    NSArray *postinfo = [NSArray arrayWithObjects:nmode, image, nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"bg" object:postinfo];
     //[self performSelectorInBackground:@selector(detect:) withObject:nil];
-}
-
--(void)imagePickerControllerDIdCancel:(UIImagePickerController*)picker
-
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 - (void)viewDidLoad

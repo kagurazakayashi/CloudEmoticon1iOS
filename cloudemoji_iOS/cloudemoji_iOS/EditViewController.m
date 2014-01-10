@@ -8,23 +8,21 @@
 
 #import "EditViewController.h"
 #import "BackgroundImg.h"
-#import "ProgressHUD.h"
-#import "S.h"
+#import "Toast+UIView.h"
+
 @interface EditViewController ()
 
 @end
 
 @implementation EditViewController
-@synthesize edit,bga,title,ename,rightbtn,tagStr;
+@synthesize edit,bga,title,ename,tagStr; //,rightbtn
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        float dstitle = 64.0;
-        if ([S s].ios < 7.0) {
-            dstitle = 0;
-        }
-        BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        float dstitle = [S s].correct.width;
+        BackgroundImg *bg = [[BackgroundImg alloc] init];
+        [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [bg loadSetting:1];
         [bg loadSettingImg:1];
         [self.view addSubview:bg];
@@ -45,13 +43,13 @@
         [self.view addSubview:bga];
         [self.view addSubview:edit];
         
-        rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
-        self.navigationItem.rightBarButtonItem = rightbtn;
-        UIBarButtonItem *leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
-        //[self.rightbtn setEnabled:NO];
-        self.navigationItem.leftBarButtonItem = leftbtn;
+//        rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
+//        self.navigationItem.rightBarButtonItem = rightbtn;
+//        UIBarButtonItem *leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
+//        //[self.rightbtn setEnabled:NO];
+//        self.navigationItem.leftBarButtonItem = leftbtn;
         
-        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Save", nil);
+//        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Save", nil);
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         
@@ -65,7 +63,7 @@
             [customKeyboard setTextView:edit];
         }
         
-        [edit becomeFirstResponder];
+//        [edit becomeFirstResponder];
     }
     return self;
 }
@@ -105,7 +103,10 @@
 {
 //    self.navigationController.navigationBar.translucent = YES;
     //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
@@ -115,15 +116,40 @@
 
 - (void)leftbtn:(id)sender
 {
+    [self.delegate addData:nil];
     [self close];
 }
 
 - (void)rightbtn:(id)sender
 {
-    if (edit.text.length == 0) {
-        [ProgressHUD showError:NSLocalizedString(@"Blank", nil)];
+    if (!edit || edit.text.length == 0) {
+        [self.view makeToast:NSLocalizedString(@"Blank", nil)];
+        [UIView animateWithDuration:1000 animations:^{
+            edit.alpha = 0;
+        } completion:^(BOOL finished) {
+            edit.alpha = 1;
+        }];
     } else {
-        NSArray *item = [NSArray arrayWithObjects:@"<USER>",ename.text,edit.text,tagStr, nil];
+        NSString *sname = nil;
+        NSString *sedit = nil;
+        NSString *stag = nil;
+        if (ename && ename.text.length > 0) {
+            sname = [NSString stringWithString:ename.text];
+        } else {
+            sname = @"";
+        }
+        if (edit && edit.text.length > 0) {
+            sedit = [NSString stringWithString:edit.text];
+        } else {
+            sedit = @"";
+        }
+        if (tagStr && tagStr.length > 0) {
+            stag = [NSString stringWithString:tagStr];
+        } else {
+            stag = @"";
+        }
+        NSArray *item = [NSArray arrayWithObjects:@"<USER>",sname,sedit,stag, nil];
+        NSLog(@"item=%@",item);
         [self.delegate addData:item];
         [self close];
     }

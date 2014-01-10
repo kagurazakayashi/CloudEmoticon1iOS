@@ -26,7 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    if ([S s].ios < 7.0) {
+        self.view.frame = CGRectMake(0, -50, self.view.frame.size.width, self.view.frame.size.height - 92);
+    }
     lbl1.text = NSLocalizedString(@"slbl1", nil);
     lbl2.text = NSLocalizedString(@"slbl2", nil);
     lbl3.text = NSLocalizedString(@"LocalFile", nil);

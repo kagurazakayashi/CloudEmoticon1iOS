@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OnlineLibraryTVC.h"
-#import "LibraryTVC.h"
+#import "OnlineLibrary.h"
+#import "Library.h"
 
-@interface MainViewController : UIViewController <UITabBarControllerDelegate,OnlineLibraryDelegate,LibraryDelegate>
+@interface MainViewController : UIViewController <UITabBarControllerDelegate,OnlineLibraryMDelegate,LibraryMDelegate>
 @property (nonatomic, retain) UITabBarController *tab;
 @property (nonatomic, assign) float size7title;
 @property (nonatomic, assign) float size7toolbar;

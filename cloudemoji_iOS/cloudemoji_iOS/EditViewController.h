@@ -16,9 +16,11 @@
 
 @interface EditViewController : UIViewController //<UITextViewDelegate>
 @property (nonatomic, assign) id<EditViewDelegate> delegate;
-@property (nonatomic, retain) UIBarButtonItem *rightbtn;
+//@property (nonatomic, retain) UIBarButtonItem *rightbtn;
 @property (nonatomic, retain) UITextView *edit;
 @property (nonatomic, retain) UITextField *ename;
 @property (nonatomic, retain) UIView *bga;
 @property (nonatomic, retain) NSString *tagStr;
+- (void)rightbtn:(id)sender;
+- (void)leftbtn:(id)sender;
 @end

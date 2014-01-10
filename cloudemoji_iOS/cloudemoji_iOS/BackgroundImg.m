@@ -24,10 +24,16 @@
 //        [self addSubview:bg];
         [self addSubview:img];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nimg:) name:@"bg" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nimg:) name:@"bg" object:nil];
     }
     return self;
 }
+
+//- (void)viewDidUnload
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [super viewDidUnload];
+//}
 
 - (void)nimg:(NSNotification*)notification
 {

@@ -29,4 +29,5 @@
 @property (nonatomic, assign) float dstitle;
 @property (nonatomic, assign) float dsfoot;
 - (void)rightbtn:(id)sender;
+- (void)leftbtn:(id)sender;
 @end
