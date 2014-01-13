@@ -7,7 +7,6 @@
 //
 
 #import "OnlineLibraryCell.h"
-#import "S.h"
 
 @implementation OnlineLibraryCell
 @synthesize name, info, btnFrv, cellBGView, isfaved, cellmode, btnEdit;

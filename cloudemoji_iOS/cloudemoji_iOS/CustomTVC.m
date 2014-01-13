@@ -16,11 +16,11 @@
 
 @implementation CustomTVC
 @synthesize data, height, mode;
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -31,12 +31,32 @@
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    float dstitle = [S s].correct.width;
+    float dsfoot = [S s].correct.height;
+    if ([S s].ios < 7.0) {
+        dstitle = 0;
+        dsfoot = 134;
+    } else {
+        dstitle = 84;
+        dsfoot = 69;
+    }
+    data = [[NSMutableArray alloc] init];
+    height = [[NSMutableArray alloc] init];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    BackgroundImg *bg = [[BackgroundImg alloc] init];
+    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
-    self.tableView.backgroundView = bg;
     
+    [self.view addSubview:bg];
+    [self.view addSubview:self.tableView];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self loadInfo];
     UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
     self.navigationItem.rightBarButtonItem = rightbtn;
@@ -44,39 +64,51 @@
 
 - (void)addData:(NSArray*)arr
 {
-    BOOL isnew = YES;
-    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *userdata = [setting mutableArrayValueForKey:@"diy"];
-    NSString *tagStr = [arr objectAtIndex:3];
-    for (int i = 0; i < [userdata count]; i++) {
-        NSArray *nowArr = [userdata objectAtIndex:i];
-        NSString *nowStr = [nowArr objectAtIndex:2];
-        //NSString *thisStr = [arr objectAtIndex:2];
-        if ([nowStr isEqualToString:tagStr]) {
-            [userdata removeObjectAtIndex:i];
-            isnew = NO;
+    if (arr) {
+        BOOL isnew = YES;
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *userdata = [setting mutableArrayValueForKey:@"diy"];
+        NSString *tagStr = [arr objectAtIndex:3];
+        for (int i = 0; i < [userdata count]; i++) {
+            NSArray *nowArr = [userdata objectAtIndex:i];
+            NSString *nowStr = [nowArr objectAtIndex:2];
+            //NSString *thisStr = [arr objectAtIndex:2];
+            if ([nowStr isEqualToString:tagStr]) {
+                [userdata removeObjectAtIndex:i];
+                isnew = NO;
+            }
         }
+        [userdata insertObject:[NSArray arrayWithObjects:[arr objectAtIndex:0],[arr objectAtIndex:1],[arr objectAtIndex:2], nil] atIndex:0];
+        [setting setObject:[NSArray arrayWithArray:userdata] forKey:@"diy"];
+        [setting synchronize];
+        [self loadInfo];
+        if (isnew) {
+            [MobClick event:@"newDIY"];
+        }
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"不能添加" message:@"这个颜文字已经存在了。" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+        //[alert show];
     }
-    [userdata insertObject:[NSArray arrayWithObjects:[arr objectAtIndex:0],[arr objectAtIndex:1],[arr objectAtIndex:2], nil] atIndex:0];
-    [setting setObject:[NSArray arrayWithArray:userdata] forKey:@"diy"];
-    [setting synchronize];
-    [self loadInfo];
-    if (isnew) {
-        [MobClick event:@"newDIY"];
-    }
-    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"不能添加" message:@"这个颜文字已经存在了。" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
-    //[alert show];
+    [self.delegate reloadButton:NO];
 }
 
 - (void)rightbtn:(id)sender
 {
     mode = 1;
 //    self.navigationController.navigationBar.translucent = NO;
-    EditViewController *edit = [[EditViewController alloc] init];
-    edit.tagStr = @"";
-    edit.delegate = self;
-    edit.title = NSLocalizedString(@"CustomText", nil);
-    [self.navigationController pushViewController:edit animated:YES];
+    if (!self.edit) {
+        self.edit = [[EditViewController alloc] init];
+    }
+    self.edit.tagStr = @"";
+    self.edit.delegate = self;
+    self.edit.title = NSLocalizedString(@"CustomText", nil);
+    self.edit.ename.text = @"";
+    self.edit.edit.text = @"";
+    //    [self.navigationController pushViewController:edit animated:YES];
+    [self.delegate reloadButton:YES];
+    [self presentViewController:self.edit animated:YES completion:^{
+        [self.edit.edit becomeFirstResponder];
+    }];
+    
 //    [alert show];
 }
 //- (void)willPresentAlertView:(UIAlertView *)alertView
@@ -92,10 +124,10 @@
 //    NSLog(@"SB=%@",[alertView subviews]);
 //}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self loadInfo];
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [self loadInfo];
+//}
 
 - (void)loadInfo
 {
@@ -124,13 +156,18 @@
             NSString *nowStr = [nowArr objectAtIndex:2];
             if ([nowStr isEqualToString:name]) {
 //                self.navigationController.navigationBar.translucent = NO;
-                EditViewController *edit = [[EditViewController alloc] init];
-                edit.tagStr = nowStr;
-                edit.edit.text = nowStr;
-                edit.ename.text = [nowArr objectAtIndex:1];
-                edit.delegate = self;
-                [self.navigationController pushViewController:edit animated:YES];
-                edit.title = NSLocalizedString(@"CustomText", nil);
+                if (!self.edit) {
+                    self.edit = [[EditViewController alloc] init];
+                }
+                self.edit.tagStr = nowStr;
+                self.edit.edit.text = nowStr;
+                self.edit.ename.text = [nowArr objectAtIndex:1];
+                self.edit.delegate = self;
+                self.edit.title = NSLocalizedString(@"CustomText", nil);
+                [self.delegate reloadButton:YES];
+                [self presentViewController:self.edit animated:YES completion:^{
+                    [self.edit.edit becomeFirstResponder];
+                }];
             }
         }
     }

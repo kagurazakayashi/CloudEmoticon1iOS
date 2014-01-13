@@ -8,18 +8,18 @@
 
 #import "LibraryTVC.h"
 #import "BackgroundImg.h"
-#import "S.h"
+
 @interface LibraryTVC ()
 
 @end
 
 @implementation LibraryTVC
 @synthesize data, height, alertMode, editNow;
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -32,10 +32,33 @@
     alertMode = 0;
     editNow = 99999999;
     
-    BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    data = [[NSMutableArray alloc] init];
+    height = [[NSMutableArray alloc] init];
+    
+    float dstitle = [S s].correct.width;
+    float dsfoot = [S s].correct.height;
+    if ([S s].ios < 7.0) {
+        dstitle = 0;
+        dsfoot = 134;
+    } else {
+        dstitle = 84;
+        dsfoot = 69;
+    }
+    data = [[NSMutableArray alloc] init];
+    height = [[NSMutableArray alloc] init];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    BackgroundImg *bg = [[BackgroundImg alloc] init];
+    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
-    self.tableView.backgroundView = bg;
+    
+    [self.view addSubview:bg];
+    [self.view addSubview:self.tableView];
     
     
     
@@ -67,7 +90,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
 }
-
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
+}
 
 - (void)didReceiveMemoryWarning
 {

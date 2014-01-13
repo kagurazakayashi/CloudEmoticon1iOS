@@ -7,7 +7,6 @@
 //
 
 #import "OnlineLibraryTVC.h"
-#import "S.h"
 #define bl 0.7f
 
 @interface OnlineLibraryTVC ()
@@ -29,15 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([S s].ios < 7.0) {
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 92);
+    }
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor blackColor];
-    dstitle = 64.0;
-    dsfoot = 48.0;
-    if ([S s].ios < 7.0) {
-        dstitle = 0;
-        dsfoot = 0;
-    }
+    dstitle = [S s].correct.width;// - rfYA
+    dsfoot = [S s].correct.height;// + rfYB
     
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     showTool = [[setting objectForKey:@"showLib"] boolValue];
@@ -45,7 +43,8 @@
     
     typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot)];
     typemenu.delegate = self;
-    typemenuD = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
+    typemenuD = [[BackgroundImg alloc] init];
+    [typemenuD changeFrame:CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
 //    typemenuD.bg.backgroundColor = [UIColor blackColor];
     [typemenuD loadSetting:0];
     [typemenuD loadSettingImg:0];
@@ -61,7 +60,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    tableViewD = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    tableViewD = [[BackgroundImg alloc] init];
+    [tableViewD changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [tableViewD loadSetting:1];
     [tableViewD loadSettingImg:1];
     if (css) {
@@ -96,11 +96,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(r:) name:@"r" object:nil];
     
     [self swipAction0:nil];
+    if (showTool) {
+        [self.blackView removeFromSuperview];
+    }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [self.tableView reloadData];
+//}
+
+- (void)viewDidUnload
 {
-    [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
 }
 
 - (void)loadInfo:(NSString*)type

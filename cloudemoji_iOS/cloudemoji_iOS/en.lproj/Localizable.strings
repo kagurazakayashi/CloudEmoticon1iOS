@@ -1,0 +1,102 @@
+//语言包识别：
+"language" = "English (United States)";
+"translator" = "Kanade Tachibana";
+"SoftwareName" = "Cloud emoticon";
+//功能表部分：
+"Favorites" = "Favorites";
+"History" = "History";
+"Custom" = "Customize";
+"Search" = "Search";
+"Setup" = "Settings";
+"Individuation" = "Customization";
+"SourceManagement" = "Repository manager";
+"UpdatesAndOnlineInformation" = "Updates & Online information"; //???
+"About" = "About";
+"Shake" = "Random"; //???
+//全局部分：
+"cancel" = "Cancel";
+"Notification" = "Touch to launch Cloud emoticon";
+"OK" = "OK";
+"Save" = "Save";
+"Retry" = "Retry";
+"Clipboard" = "Copied to clipboard";
+"MemoryWarning" = "Out of memory. Try closing unnecessary background programs, or settings in the program to close all UI enhancements.";
+//网络部分：
+"PrepareUpdate" = "Updating, please wait...";
+"ReadLocal" = "Loading local cache...";
+"CancelOperation" = "Cancelled operation";
+"WaitServer" = "Connecting to server...";
+"Downloading" = "Downloading...";
+"DownloadFailed_title" = "Download failed";
+"DownloadFailed_message" = "Failed to donwload, please check if you have connectvity or the correct URL\n%@";
+"InvalidData_title" = "Parse failed";
+"InvalidData_message" = "InvalidData. (%@)";  //???
+"SuccessfullyReceivedData" = "Data received(%d)"; //???
+"FormattingData" = "Formatting data...(%d)"; //???
+"TryXML" = "Trying to parse XML...";
+"TryXMLFailed" = "XML parsing failed%@";
+"TryJSON" = "Trying to parse JSON...";
+"TryJSONFailed" = "JSON parsing failed%@";
+"InternalParsingError" = "Internal parsing error";
+"SaveLocalCache" = "Saving local cache...";
+"ProcessingData" = "Processing data...";
+//搜索部分：
+"search" = "Enter an emoticon or parts of it, or its description";
+//关于部分：
+"VersionText" = "Version: ";
+"ThirdPart" = "Uses these 3rd-party libraries\nOr modifications from them: ";
+"InstalledLanguages" = "Installed languages:";
+"AboutInfo" = "If you want to know more, check new versions, give feedbacks, or download the app availible for Android, please enter 'Updates & Online information'\nLanguage pack author:%@\nApp author:Yashi(i@heartunlock.com)";
+//系统设置部分：
+"slbl1" = "Settings\nAlready integrated into iOS's default settings.\nFollow the instructions:";
+"slbl2" = "1. Click: \n\n2. On home screen, press 'Settings'\n\n3.Click 'Cloud emoticon'";
+"LocalFile" = "Local cache storage location";
+"exitnow" = "Exit Now(Recommanded)";
+//摇一摇部分：
+"User-defined" = "Customization";
+"RandomText_message" = "Name: %@\nCategory: %@\n---------- Emoticon ----------\n%@";
+"RandomText_title" = "~Randomized an emoticon~";
+"RandomText_btn1" = "Copy to clipboard";
+//自定义颜文字部分：
+"CustomText" = "Customzied emoticon";
+"Untitled" = "Untitled emoticon";
+"Blank" = "Blank"; //???
+"Superposition" = "Append";
+"Wrap" = "Wrap";
+"EmoticonInputMethod" = "Emoticon Input";
+//源管理器部分：
+"AddSource_title" = "Repository URL: ";
+"AddSource_message" = "Please enter repository URL, support XML and JSON formats\nRepository name will be automatically reconized";
+"AddSource_save" = "Save repository";
+"ReplacementSource_title" = "Enabled repository“%@”";
+"ReplacementSource_message" = "Next time when automatically or manually refresh repository, \napp will refresh from this repository URL: \n%@";
+"DeleteSource_title" = "Delete repository URL";
+"DeleteSource_message" = "Are you sure you want to delete this repository URL '%@' ?";
+"DeleteSource_cancel" = "Don't delete";
+"DeleteSource_delete" = "Delete";
+"ReadOnlySource_title" = "This repository URL is read-only";
+"ReadOnlySource_message" = "'%@'is one of the default repository URLs，\nit cannot be deleted\nif this repository URL is invalid\nplease update this app";
+//自定义主题部分：
+"ContentModeScaleToFill" = "Scale To Fill";
+"ContentModeScaleAspectFit" = "Scale Aspect Fit";
+"ContentModeScaleAspectFill" = "Scale Aspect Fill";
+"ContentModeRedraw" = "Redraw";
+"ContentModeCenter" = "Center";
+"ContentModeTop" = "Top";
+"ContentModeBottom" = "Bottom";
+"ContentModeLeft" = "Left";
+"ContentModeRight" = "Right";
+"ContentModeTopLeft" = "Top Left";
+"ContentModeTopRight" = "Top Right";
+"ContentModeBottomLeft" = "Bottom Left";
+"ContentModeBottomRight" = "Bottom Right";
+"CutOut" = "Cut to fit >";
+"ReplaceBackground" = "Change background";
+"RestoreDefaultBackground" = "Default background";
+"ReplaceForeground" = "Change foreground";
+"RestoreDefaultForeground" = "Default foreground";
+"ImageScalingMode_title" = "Please select image scaling mode";
+"ImageScalingMode_cancel" = "Keep the current settings";
+"Previous" = "< Previous step";
+"Disable_title" = "Functionality diabled";
+"Disable_message" = "Operation denied because because you disabled this app to load imeags\nTo continue, go to 'iOS system settings -> Cloud emoticon -> Allow customized images as theme'，set it to 'enabled'，and restart the app.";

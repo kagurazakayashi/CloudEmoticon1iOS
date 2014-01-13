@@ -2,19 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Title</key>
+	<string>Cloud emoticon</string>
+	<key>StringsTable</key>
+	<string>Root.strings</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>行为</string>
+			<string>Behaviors</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>驻留通知栏</string>
+			<string>Stays in notification</string>
 			<key>Key</key>
 			<string>nov</string>
 			<key>DefaultValue</key>
@@ -24,7 +28,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>复制以后退出程序</string>
+			<string>Closes after copy</string>
 			<key>Key</key>
 			<string>copyclose</string>
 			<key>DefaultValue</key>
@@ -34,19 +38,19 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>驻留通知栏功能需要您在系统通知设置中允许本程序发送通知，并设置提醒样式为无，并且在通知中心中显示。</string>
+			<string>Stays in notification note</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>界面设置(需要重启程序)</string>
+			<string>UI</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>允许使用自定义图片作为主题</string>
+			<string>Allow customized images as theme</string>
 			<key>Key</key>
 			<string>cpic</string>
 			<key>DefaultValue</key>
@@ -56,27 +60,28 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>启用阴影和发光效果</string>
+			<string>Enable shadowing</string>
 			<key>Key</key>
 			<string>css</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Titles</key>
 			<array>
-				<string>缩放拉伸</string>
-				<string>缩放居中</string>
-				<string>填充(推荐)</string>
-				<string>居中</string>
-				<string>底端对齐</string>
-				<string>顶端对齐</string>
-				<string>左对齐</string>
-				<string>右对齐</string>
-				<string>左上对齐</string>
-				<string>右上对齐</string>
-				<string>左下对齐</string>
-				<string>右下对齐</string>
+				<string>Scale To Fill</string>
+				<string>Scale Aspect Fit</string>
+				<string>Scale Aspect Fill</string>
+				<string>Redraw</string>
+				<string>Center</string>
+				<string>Top</string>
+				<string>Bottom</string>
+				<string>Left</string>
+				<string>Right</string>
+				<string>Top Left</string>
+				<string>Top Right</string>
+				<string>Bottom Left</string>
+				<string>Bottom Right</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -92,11 +97,12 @@
 				<integer>9</integer>
 				<integer>10</integer>
 				<integer>11</integer>
+				<integer>12</integer>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>后底图缩放方式</string>
+			<string>Background scaling style</string>
 			<key>Key</key>
 			<string>psz0</string>
 			<key>DefaultValue</key>
@@ -105,18 +111,19 @@
 		<dict>
 			<key>Titles</key>
 			<array>
-				<string>缩放拉伸</string>
-				<string>缩放居中</string>
-				<string>填充(推荐)</string>
-				<string>居中</string>
-				<string>底端对齐</string>
-				<string>顶端对齐</string>
-				<string>左对齐</string>
-				<string>右对齐</string>
-				<string>左上对齐</string>
-				<string>右上对齐</string>
-				<string>左下对齐</string>
-				<string>右下对齐</string>
+				<string>Scale To Fill</string>
+				<string>Scale Aspect Fit</string>
+				<string>Scale Aspect Fill</string>
+				<string>Redraw</string>
+				<string>Center</string>
+				<string>Top</string>
+				<string>Bottom</string>
+				<string>Left</string>
+				<string>Right</string>
+				<string>Top Left</string>
+				<string>Top Right</string>
+				<string>Bottom Left</string>
+				<string>Bottom Right</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -132,11 +139,10 @@
 				<integer>9</integer>
 				<integer>10</integer>
 				<integer>11</integer>
+				<integer>12</integer>
 			</array>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>前底图缩放方式</string>
+			<string>Foreground scaling style</string>
 			<key>Key</key>
 			<string>psz1</string>
 			<key>DefaultValue</key>
@@ -146,7 +152,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>左侧库始终显示</string>
+			<string>Always show repositories on the left</string>
 			<key>Key</key>
 			<string>showLib</string>
 			<key>DefaultValue</key>
@@ -156,17 +162,17 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>数据源设置</string>
+			<string>Repository URL</string>
 		</dict>
 		<dict>
 			<key>Titles</key>
 			<array>
-				<string>每天</string>
-				<string>每三天</string>
-				<string>每周</string>
-				<string>每半个月</string>
-				<string>每月</string>
-				<string>手动</string>
+				<string>Everyday</string>
+				<string>Every three days</string>
+				<string>Every week</string>
+				<string>Every half month</string>
+				<string>Every month</string>
+				<string>Manually</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -180,7 +186,7 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>源检查更新方式</string>
+			<string>Automatic update data</string>
 			<key>Key</key>
 			<string>dataupdatemode</string>
 			<key>DefaultValue</key>
@@ -189,7 +195,7 @@
 		<dict>
 			<key>Titles</key>
 			<array>
-				<string>使用源管理器</string>
+				<string>Use repository manager</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -198,14 +204,12 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>源地址</string>
+			<string>Repository URL</string>
 			<key>Key</key>
 			<string>sources</string>
 			<key>DefaultValue</key>
 			<string>&lt;c&gt;</string>
 		</dict>
 	</array>
-	<key>StringsTable</key>
-	<string>Root</string>
 </dict>
 </plist>

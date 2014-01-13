@@ -15,11 +15,11 @@
 
 @implementation HistoryTVC
 @synthesize data, height;
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -30,19 +30,39 @@
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     
-    BackgroundImg *bg = [[BackgroundImg alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    float dstitle = [S s].correct.width;
+    float dsfoot = [S s].correct.height;
+    if ([S s].ios < 7.0) {
+        dstitle = 0;
+        dsfoot = 134;
+    } else {
+        dstitle = 84;
+        dsfoot = 69;
+    }
+    data = [[NSMutableArray alloc] init];
+    height = [[NSMutableArray alloc] init];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    BackgroundImg *bg = [[BackgroundImg alloc] init];
+    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
-    self.tableView.backgroundView = bg;
+    
+    [self.view addSubview:bg];
+    [self.view addSubview:self.tableView];
     
     [self loadInfo];
     
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self loadInfo];
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [self loadInfo];
+//}
 
 - (void)loadInfo
 {
@@ -53,7 +73,7 @@
     NSArray *userdata0 = [setting objectForKey:@"his"];
     
     NSMutableArray *tmpp = [[NSMutableArray alloc] init];
-    for (int i = [userdata0 count] - 1; i >= 0; i--) {
+    for (long i = [userdata0 count] - 1; i >= 0; i--) {
         [tmpp addObject:[userdata0 objectAtIndex:i]];
     }
     

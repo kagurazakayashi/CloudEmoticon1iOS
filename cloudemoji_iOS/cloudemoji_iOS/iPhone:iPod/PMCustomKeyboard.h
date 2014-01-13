@@ -10,11 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kFont [UIFont fontWithName:@"GurmukhiMN" size:20]
-#define kAltLabel @"叠加符"
-#define kReturnLabel @"换行"
-#define kSpaceLabel @"雅诗颜文字符输入法"
-#define kChar @[ @"ლ", @"╹", @"◡", @"൬", @"▽", @"￣", @"♡", @"๑", @"ㄟ", @"∀", @"ω", @"3", @"」", @"┐", @"｢", @"∠", @"Ծ", @"ю", @"♪", @"✄", @"ひ", @"ڡ", @"₃", @"Σ", @"Д", @"□", @"⊙", @"༎ຶ", @"σ", @"｡" ]
-#define kChar_shift @[ @"(", @")", @"<", @">", @"╮", @"╭", @"△", @"▽", @"↑", @"↓", @"←", @"→", @"↖", @"↗", @"↙", @"↘", @"´", @"｀", @"っ", @"c", @"/", @"＼", @"•́", @"•̀", @"=", @"≡", @"Ò", @"Ó", @"≧" ,@"≦" ]
+#define kAltLabel NSLocalizedString(@"Superposition", nil)
+#define kReturnLabel NSLocalizedString(@"Wrap", nil)
+#define kSpaceLabel NSLocalizedString(@"EmoticonInputMethod", nil)
+#define kChar @[ @"ლ", @"╹", @"◡", @"൬", @"▽", @"￣", @"♡", @"๑", @"ㄟ", @"∀", @"ω", @"3", @"」", @"┐", @"｢", @"∠", @"Ծ", @"ю", @"♪", @"✄", @"ひ", @"ڡ", @"₃", @"Σ", @"Д", @"□", @"⊙", @"༎ຶ", @"σ", @"｡" ] //30
+#define kChar_shift @[ @"(", @")", @"<", @">", @"╮", @"╭", @"△", @"▽", @"↑", @"↓", @"←", @"→", @"↖", @"↗", @"↙", @"↘", @"´", @"｀", @"っ", @"c", @"/", @"＼", @"•́", @"•̀", @"=", @"≡", @"Ò", @"Ó", @"≧" ,@"≦" ] //30
 #define kChar_alt @[ @"◌ੌ", @"◌ੈ", @"◌ਾ", @"◌ੀ", @"◌ੂ", @"◌ੋ", @"◌ੇ", @"◌੍", @"ਿ◌", @"◌ੁ", @"◌ੰ", @"◌ੱ", @"◌ਂ", @"!", @"@", @"#", @"$", @"%", @"^", @"&", @"*", @"〜", @":", @"─", @"+", @"॥", @"|", @",", @".", @"?" ]
 
 @interface PMCustomKeyboard : UIView <UIInputViewAudioFeedback>

@@ -25,7 +25,7 @@ enum {
 @synthesize textView = _textView;
 
 - (id)init {
-	UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
 	CGRect frame;
     
 	if(UIDeviceOrientationIsLandscape(orientation))
@@ -204,7 +204,7 @@ enum {
     else
         [text setFont:[UIFont fontWithName:kFont.fontName size:44]];
     
-    [text setTextAlignment:UITextAlignmentCenter];
+    [text setTextAlignment:NSTextAlignmentCenter];
     [text setBackgroundColor:[UIColor clearColor]];
     [text setShadowColor:[UIColor whiteColor]];
     [text setText:b.titleLabel.text];

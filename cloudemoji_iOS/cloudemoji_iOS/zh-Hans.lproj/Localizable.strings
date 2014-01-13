@@ -1,7 +1,7 @@
 //语言包识别：
 "language" = "简体中文";
 "translator" = "神楽坂雅詩";
-"SoftwareName" = "云顏文字"
+"SoftwareName" = "云颜文字";
 //功能表部分：
 "Favorites" = "收藏夹";
 "History" = "历史记录";
@@ -18,8 +18,9 @@
 "Notification" = "点击打开云颜文字";
 "OK" = "知道了";
 "Save" = "保存";
-"Retry" = "重试。";
+"Retry" = "重试";
 "Clipboard" = "内容已复制到剪贴板";
+"MemoryWarning" = "内存不足。请尝试关闭多余后台程序，或者在本程序设置里关闭所有UI增强效果。";
 //网络部分：
 "PrepareUpdate" = "正在准备更新源，请稍候...";
 "ReadLocal" = "正在读取本地缓存...";
@@ -44,7 +45,8 @@
 //关于部分：
 "VersionText" = "版本：";
 "ThirdPart" = "使用了以下第三方产品\n或有功能来自该产品的修改：";
-"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于安卓系统的版本，请进入“更新和在线信息”功能了解。\n当前语言包作者：%@\n程序作者：神楽坂雅詩 创建于2013-2014";
+"InstalledLanguages" = "已安装语言包：";
+"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于安卓系统的版本，请进入“更新和在线信息”功能了解。\n当前语言包作者：%@\n程序作者：神楽坂雅詩 i@heartunlock.com";
 //系统设置部分：
 "slbl1" = "程序设置\n已经集成在iOS系统设置中了哦！\n\n你可以按以下指引找到它：";
 "slbl2" = "1.点击：\n\n2.在主屏幕点击“设置”\n\n3.点击“云颜文字”";
@@ -59,6 +61,9 @@
 "CustomText" = "自定义颜文字";
 "Untitled" = "无标题颜文字";
 "Blank" = "还没有输入任何内容呢~";
+"Superposition" = "叠加符";
+"Wrap" = "换行";
+"EmoticonInputMethod" = "雅诗颜文字符输入法";
 //源管理器部分：
 "AddSource_title" = "源网址";
 "AddSource_message" = "请输入数据源网址，支持以XML和JSON为基础的专用数据源。\n源名称将被自动识别。";

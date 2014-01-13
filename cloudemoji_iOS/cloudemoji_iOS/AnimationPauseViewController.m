@@ -7,7 +7,7 @@
 //
 
 #import "AnimationPauseViewController.h"
-#import "S.h"
+
 
 @implementation AnimationPauseViewController
 @synthesize controlButton;
@@ -167,6 +167,9 @@
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"glass" ofType:@"wav"];
 //	AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:path], &soundID);
     [super viewDidLoad];
+    if ([S s].ios < 7.0) {
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 92);
+    }
 //    isBusy = NO;
 //    [panGestureRecognizer release];
 	// Erase the view when recieving a notification named "shake" from the NSNotificationCenter object
@@ -178,7 +181,7 @@
 
 - (void)viewDidUnload
 {
-  
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
 
@@ -209,7 +212,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self resignFirstResponder];
-    [self viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event

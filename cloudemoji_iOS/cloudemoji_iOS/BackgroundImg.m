@@ -24,10 +24,16 @@
 //        [self addSubview:bg];
         [self addSubview:img];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nimg:) name:@"bg" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nimg:) name:@"bg" object:nil];
     }
     return self;
 }
+
+//- (void)viewDidUnload
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [super viewDidUnload];
+//}
 
 - (void)nimg:(NSNotification*)notification
 {
@@ -52,7 +58,7 @@
     mode = imgID;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [NSString stringWithFormat:@"%@/bg%d.cxc",documentDirectory,imgID];
+    NSString *path = [NSString stringWithFormat:@"%@/bg%ld.cxc",documentDirectory,(long)imgID];
     if ([fileManager fileExistsAtPath:path]) {
         UIImage *i = [[UIImage alloc] initWithContentsOfFile:path];
         [self changeImage:i];
@@ -66,7 +72,7 @@
     mode = imgID;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [NSString stringWithFormat:@"%@/bg%d.cxc",documentDirectory,imgID];
+    NSString *path = [NSString stringWithFormat:@"%@/bg%ld.cxc",documentDirectory,(long)imgID];
     NSData *imgData = UIImageJPEGRepresentation(img.image, 0);
     if ([fileManager fileExistsAtPath:path]) {
         [fileManager removeItemAtPath:path error:nil];
@@ -78,7 +84,7 @@
 {
     mode = imgID;
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    NSString *settingName = [NSString stringWithFormat:@"psz%d",imgID];
+    NSString *settingName = [NSString stringWithFormat:@"psz%ld",(long)imgID];
     NSNumber *psz0n = [setting objectForKey:settingName];
     NSInteger psz0 = [psz0n integerValue];
     [img setContentMode:psz0];
@@ -91,7 +97,7 @@
 {
     mode = imgID;
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-    NSString *settingName = [NSString stringWithFormat:@"psz%d",imgID];
+    NSString *settingName = [NSString stringWithFormat:@"psz%ld",(long)imgID];
     NSNumber *psz = [NSNumber numberWithInteger:imgID];
     [setting setObject:psz forKey:settingName];
     [setting synchronize];

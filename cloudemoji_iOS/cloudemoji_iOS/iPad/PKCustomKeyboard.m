@@ -18,14 +18,15 @@
 @synthesize textView = _textView;
 
 #define kFont [UIFont fontWithName:@"GurmukhiMN" size:25]
-#define kAltLabel @"!?੧੨੩"
-#define kReturnLabel @"ਅਗਲਾ"
-#define kChar @[ @"◌ੌ", @"◌ੈ", @"◌ਾ", @"◌ੀ", @"◌ੂ", @"ਬ", @"ਹ", @"ਗ", @"ਦ", @"ਜ", @"ਡ", @"◌ੋ", @"◌ੇ", @"◌੍", @"ਿ◌", @"◌ੁ", @"ਪ", @"ਰ", @"ਕ", @"ਤ", @"ਚ", @"ਟ", @"◌ਂ", @"ੜ", @"ਮ", @"ਨ", @"ਵ", @"ਲ", @"ਸ", @"ਯ", @",", @".", @" " ]
-#define kChar_shift @[ @"ਔ", @"ਐ", @"ਆ", @"ਈ", @"ਊ", @"ਭ", @"ਙ", @"ਘ", @"ਧ", @"ਝ", @"ਢ", @"ਓ", @"ਏ", @"ਅ", @"ਇ", @"ਉ", @"ਫ", @"ੜ", @"ਖ", @"ਥ", @"ਛ", @"ਠ", @"◌ੰ", @"◌ੱ", @"ਣ", @"ਫ਼", @"ਜ਼", @"ਲ਼", @"ਸ਼", @"ਞ", @"॥", @"।", @" " ]
-#define kChar_alt @[ @"੧", @"੨", @"੩", @"੪", @"੫", @"੬", @"੭", @"੮", @"੯", @"੦", @"ੴ", @"-", @"/", @":", @";", @"(", @")", @"$", @"£", @"₹", @"&", @"@", @"ਖ਼", @"ਗ਼", @"ੳ", @"ੲ", @".", @",", @"?", @"!", @"\'", @"\"", @" " ]
+#define kAltLabel NSLocalizedString(@"Superposition", nil)
+#define kReturnLabel NSLocalizedString(@"Wrap", nil)
+#define kSpaceLabel NSLocalizedString(@"EmoticonInputMethod", nil)
+#define kChar @[ @"ლ", @"╹", @"◡", @"൬", @"▽", @"￣", @"♡", @"๑", @"ㄟ", @"∀", @"ω", @"3", @"」", @"┐", @"｢", @"∠", @"Ծ", @"ю", @"♪", @"✄", @"ひ", @"ڡ", @"₃", @"Σ", @"Д", @"□", @"⊙", @"༎ຶ", @"σ", @"｡", @" ", @" ", @" " ] //33
+#define kChar_shift @[ @"(", @")", @"<", @">", @"╮", @"╭", @"△", @"▽", @"↑", @"↓", @"←", @"→", @"↖", @"↗", @"↙", @"↘", @"´", @"｀", @"っ", @"c", @"/", @"＼", @"•́", @"•̀", @"=", @"≡", @"Ò", @"Ó", @"≧" ,@"≦", @"॥", @"।", @" " ]
+#define kChar_alt @[ @"◌ੌ", @"◌ੈ", @"◌ਾ", @"◌ੀ", @"◌ੂ", @"◌ੋ", @"◌ੇ", @"◌੍", @"ਿ◌", @"◌ੁ", @"◌ੰ", @"◌ੱ", @"◌ਂ", @"!", @"@", @"#", @"$", @"%", @"^", @"&", @"*", @"〜", @":", @"─", @"+", @"॥", @"|", @",", @".", @"?", @"\'", @"\"", @" " ]
 
 - (id)init {
-	UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
 	CGRect frame;
 
 	if(UIDeviceOrientationIsLandscape(orientation))

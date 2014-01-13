@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
-#import "S.h"
 
 @protocol SearchTVCDelegate <NSObject>
 - (void)loadInfo:(NSString*)type;
 @end
 
-@interface SearchTVC : UITableViewController <OnlineLibraryCellDelegate,UISearchBarDelegate>
+@interface SearchTVC : UIViewController <OnlineLibraryCellDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) NSMutableArray *data;
 @property (nonatomic, retain) NSMutableArray *height;
+@property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, assign) id<SearchTVCDelegate> delegate;
 @property (nonatomic, retain) UISearchBar *search;
 @end

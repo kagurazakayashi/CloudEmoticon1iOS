@@ -9,15 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
 #import "EditViewController.h"
-#import "S.h"
+
 @protocol CustomTVCDelegate <NSObject>
-- (void)loadInfo:(NSString*)type;
+//- (void)loadInfo:(NSString*)type;
+- (void)reloadButton:(BOOL)isEdit;
 @end
-@interface CustomTVC : UITableViewController <OnlineLibraryCellDelegate,UIAlertViewDelegate,EditViewDelegate>
+@interface CustomTVC : UIViewController <OnlineLibraryCellDelegate,UIAlertViewDelegate,EditViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) NSMutableArray *data;
 @property (nonatomic, retain) NSMutableArray *height;
+@property (nonatomic, retain) EditViewController *edit;
 @property (nonatomic, assign) id<CustomTVCDelegate> delegate;
 @property (nonatomic, assign) NSUInteger alertMode;
 @property (nonatomic, assign) NSUInteger editNow;
 @property (nonatomic, assign) int mode;
+@property (nonatomic, retain) UITableView *tableView;
+- (void)rightbtn:(id)sender;
 @end

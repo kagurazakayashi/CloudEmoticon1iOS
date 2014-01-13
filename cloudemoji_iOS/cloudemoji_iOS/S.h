@@ -20,4 +20,5 @@
 @property (nonatomic, retain) NSMutableArray *allinfo;
 @property (nonatomic, assign) BOOL isupdateData;
 @property (nonatomic, assign) float ios;
+@property (nonatomic, assign) CGSize correct;
 @end

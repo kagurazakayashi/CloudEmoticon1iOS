@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "S.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -23,6 +23,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [MobClick startWithAppkey:@"52cba0fc56240be2220355c9"];
+//    [MobClick setLogEnabled:YES];
     
     //allinfo = [[NSMutableArray alloc] init];
     application.applicationSupportsShakeToEdit = YES;
