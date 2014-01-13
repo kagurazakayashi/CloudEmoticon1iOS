@@ -33,10 +33,7 @@
 {
     self.vc = [[AnimationPauseViewController alloc] init];
     [self.view addSubview:self.vc.view];
-<<<<<<< HEAD
     self.vc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-=======
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
     [super viewWillAppear:YES];
 }
 

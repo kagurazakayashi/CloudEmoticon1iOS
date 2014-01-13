@@ -42,17 +42,8 @@
 		0059FAEF187439C30021BE91 /* LibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059FAEE187439C30021BE91 /* LibraryCell.m */; };
 		005DFD6F187D108A00B64055 /* notebook.txt in Resources */ = {isa = PBXBuildFile; fileRef = 005DFD6E187D108A00B64055 /* notebook.txt */; };
 		005DFD71187D1B0E00B64055 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 005DFD70187D1B0E00B64055 /* Settings.bundle */; };
-<<<<<<< HEAD
 		0082CFBA187D4EAC001E4B39 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB8187D4EAC001E4B39 /* Default.png */; };
 		0082CFBB187D4EAC001E4B39 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB9187D4EAC001E4B39 /* Default~iphone.png */; };
-=======
-		0082CFB2187D4DA1001E4B39 /* 1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB0187D4DA1001E4B39 /* 1536x2048.png */; };
-		0082CFB3187D4DA1001E4B39 /* 2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB1187D4DA1001E4B39 /* 2048x1536.png */; };
-		0082CFB5187D4DD5001E4B39 /* 1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB4187D4DD5001E4B39 /* 1024x768.png */; };
-		0082CFB7187D4DFA001E4B39 /* 768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB6187D4DFA001E4B39 /* 768x1024.png */; };
-		0082CFBA187D4EAC001E4B39 /* 640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB8187D4EAC001E4B39 /* 640x960.png */; };
-		0082CFBB187D4EAC001E4B39 /* 640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 0082CFB9187D4EAC001E4B39 /* 640x1136.png */; };
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
 		0084108C18758C9800806872 /* MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0084108B18758C9800806872 /* MD5.m */; };
 		0097FB4C187A9BA60034843E /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097FB4B187A9BA60034843E /* EditViewController.m */; };
 		00ACFE6B18719649008CDF3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00ACFE6A18719649008CDF3B /* Foundation.framework */; };
@@ -203,21 +194,10 @@
 		0059FAE9187436630021BE91 /* NetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork.m; sourceTree = "<group>"; };
 		0059FAED187439C30021BE91 /* LibraryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCell.h; sourceTree = "<group>"; };
 		0059FAEE187439C30021BE91 /* LibraryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCell.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		005DFD6E187D108A00B64055 /* notebook.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = notebook.txt; path = cloudemoji_iOS/notebook.txt; sourceTree = "<group>"; };
 		005DFD70187D1B0E00B64055 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0082CFB8187D4EAC001E4B39 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = cloudemoji_iOS/img/Default.png; sourceTree = "<group>"; };
 		0082CFB9187D4EAC001E4B39 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~iphone.png"; path = "cloudemoji_iOS/img/Default~iphone.png"; sourceTree = "<group>"; };
-=======
-		005DFD6E187D108A00B64055 /* notebook.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notebook.txt; sourceTree = "<group>"; };
-		005DFD70187D1B0E00B64055 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		0082CFB0187D4DA1001E4B39 /* 1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1536x2048.png; sourceTree = "<group>"; };
-		0082CFB1187D4DA1001E4B39 /* 2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2048x1536.png; sourceTree = "<group>"; };
-		0082CFB4187D4DD5001E4B39 /* 1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024x768.png; sourceTree = "<group>"; };
-		0082CFB6187D4DFA001E4B39 /* 768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 768x1024.png; sourceTree = "<group>"; };
-		0082CFB8187D4EAC001E4B39 /* 640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 640x960.png; sourceTree = "<group>"; };
-		0082CFB9187D4EAC001E4B39 /* 640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 640x1136.png; sourceTree = "<group>"; };
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
 		0084108A18758C9800806872 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
 		0084108B18758C9800806872 /* MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5.m; sourceTree = "<group>"; };
 		0097FB4A187A9BA60034843E /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -486,10 +466,6 @@
 			isa = PBXGroup;
 			children = (
 				003B845F187D40090049F1CD /* Toast */,
-<<<<<<< HEAD
-=======
-				005DFD6E187D108A00B64055 /* notebook.txt */,
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
 				00E6E7C7187C4C6400F1F60A /* 多国语言 */,
 				00E6E7B9187BD16800F1F60A /* 统计 */,
 				00E6E7A2187B952800F1F60A /* 摇一摇 */,
@@ -544,12 +520,6 @@
 		00ACFF24187199DC008CDF3B /* img */ = {
 			isa = PBXGroup;
 			children = (
-				0082CFB8187D4EAC001E4B39 /* 640x960.png */,
-				0082CFB9187D4EAC001E4B39 /* 640x1136.png */,
-				0082CFB6187D4DFA001E4B39 /* 768x1024.png */,
-				0082CFB4187D4DD5001E4B39 /* 1024x768.png */,
-				0082CFB0187D4DA1001E4B39 /* 1536x2048.png */,
-				0082CFB1187D4DA1001E4B39 /* 2048x1536.png */,
 				00E6E793187B94E700F1F60A /* AnimationPauseViewController */,
 				0051CC62187B071400D498BA /* psun2.png */,
 				0051CC63187B071400D498BA /* psun@2x.png */,
@@ -919,13 +889,7 @@
 				0025F0CF18740DC900ABC753 /* pok.png in Resources */,
 				0025F0D418740DC900ABC753 /* psearch@2x.png in Resources */,
 				00B66962187B01D50076D1CE /* SettingViewController.xib in Resources */,
-<<<<<<< HEAD
 				0082CFBB187D4EAC001E4B39 /* Default~iphone.png in Resources */,
-=======
-				0082CFBB187D4EAC001E4B39 /* 640x1136.png in Resources */,
-				0082CFB5187D4DD5001E4B39 /* 1024x768.png in Resources */,
-				0082CFB7187D4DFA001E4B39 /* 768x1024.png in Resources */,
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
 				00E50DEC18727C12003BE168 /* psetting2.png in Resources */,
 				0025F0DE18740F3800ABC753 /* pkey@2x.png in Resources */,
 				623EE14B1878151F008FCD42 /* psz0.jpg in Resources */,
@@ -944,12 +908,8 @@
 				62165A001879A3F400770D3D /* delete@2x.png in Resources */,
 				00E50DE818727C12003BE168 /* pcould2.png in Resources */,
 				0025F0D318740DC900ABC753 /* psearch.png in Resources */,
-<<<<<<< HEAD
 				624B9CC218813A0400093264 /* 语言包模板.txt in Resources */,
 				0082CFBA187D4EAC001E4B39 /* Default.png in Resources */,
-=======
-				0082CFBA187D4EAC001E4B39 /* 640x960.png in Resources */,
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
 				00E50DE518727C12003BE168 /* pclock2@2x.png in Resources */,
 				62ABCC2A18800F2E00843752 /* Default-568h@2x.png in Resources */,
 				0025F0D218740DC900ABC753 /* pok2@2x.png in Resources */,
@@ -966,10 +926,6 @@
 				0025F0CE18740DC900ABC753 /* pkey2@2x.png in Resources */,
 				621659FB1879A3F400770D3D /* Keyboard_Shift.png in Resources */,
 				0025F0CA18740DC900ABC753 /* pdel2.png in Resources */,
-<<<<<<< HEAD
-=======
-				0082CFB2187D4DA1001E4B39 /* 1536x2048.png in Resources */,
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
 				005DFD71187D1B0E00B64055 /* Settings.bundle in Resources */,
 				00E6E7A1187B94FE00F1F60A /* 更新背景2@2x.png in Resources */,
 				62165A011879A3F400770D3D /* glow.png in Resources */,
@@ -982,7 +938,6 @@
 				00E6E7AC187BA41E00F1F60A /* XAboutViewController.xib in Resources */,
 				00E50DE018727C12003BE168 /* pbook2.png in Resources */,
 				00E6E7C8187C4C8A00F1F60A /* Localizable.strings in Resources */,
-				0082CFB3187D4DA1001E4B39 /* 2048x1536.png in Resources */,
 				62165A071879A3F400770D3D /* PMCustomKeyboard.xib in Resources */,
 				62165A051879A3F400770D3D /* return@2x.png in Resources */,
 				0025F0C918740DC900ABC753 /* pdel@2x.png in Resources */,

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
   云颜文字是一款颜文字分享软件。你可以使用自己或其他人创建的在线库，随时在线或离线查阅并复制他们，让颜文字输入和检索变得简单。
   支持收藏夹和历史记录，可以随意修改的主题，以及摇一摇等有趣的功能。
  
@@ -40,70 +39,3 @@ v0.2.0  可显示所有内容条目。
 v0.1.2  提供XML和JSON数据解析。
 v0.1.1  支持读取在线源数据。
 v0.1.0  构建框架，支持iOS7。
-=======
-//note
-
-
-//外部系统设置部分:CN-S
-"行为";
-"驻留通知栏";
-"复制以后退出程序";
-"驻留通知栏功能需要您在系统通知设置中允许本程序发送通知，并设置提醒样式为无，并且在通知中心中显示。";
-"界面设置(需要重启程序)";
-"允许使用自定义图片作为主题";
-"启用阴影和发光效果";
-"后底图缩放方式";
-"前底图缩放方式";
-"左侧库始终显示";
-"源检查更新方式";
-"每天";
-"每三天";
-"每周";
-"每半个月";
-"每月";
-"手动";
-"源地址";
-"使用源管理器";
-
-//外部系统设置部分:CN-T
-"行為";
-"駐留通知欄";
-"複製以後退出程式";
-"駐留通知欄功能需要您在系統通知設置中允許本程式發送通知，並設置提醒樣式為無，並且在通知中心中顯示。";
-"介面設置(需要重啟程式)";
-"允許使用自訂圖片作為主題";
-"啟用陰影和發光效果";
-"後底圖縮放方式";
-"前底圖縮放方式";
-"左側庫始終顯示";
-"源檢查更新方式";
-"每天";
-"每三天";
-"每週";
-"每半個月";
-"每月";
-"手動";
-"源地址";
-"使用源管理器";
-
-//外部系统设置部分:EN
-"Behaviors";
-"Stays in notification";
-"Closes after copy";
-"Stays in notification required you to allow this app to post notification in iOS's settings, and to set notification style to null, and to display in notification center.";
-"UI (need to restart app)";
-"Allow customized images as theme";
-"Enable shadowing";
-"Background scaling style";
-"Foreground scaling style";
-"Always show repositories on the left";
-"Automatic update";
-"Everyday";
-"Every three days";
-"Every week";
-"Every half month";
-"Every month";
-"Manually";
-"Repository URL";
-"Use repository manager";
->>>>>>> 5346dca86d533a9407ddcf67093a65c8b9bb44cb
