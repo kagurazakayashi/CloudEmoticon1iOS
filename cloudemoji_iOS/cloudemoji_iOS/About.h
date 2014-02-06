@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XAboutViewController.h"
+#import "XAboutVC.h"
 @interface About : UIViewController
-@property (nonatomic, retain) XAboutViewController *vc;
+@property (nonatomic, retain) XAboutVC *vc;
 @end

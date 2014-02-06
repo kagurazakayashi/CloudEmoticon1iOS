@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
-
+#import "NoneView.h"
 @protocol HistoryTVCDelegate <NSObject>
 - (void)loadInfo:(NSString*)type;
 @end
@@ -18,4 +18,5 @@
 @property (nonatomic, assign) id<HistoryTVCDelegate> delegate;
 - (void)rightbtn:(id)sender;
 @property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) NoneView *noneview;
 @end

@@ -36,6 +36,16 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Safe mode (one-time)</string>
+			<key>Key</key>
+			<string>safemode</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Stays in notification note</string>
@@ -209,6 +219,46 @@
 			<string>sources</string>
 			<key>DefaultValue</key>
 			<string>&lt;c&gt;</string>
+		</dict>
+		<dict>
+			<key>Titles</key>
+			<array>
+				<string>Auto</string>
+				<string>heartunlock.com</string>
+				<string>my-card.in</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string></string>
+				<string>http://www.heartunlock.com/</string>
+				<string>http://cxchope.sites.my-card.in/</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Server</string>
+			<key>Key</key>
+			<string>server</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Ad display frequency</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>ad</string>
+			<key>DefaultValue</key>
+			<integer>15</integer>
+			<key>MinimumValue</key>
+			<integer>10</integer>
+			<key>MaximumValue</key>
+			<integer>100</integer>
 		</dict>
 	</array>
 </dict>

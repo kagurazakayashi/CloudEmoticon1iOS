@@ -1,0 +1,219 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		0008631E18A281140078AFD4 /* testtxt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testtxt.txt; sourceTree = "<group>"; };
+		001C6FFD18A3C524000A794B /* cetool.bat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cetool.bat; sourceTree = "<group>"; };
+		007A1EF118A0E21700085958 /* cachemgr.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = cachemgr.py; sourceTree = "<group>"; };
+		007A1EF218A0E21700085958 /* download.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = download.py; sourceTree = "<group>"; };
+		007A1EF318A0E21700085958 /* window.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = window.py; sourceTree = "<group>"; };
+		007A1EF418A0E21700085958 /* xmlread.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = xmlread.py; sourceTree = "<group>"; };
+		0082ECC918A1FF040043C5E4 /* note.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = note.txt; sourceTree = "<group>"; };
+		0082ECCA18A1FF0F0043C5E4 /* cexml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = cexml.rb; sourceTree = "<group>"; };
+		0082ECCD18A1FF0F0043C5E4 /* txt2cexml.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = txt2cexml.rb; sourceTree = "<group>"; };
+		0082ECCE18A1FF0F0043C5E4 /* txt2cexmlcore.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = txt2cexmlcore.rb; sourceTree = "<group>"; };
+		0082ECCF18A1FF0F0043C5E4 /* welcome.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = welcome.rb; sourceTree = "<group>"; };
+		0082ECD018A1FF0F0043C5E4 /* xmltest.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xmltest.rb; sourceTree = "<group>"; };
+		0082ECD118A1FF340043C5E4 /* cetool.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = cetool.sh; sourceTree = "<group>"; };
+		00966B5E18A2547C00599376 /* main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = main.rb; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		007A1EDB18A0906800085958 = {
+			isa = PBXGroup;
+			children = (
+				001C6FFD18A3C524000A794B /* cetool.bat */,
+				0082ECD118A1FF340043C5E4 /* cetool.sh */,
+				0082ECC818A1FEBD0043C5E4 /* lib */,
+				007A1EF018A0DE2600085958 /* old */,
+			);
+			sourceTree = "<group>";
+		};
+		007A1EF018A0DE2600085958 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				0082ECC918A1FF040043C5E4 /* note.txt */,
+				007A1EF118A0E21700085958 /* cachemgr.py */,
+				007A1EF218A0E21700085958 /* download.py */,
+				007A1EF318A0E21700085958 /* window.py */,
+				007A1EF418A0E21700085958 /* xmlread.py */,
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
+		0082ECC818A1FEBD0043C5E4 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				0008631E18A281140078AFD4 /* testtxt.txt */,
+				00966B5E18A2547C00599376 /* main.rb */,
+				0082ECCA18A1FF0F0043C5E4 /* cexml.rb */,
+				0082ECCD18A1FF0F0043C5E4 /* txt2cexml.rb */,
+				0082ECCE18A1FF0F0043C5E4 /* txt2cexmlcore.rb */,
+				0082ECCF18A1FF0F0043C5E4 /* welcome.rb */,
+				0082ECD018A1FF0F0043C5E4 /* xmltest.rb */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		007A1EE018A0906800085958 /* CETools */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 007A1EE318A0906800085958 /* Build configuration list for PBXLegacyTarget "CETools" */;
+			buildPhases = (
+			);
+			buildToolPath = "/Users/xiaoxiao/.rvm/rubies/ruby-1.9.3-p448/bin/irb";
+			buildWorkingDirectory = "/Users/xiaoxiao/.rvm/rubies/ruby-1.9.3-p448/bin";
+			dependencies = (
+			);
+			name = CETools;
+			passBuildSettingsInEnvironment = 1;
+			productName = CETools;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		007A1EDC18A0906800085958 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Yashi;
+			};
+			buildConfigurationList = 007A1EDF18A0906800085958 /* Build configuration list for PBXProject "CETools" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 007A1EDB18A0906800085958;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				007A1EE018A0906800085958 /* CETools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		007A1EE118A0906800085958 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		007A1EE218A0906800085958 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		007A1EE418A0906800085958 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		007A1EE518A0906800085958 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		007A1EDF18A0906800085958 /* Build configuration list for PBXProject "CETools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				007A1EE118A0906800085958 /* Debug */,
+				007A1EE218A0906800085958 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		007A1EE318A0906800085958 /* Build configuration list for PBXLegacyTarget "CETools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				007A1EE418A0906800085958 /* Debug */,
+				007A1EE518A0906800085958 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 007A1EDC18A0906800085958 /* Project object */;
+}

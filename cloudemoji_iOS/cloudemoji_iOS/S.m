@@ -16,8 +16,10 @@
     @synchronized(self)
     {
         if (!s) {
+            //s.colorconvert = [[ColorConvert alloc] init];
             s = [[S alloc] init];
             s.allinfo = [[NSMutableArray alloc] init];
+            s.networkBusy = NO;
             s.ios = [[[UIDevice currentDevice] systemVersion] floatValue];
             s.correct = CGSizeMake(64, 48);
             if (s.ios < 7.0) {

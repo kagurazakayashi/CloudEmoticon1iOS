@@ -16,20 +16,24 @@
 #import "AboutViewController.h"
 #import "About.h"
 #import "Search.h"
-#import "RefreshView.h"
 #import "Diy.h"
 #import "Toast+UIView.h"
 #import "AnimationPause.h"
+#import "UMSocial.h"
+#import "ShareView.h"
+#import "AppAD.h"
+//#import "ColorConvert.h"
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
-@synthesize tab, size7title, size7toolbar;
+@synthesize tab, size7title, size7toolbar, sharename, black;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         // Custom initialization
     }
     return self;
@@ -110,15 +114,60 @@
     UINavigationController *yaon = [[UINavigationController alloc] initWithRootViewController:yao];
     UITabBarItem *yaoI = [[UITabBarItem alloc] initWithTitle:yao.title image:[UIImage imageNamed:@"psun.png"] tag:0];
     yao.tabBarItem = yaoI;
-    about.tabBarItem = aboutI;
+//    about.tabBarItem = aboutI;
     self.tab = [[UITabBarController alloc] init];
     self.tab.delegate = self;
-//    self.tab.tabBar.translucent = NO;
-    self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn, nil];
+    AppADTVC *adv = [[AppADTVC alloc] init];
+    adv.title = NSLocalizedString(@"FindApplication", nil);
+    UINavigationController *advn = [[UINavigationController alloc] initWithRootViewController:adv];
+    UITabBarItem *advI = [[UITabBarItem alloc] initWithTitle:adv.title image:[UIImage imageNamed:@"pkey.png"] tag:0];
+    adv.tabBarItem = advI;
+    //    self.tab.tabBar.translucent = NO;
+    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+    BOOL safe = [setting boolForKey:@"safemode"];
+    if (safe) {
+        UIViewController *exitn = [[UIViewController alloc] init];
+        UINavigationController *xexitn = [[UINavigationController alloc] initWithRootViewController:exitn];
+        exitn.title = NSLocalizedString(@"ExitSafeMode", nil);
+        UITabBarItem *exitI = [[UITabBarItem alloc] initWithTitle:exitn.title image:[UIImage imageNamed:@"pok.png"] tag:0];
+        exitn.tabBarItem = exitI;
+        UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnExit setTitle:NSLocalizedString(@"exitnow", nil) forState:UIControlStateNormal];
+        [btnExit addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchDown];
+        btnExit.frame = CGRectMake(self.view.frame.size.width * 0.5 - 100, self.view.frame.size.height * 0.5 - 100, 200, 200);
+        btnExit.backgroundColor = [UIColor lightGrayColor];
+        [exitn.view addSubview:btnExit];
+        
+        self.tab.viewControllers = [NSArray arrayWithObjects:libn,diyn,xaboutn,xexitn, nil];
+        [setting setBool:NO forKey:@"safemode"];
+        [setting synchronize];
+        
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(share:) name:@"share" object:nil];
+        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn,advn, nil];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];
     
     [self.view addSubview:self.tab.view];
+    [MobClick checkUpdate];
+
 }
+
+- (void)share:(NSNotification*)notification
+{
+    NSArray *info = [notification object];
+    NSString *str = [info objectAtIndex:0];
+    //[UMSocialSnsService presentSnsIconSheetView:self appKey:@"52cba0fc56240be2220355c9" shareText:str shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToQzone,UMShareToEmail,UMShareToSms,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToFacebook,UMShareToTwitter,nil] delegate:nil];
+    ShareView *share = [[ShareView alloc] initWithFrame:self.view.frame ShareStr:str ViewController:self];
+    [self.view addSubview:share];
+}
+
+- (void)exit:(id)sender
+{
+    exit(0);
+}
+
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -127,7 +176,7 @@
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
     RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    
+    rf.delegate = self;
     rf.alpha = 0;
     [self.view addSubview:rf];
     [UIView animateWithDuration:0.3 animations:^{
@@ -136,24 +185,82 @@
         [rf startreload:URL ModeTag:mtag Local:local];
     }];
 }
+    
+- (void)showBlack:(BOOL)isBalck
+{
+    if (isBalck) {
+        if (!black) {
+            black = [[UIView alloc] initWithFrame:self.view.window.frame];
+            black.backgroundColor = [UIColor blackColor];
+            black.alpha = 0.0f;
+            [self.view addSubview:black];
+            [UIView animateWithDuration:0.5 animations:^{
+                black.alpha = 0.5f;
+            }];
+        }
+    } else {
+        if (black) {
+            [UIView animateWithDuration:0.5 animations:^{
+                black.alpha = 0.0f;
+            } completion:^(BOOL finished) {
+                [black removeFromSuperview];
+                black = nil;
+            }];
+        }
+    }
+}
+    
 - (void)didInit
 {
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     //自动更新源
     NSDate *nowDate = [NSDate date];
     [self registerDefaultsFromSettingsBundle];
+    
+    if (![setting objectForKey:@"oldData"]) {
+        [setting setObject:nowDate forKey:@"oldData"];
+    }
+    if (![setting objectForKey:@"nowURL"]) {
+        NSString *nowURL = @"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml";
+        [setting setObject:nowURL forKey:@"nowURL"];
+    }
+    if (![setting objectForKey:@"fav"]) {
+        [setting setObject:[NSMutableArray array] forKey:@"fav"];
+    }
+    if (![setting objectForKey:@"his"]) {
+        [setting setObject:[NSMutableArray array] forKey:@"his"];
+    }
+    if (![setting objectForKey:@"diy"]) {
+        [setting setObject:[NSMutableArray array] forKey:@"diy"];
+    }
+    if (![setting objectForKey:@"TAcell"]) {
+        NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor blackColor]];
+        [setting setObject:object forKey:@"TAcell"];
+    }
+    if (![setting objectForKey:@"TAtxt"]) {
+        NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor yellowColor]];
+        [setting setObject:object forKey:@"TAtxt"];
+    }
+    if (![setting objectForKey:@"TBcell"]) {
+        NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor whiteColor]];
+        [setting setObject:object forKey:@"TBcell"];
+    }
+    if (![setting objectForKey:@"TBtxt"]) {
+        NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor blackColor]];
+        [setting setObject:object forKey:@"TBtxt"];
+    }
+    if (![setting floatForKey:@"TAalpha"] || [setting floatForKey:@"TAalpha"] == 0) {
+        [setting setFloat:0.5f forKey:@"TAalpha"];
+    }
+    if (![setting floatForKey:@"TBalpha"] || [setting floatForKey:@"TBalpha"] == 0) {
+        [setting setFloat:0.5f forKey:@"TBalpha"];
+    }
+    
+    [self defaultImageFile];
+    
     if(![setting boolForKey:@"firstStart"]){
         //NSLog(@"第一次启动");
         [setting setBool:YES forKey:@"firstStart"];
-        [setting setObject:nowDate forKey:@"oldData"];
-//        [setting setObject:nowDate forKey:@"oldApp"];
-        NSString *nowURL = @"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml";
-        [setting setObject:nowURL forKey:@"nowURL"];
-        
-        [setting setObject:[NSMutableArray array] forKey:@"fav"];
-        [setting setObject:[NSMutableArray array] forKey:@"his"];
-        [setting setObject:[NSMutableArray array] forKey:@"diy"];
-        [self defaultImageFile];
     }else{
         NSDate *oldData = [setting objectForKey:@"oldData"];
 //        NSDate *oldApp = [setting objectForKey:@"oldApp"];
@@ -174,6 +281,7 @@
 //            
 //            [setting setObject:nowDate forKey:@"oldApp"];
 //        }
+        [S s].ad = [setting integerForKey:@"ad"];
     }
     [setting synchronize];
 }
@@ -253,16 +361,18 @@
 - (void)defaultImageFile
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *f0 = [[NSBundle mainBundle] pathForResource:@"psz0" ofType:@"jpg"];
-    NSString *f1 = [[NSBundle mainBundle] pathForResource:@"psz1" ofType:@"jpg"];
+//    NSString *f0 = [[NSBundle mainBundle] pathForResource:@"psz0" ofType:@"jpg"];
+//    NSString *f1 = [[NSBundle mainBundle] pathForResource:@"psz1" ofType:@"jpg"];
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *t0 = [NSString stringWithFormat:@"%@/bg0.cxc",documentDirectory];
     NSString *t1 = [NSString stringWithFormat:@"%@/bg1.cxc",documentDirectory];
     if (![fileManager fileExistsAtPath:t0]) {
-        [fileManager copyItemAtPath:f0 toPath:t0 error:nil];
+//        [fileManager copyItemAtPath:f0 toPath:t0 error:nil];
+        [fileManager removeItemAtPath:t0 error:nil];
     }
     if (![fileManager fileExistsAtPath:t1]) {
-        [fileManager copyItemAtPath:f1 toPath:t1 error:nil];
+//        [fileManager copyItemAtPath:f1 toPath:t1 error:nil];
+        [fileManager removeItemAtPath:t1 error:nil];
     }
 }
 

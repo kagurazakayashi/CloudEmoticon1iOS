@@ -66,13 +66,14 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = [UIColor yellowColor];
+        cell.textLabel.textColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TAtxt"]];
         cell.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(2, 1, cell.frame.size.width - 4, cell.frame.size.height - 2)];
-        cell.backgroundView.backgroundColor = [UIColor blackColor];
-        cell.backgroundView.alpha = 0.5;
+        cell.backgroundView.backgroundColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TAcell"]];
+        cell.backgroundView.alpha = [setting floatForKey:@"TAalpha"];
     }
     cell.textLabel.text = [data objectAtIndex:indexPath.row];
     return cell;

@@ -8,13 +8,13 @@
 
 #import "HistoryTVC.h"
 #import "BackgroundImg.h"
-
+#import "ADView.h"
 @interface HistoryTVC ()
 
 @end
 
 @implementation HistoryTVC
-@synthesize data, height;
+@synthesize data, height, noneview;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,9 +32,11 @@
     
     float dstitle = [S s].correct.width;
     float dsfoot = [S s].correct.height;
+    float bgy = 0;
     if ([S s].ios < 7.0) {
         dstitle = 0;
         dsfoot = 134;
+        bgy = 0 - dstitle - dsfoot + 40;
     } else {
         dstitle = 84;
         dsfoot = 69;
@@ -48,15 +50,18 @@
     self.tableView.delegate = self;
     
     BackgroundImg *bg = [[BackgroundImg alloc] init];
-    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [bg changeFrame:CGRectMake(0, bgy, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
     
     [self.view addSubview:bg];
     [self.view addSubview:self.tableView];
-    
+    noneview = [[NoneView alloc] initWithFrame:self.tableView.frame];
+    noneview.info = NSLocalizedString(@"none_history", nil);
+    [self.view addSubview:noneview];
     [self loadInfo];
-    
+    ADView *ad = [[ADView alloc] initWithViewController:self ShowNow:NO FixHeight:YES];
+    [self.view addSubview:ad];
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -83,6 +88,7 @@
         float txtheight = [S txtHeightWithText:nowUrl MaxWidth:self.tableView.frame.size.width];
         [height addObject:[NSNumber numberWithFloat:txtheight]];
     }
+    [noneview hide:[data count]];
     [self.tableView reloadData];
 }
 
@@ -119,6 +125,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         [cell loadFrame:self.tableView.frame.size.width];
+        [cell loadColorSetting:1];
     }
     NSArray *nowcell = [data objectAtIndex:indexPath.row];
     cell.name.text = [nowcell objectAtIndex:1];

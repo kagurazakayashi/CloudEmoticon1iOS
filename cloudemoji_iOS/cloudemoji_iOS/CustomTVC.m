@@ -9,13 +9,13 @@
 #import "CustomTVC.h"
 #import "BackgroundImg.h"
 //#import "CXAlertView.h"
-
+#import "ADView.h"
 @interface CustomTVC ()
 
 @end
 
 @implementation CustomTVC
-@synthesize data, height, mode;
+@synthesize data, height, mode, noneview;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,9 +33,11 @@
     
     float dstitle = [S s].correct.width;
     float dsfoot = [S s].correct.height;
+    float bgy = 0;
     if ([S s].ios < 7.0) {
         dstitle = 0;
         dsfoot = 134;
+        bgy = 0 - dstitle - dsfoot + 40;
     } else {
         dstitle = 84;
         dsfoot = 69;
@@ -49,17 +51,22 @@
     self.tableView.delegate = self;
     
     BackgroundImg *bg = [[BackgroundImg alloc] init];
-    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [bg changeFrame:CGRectMake(0, bgy, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
     
     [self.view addSubview:bg];
     [self.view addSubview:self.tableView];
+    noneview = [[NoneView alloc] initWithFrame:self.tableView.frame];
+    noneview.info = NSLocalizedString(@"none_custom", nil);
+    [self.view addSubview:noneview];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self loadInfo];
     UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
     self.navigationItem.rightBarButtonItem = rightbtn;
+    ADView *ad = [[ADView alloc] initWithViewController:self ShowNow:NO FixHeight:YES];
+    [self.view addSubview:ad];
 }
 
 - (void)addData:(NSArray*)arr
@@ -103,11 +110,12 @@
     self.edit.title = NSLocalizedString(@"CustomText", nil);
     self.edit.ename.text = @"";
     self.edit.edit.text = @"";
-    //    [self.navigationController pushViewController:edit animated:YES];
+//    [self.navigationController pushViewController:self.edit animated:YES];
     [self.delegate reloadButton:YES];
-    [self presentViewController:self.edit animated:YES completion:^{
-        [self.edit.edit becomeFirstResponder];
-    }];
+    [self.delegate openEditWindow:self.edit];
+//    [self presentViewController:self.edit animated:YES completion:^{
+//        [self.edit.edit becomeFirstResponder];
+//    }];
     
 //    [alert show];
 }
@@ -141,6 +149,7 @@
         float txtheight = [S txtHeightWithText:nowUrl MaxWidth:self.tableView.frame.size.width];
         [height addObject:[NSNumber numberWithFloat:txtheight]];
     }
+    [noneview hide:[data count]];
     [self.tableView reloadData];
 }
 
@@ -165,9 +174,10 @@
                 self.edit.delegate = self;
                 self.edit.title = NSLocalizedString(@"CustomText", nil);
                 [self.delegate reloadButton:YES];
-                [self presentViewController:self.edit animated:YES completion:^{
-                    [self.edit.edit becomeFirstResponder];
-                }];
+                [self.delegate openEditWindow:self.edit];
+//                [self presentViewController:self.edit animated:YES completion:^{
+//                    [self.edit.edit becomeFirstResponder];
+//                }];
             }
         }
     }
@@ -202,6 +212,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //        cell.delegate = self;
         [cell loadFrame:self.tableView.frame.size.width];
+        [cell loadColorSetting:1];
     }
     NSArray *nowcell = [data objectAtIndex:indexPath.row];
     cell.name.text = [nowcell objectAtIndex:1];

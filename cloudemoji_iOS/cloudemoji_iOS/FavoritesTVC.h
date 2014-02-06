@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
-
+#import "NoneView.h"
 @protocol FavoritesTVCDelegate <NSObject>
 - (void)loadInfo:(NSString*)type;
 @end
@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSMutableArray *height;
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, assign) id<FavoritesTVCDelegate> delegate;
+@property (nonatomic, retain) NoneView *noneview;
 
 @end

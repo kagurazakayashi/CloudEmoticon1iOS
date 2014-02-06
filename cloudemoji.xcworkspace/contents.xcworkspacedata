@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:cloudemoji_mac/cloudemoji_mac.xcodeproj">
+      location = "group:CETools/CETools.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:cloudemoji_iOS/cloudemoji_iOS.xcodeproj">

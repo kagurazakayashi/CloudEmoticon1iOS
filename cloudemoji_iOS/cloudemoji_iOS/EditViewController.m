@@ -15,7 +15,7 @@
 @end
 
 @implementation EditViewController
-@synthesize edit,bga,title,ename,tagStr; //,rightbtn
+@synthesize edit,bga,title,ename,tagStr,rightbtn;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,9 +31,10 @@
         ename = [[UITextField alloc] initWithFrame:CGRectMake(10, 10 + dstitle, self.view.frame.size.width - 20, 20)];
         ename.backgroundColor = [UIColor whiteColor];
         ename.alpha = 0.9;
+        ename.backgroundColor = [UIColor cyanColor];
         ename.placeholder = NSLocalizedString(@"Untitled", nil);
         ename.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        bga = [[UIView alloc] initWithFrame:CGRectMake(10, 30 + dstitle, self.view.frame.size.width - 20, self.view.frame.size.height * 0.37 - 20)];
+        bga = [[UIView alloc] initWithFrame:CGRectMake(10, 35 + dstitle, self.view.frame.size.width - 20, self.view.frame.size.height * 0.37 - 20)];
         bga.backgroundColor = [UIColor whiteColor];
         bga.alpha = 0.5;
         edit = [[UITextView alloc] initWithFrame:bga.frame];
@@ -43,13 +44,13 @@
         [self.view addSubview:bga];
         [self.view addSubview:edit];
         
-//        rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
-//        self.navigationItem.rightBarButtonItem = rightbtn;
-//        UIBarButtonItem *leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
-//        //[self.rightbtn setEnabled:NO];
-//        self.navigationItem.leftBarButtonItem = leftbtn;
+        rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
+        self.navigationItem.rightBarButtonItem = rightbtn;
+        UIBarButtonItem *leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
+        //[self.rightbtn setEnabled:NO];
+        self.navigationItem.leftBarButtonItem = leftbtn;
         
-//        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Save", nil);
+        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Save", nil);
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         
@@ -63,7 +64,7 @@
             [customKeyboard setTextView:edit];
         }
         
-//        [edit becomeFirstResponder];
+        [edit becomeFirstResponder];
     }
     return self;
 }
@@ -103,10 +104,10 @@
 {
 //    self.navigationController.navigationBar.translucent = YES;
     //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
@@ -149,7 +150,6 @@
             stag = @"";
         }
         NSArray *item = [NSArray arrayWithObjects:@"<USER>",sname,sedit,stag, nil];
-        NSLog(@"item=%@",item);
         [self.delegate addData:item];
         [self close];
     }

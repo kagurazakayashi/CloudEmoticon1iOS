@@ -7,14 +7,14 @@
 //
 
 #import "OnlineLibraryTVC.h"
+#import "ADView.h"
 #define bl 0.7f
-
 @interface OnlineLibraryTVC ()
 
 @end
 
 @implementation OnlineLibraryTVC
-@synthesize typemenu,tableView,typemenuD,tableViewD,data,height,alertMode,editNow,blackView,showTool,dstitle,dsfoot;
+@synthesize typemenu,tableView,typemenuD,tableViewD,data,height,alertMode,editNow,blackView,showTool,dstitle,dsfoot,noneview;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +39,7 @@
     
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     showTool = [[setting objectForKey:@"showLib"] boolValue];
-    BOOL css = [[setting objectForKey:@"css"] boolValue];
+    //BOOL css = [[setting objectForKey:@"css"] boolValue];
     
     typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot)];
     typemenu.delegate = self;
@@ -60,16 +60,27 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    if (_refreshHeaderView == nil) {
+        EGORefreshTableHeaderView *rv = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+        rv.delegate = self;
+        [self.tableView addSubview:rv];
+        _refreshHeaderView = rv;
+    }
+    
     tableViewD = [[BackgroundImg alloc] init];
     [tableViewD changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [tableViewD loadSetting:1];
     [tableViewD loadSettingImg:1];
-    if (css) {
+//    if (css) {
         tableViewD.layer.shadowColor = [[UIColor blackColor] CGColor];
         tableViewD.layer.shadowOffset = CGSizeMake(-10,0);
         tableViewD.layer.shadowOpacity = 1;
         tableViewD.layer.shadowRadius = 10;
-    }
+//    }
+    noneview = [[NoneView alloc] initWithFrame:self.tableView.frame];
+    noneview.info = NSLocalizedString(@"none_cloud", nil);
+    
+    [tableViewD addSubview:noneview];
     [self.view addSubview:tableViewD];
     [self.view addSubview:tableView];
     [self.view addSubview:blackView];
@@ -98,13 +109,56 @@
     [self swipAction0:nil];
     if (showTool) {
         [self.blackView removeFromSuperview];
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width - self.view.frame.size.width * 0.3, self.tableView.frame.size.height);
+        self.tableViewD.frame = CGRectMake(self.tableViewD.frame.origin.x, self.tableViewD.frame.origin.y, self.tableViewD.frame.size.width - self.view.frame.size.width * 0.3, self.tableViewD.frame.size.height);
     }
+    ADView *ad = [[ADView alloc] initWithViewController:self ShowNow:NO FixHeight:NO];
+    [self.view addSubview:ad];
 }
 
 //- (void)viewDidAppear:(BOOL)animated
 //{
 //    [self.tableView reloadData];
 //}
+#pragma mark Data Source Loading / Reloading Methods
+    
+- (void)reloadTableViewDataSource{
+	
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	_reloading = NO;
+    [self rightbtn:nil];
+//	[self doneLoadingTableViewData];
+}
+    
+- (void)doneLoadingTableViewData{
+	
+	//  model should call this when its done loading
+	_reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+	
+}
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+    [self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0];
+}
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{
+    return _reloading;
+}
+    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+    
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+	
+}
 
 - (void)viewDidUnload
 {
@@ -128,6 +182,7 @@
         float txtheight = [S txtHeightWithText:nowUrl MaxWidth:self.tableView.frame.size.width];
         [height addObject:[NSNumber numberWithFloat:txtheight]];
     }
+    [noneview hide:[data count]];
     [tableView reloadData];
     if (tableView.frame.origin.x > 0 && !showTool) {
         [self swipAction1:nil];
@@ -136,8 +191,8 @@
 
 - (void)conok:(NSNotification*)notification
 {
-    
     [data removeAllObjects];
+    [noneview hide:[data count]];
     [self.tableView reloadData];
 }
 
@@ -219,6 +274,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //        cell.delegate = self;
         [cell loadFrame:self.tableView.frame.size.width];
+        [cell loadColorSetting:1];
     }
     // Configure the cell...
     NSArray *nowcell = [data objectAtIndex:indexPath.row];

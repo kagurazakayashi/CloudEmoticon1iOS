@@ -1,8 +1,19 @@
-//语言包识别：
+/*
+ ====== 以下为注释区不翻译 ======
+ 云颜文字 v1.0.8 语言包
+ 首先感谢你为我制作语言包！
+ 下面的参数格式为：
+ "这里是程序标记不要动" = "将这里的文字进行翻译";
+ 请不要动“%@”、“%d”这些标记，
+ 请放在符合语法的位置保留在翻译后的文字中。
+ ====== 以上为注释区不翻译 ======
+ */
+//(本行为注释不翻译)语言包识别：
 "language" = "简体中文";
-"translator" = "神楽坂雅詩";
 "SoftwareName" = "云颜文字";
-//功能表部分：
+//(本行为注释不翻译)请在这里标注你的名字，你的名字将出现在软件中：
+"translator" = "神楽坂雅詩";
+//(本行为注释不翻译)功能表部分：
 "Favorites" = "收藏夹";
 "History" = "历史记录";
 "Custom" = "自定义";
@@ -13,7 +24,14 @@
 "UpdatesAndOnlineInformation" = "更新和在线信息";
 "About" = "关于";
 "Shake" = "摇一摇";
-//全局部分：
+"ExitSafeMode" = "退出安全模式";
+"FindApplication" = "淘应用";
+//(本行为注释不翻译)无内容提示部分：
+"none_cloud" = "<- 请在左边栏选择分类~";
+"none_favorites" = "点星星就可以收藏哦~";
+"none_history" = "还没有记录呢~";
+"none_custom" = "点+来自制试试？";
+//(本行为注释不翻译)全局部分：
 "cancel" = "取消";
 "Notification" = "点击打开云颜文字";
 "OK" = "知道了";
@@ -21,7 +39,7 @@
 "Retry" = "重试";
 "Clipboard" = "内容已复制到剪贴板";
 "MemoryWarning" = "内存不足。请尝试关闭多余后台程序，或者在本程序设置里关闭所有UI增强效果。";
-//网络部分：
+//(本行为注释不翻译)网络部分：
 "PrepareUpdate" = "正在准备更新源，请稍候...";
 "ReadLocal" = "正在读取本地缓存...";
 "CancelOperation" = "取消操作。";
@@ -40,43 +58,47 @@
 "InternalParsingError" = "内部解析错误";
 "SaveLocalCache" = "正在保存本地缓存...";
 "ProcessingData" = "正在处理数据...";
-//搜索部分：
+//(本行为注释不翻译)搜索部分：
 "search" = "输入颜文字或颜文字名字中的字符";
-//关于部分：
+//(本行为注释不翻译)关于部分：
 "VersionText" = "版本：";
 "ThirdPart" = "使用了以下第三方产品\n或有功能来自该产品的修改：";
 "InstalledLanguages" = "已安装语言包：";
-"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于安卓系统的版本，请进入“更新和在线信息”功能了解。\n当前语言包作者：%@\n程序作者：神楽坂雅詩 i@heartunlock.com";
-//系统设置部分：
+"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于 Android/Windows Phone/MAC/PC 系统的版本，请进入“更新和在线信息”功能了解。\n\n当前语言包作者：\n%@\n\n程序作者：\n神楽坂雅詩(i@heartunlock.com)";
+//(本行为注释不翻译)系统设置部分：
 "slbl1" = "程序设置\n已经集成在iOS系统设置中了哦！\n\n你可以按以下指引找到它：";
 "slbl2" = "1.点击：\n\n2.在主屏幕点击“设置”\n\n3.点击“云颜文字”";
 "LocalFile" = "本地缓存存储位置：";
-"exitnow" = "立即退出本程序(推荐)";
-//摇一摇部分：
+"exitnow" = "立即退出本程序";
+//(本行为注释不翻译)摇一摇部分：
 "User-defined" = "用户自定义";
 "RandomText_message" = "名称：%@\n所属分组：%@\n---------- 颜文字 ----------\n%@";
 "RandomText_title" = "~摇出来了一个颜文字~";
 "RandomText_btn1" = "复制到剪贴板";
-//自定义颜文字部分：
+//(本行为注释不翻译)自定义颜文字部分：
 "CustomText" = "自定义颜文字";
 "Untitled" = "无标题颜文字";
 "Blank" = "还没有输入任何内容呢~";
 "Superposition" = "叠加符";
 "Wrap" = "换行";
 "EmoticonInputMethod" = "雅诗颜文字符输入法";
-//源管理器部分：
+//(本行为注释不翻译)源管理器部分：
 "AddSource_title" = "源网址";
 "AddSource_message" = "请输入数据源网址，支持以XML和JSON为基础的专用数据源。\n源名称将被自动识别。";
 "AddSource_save" = "保存源";
 "ReplacementSource_title" = "已启用“%@”";
-"ReplacementSource_message" = "下次自动或手动刷新源的时候，\n将从这个源下载数据：\n%@";
+"ReplacementSource_message" = "将从这个源下载数据：\n%@";
 "DeleteSource_title" = "删除源";
 "DeleteSource_message" = "真的要删除源“%@”吗？";
 "DeleteSource_cancel" = "保留";
 "DeleteSource_delete" = "立即删除";
 "ReadOnlySource_title" = "这个源是只读的";
 "ReadOnlySource_message" = "“%@”是软件内置的源，\n不能被修改或删除。\n如果有系统源长期失效，\n请尝试检查软件更新。";
-//自定义主题部分：
+"SourceAddress" = "请选择要从何处添加源";
+"SourceStore" = "源商店";
+"AddStoreURL_title" = "安装来自网络的源";
+"AddStoreURL_message" = "你必须从信任并且确认兼容的来源安装。源地址是：\n%@\n如果安装后程序工作不正常，请在设置中打开安全模式删除此源。";
+//(本行为注释不翻译)自定义主题部分：
 "ContentModeScaleToFill" = "缩放拉伸";
 "ContentModeScaleAspectFit" = "缩放居中";
 "ContentModeScaleAspectFill" = "填充(推荐)";
@@ -92,11 +114,30 @@
 "ContentModeBottomRight" = "右下对齐";
 "CutOut" = "对齐裁剪 >";
 "ReplaceBackground" = "更换背景底图";
-"RestoreDefaultBackground" = "背景底图恢复默认";
+"RestoreDefaultBackground" = "删除背景底图";
 "ReplaceForeground" = "更换前景底图";
-"RestoreDefaultForeground" = "前景底图恢复默认";
+"RestoreDefaultForeground" = "删除前景底图";
 "ImageScalingMode_title" = "请选择图像缩放方式";
 "ImageScalingMode_cancel" = "保持当前设置";
 "Previous" = "< 上一步";
 "Disable_title" = "功能已被禁用";
 "Disable_message" = "由于您在设置中不允许本程序载入背景图片，操作无法继续。\n要继续操作，请转至“iOS系统设置→云颜文字→允许使用自定义图片作为主题”，设置为“启用”，并重启本程序。";
+//(本行为注释不翻译)分享部分
+"SharingThis" = "将这一刻的心情与谁分享？";
+"QuickConvey" = "快捷传送";
+"SNS" = "社交网络";
+"GenerateQR" = "生成二维码";
+"SMS" = "发送短信或iMessage";
+"e-mail" = "发送电子邮件";
+"WechatContact" = "微信好友";
+"Q-zone" = "QQ空间";
+"SinaWeibo" = "新浪微博";
+"Renren" = "人人网";
+"TencentWeibo" = "腾讯微博";
+"WechatMoments" = "微信朋友圈";
+"Facebook" = "脸书网";
+"Twitter" = "推特网";
+"douban" = "豆瓣";
+"GooglePlus" = "谷歌社交网络";
+"SavedAlbum" = "已保存到相册。";
+"cc" = "本作品采用知识共享 署名-相同方式共享 4.0 国际 许可协议进行许可。访问 http://creativecommons.org/licenses/by-sa/4.0/deed.zh_CN 查看该许可协议。";

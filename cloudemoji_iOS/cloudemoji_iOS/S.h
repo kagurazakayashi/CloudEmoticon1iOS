@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+//#import "ColorConvert.h"
 @interface S : NSObject
 {
     NSMutableArray *allinfo;
@@ -21,4 +21,7 @@
 @property (nonatomic, assign) BOOL isupdateData;
 @property (nonatomic, assign) float ios;
 @property (nonatomic, assign) CGSize correct;
+@property (nonatomic, assign) int ad;
+@property (nonatomic, assign) BOOL networkBusy;
+//@property (nonatomic, retain) ColorConvert *colorconvert;
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DIYViewController.h"
+#import "DIYVC.h"
 @interface Diy : UIViewController <DIYViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-@property (nonatomic, retain) DIYViewController *vc;
+@property (nonatomic, retain) DIYVC *vc;
 @property (nonatomic, assign) BOOL isOpenPic;
 @property (nonatomic, assign) int imgMode;
 @end

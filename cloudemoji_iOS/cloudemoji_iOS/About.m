@@ -31,7 +31,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.vc = [[XAboutViewController alloc] init];
+    self.vc = [[XAboutVC alloc] init];
     [self.view addSubview:self.vc.view];
     [super viewWillAppear:YES];
 }

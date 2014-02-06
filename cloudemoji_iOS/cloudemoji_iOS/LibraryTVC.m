@@ -14,7 +14,7 @@
 @end
 
 @implementation LibraryTVC
-@synthesize data, height, alertMode, editNow;
+@synthesize data, height, alertMode, editNow, storeWeb, addStoreURL, weburl;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,9 +37,11 @@
     
     float dstitle = [S s].correct.width;
     float dsfoot = [S s].correct.height;
+    float bgy = 0;
     if ([S s].ios < 7.0) {
         dstitle = 0;
         dsfoot = 134;
+        bgy = 0 - dstitle - dsfoot + 40;
     } else {
         dstitle = 84;
         dsfoot = 69;
@@ -53,7 +55,7 @@
     self.tableView.delegate = self;
     
     BackgroundImg *bg = [[BackgroundImg alloc] init];
-    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [bg changeFrame:CGRectMake(0, bgy, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
     
@@ -73,13 +75,13 @@
         }
     }
     
-    UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
-    self.navigationItem.rightBarButtonItem = rightbtn;
+//    rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+//    self.navigationItem.rightBarButtonItem = rightbtn;
     
-    NSArray *d1 = [NSArray arrayWithObjects:@"KTachibanaTest",@"http://dl.dropboxusercontent.com/u/120725807/test.xml",@"e", nil];
-    NSArray *d2 = [NSArray arrayWithObjects:@"_KT_Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
+    //NSArray *d1 = [NSArray arrayWithObjects:@"KTachibanaTest",@"http://dl.dropboxusercontent.com/u/120725807/test.xml",@"e", nil];
+    NSArray *d2 = [NSArray arrayWithObjects:@"KT Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
     [data insertObject:d2 atIndex:0];
-    [data insertObject:d1 atIndex:0];
+//    [data insertObject:d1 atIndex:0];
     
     for (NSArray *nowArr in data) {
         NSString *nowUrl = [nowArr objectAtIndex:1];
@@ -90,6 +92,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
 }
+
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -100,6 +103,85 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)webView:(BOOL)isShow
+{
+    if (isShow) {
+        [self.delegate changeRightButton:YES];
+        storeWeb = [[UIWebView alloc] initWithFrame:CGRectMake(self.tableView.frame.origin.x, -self.tableView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height)];
+        
+        NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+        NSString *server = [setting stringForKey:@"server"];
+        NSString *urlString = nil;
+        if ([server length] < 5) {
+            urlString = @"http://cxchope.sites.my-card.in/soft/cloud_emoticon/source/index.html";
+        } else {
+            urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/source/index.html",server];
+        }
+        weburl = [NSURL URLWithString:urlString];
+        
+        NSURL *url =[NSURL URLWithString:urlString];
+        NSURLRequest *request =[NSURLRequest requestWithURL:url];
+        storeWeb.delegate = self;
+        [storeWeb loadRequest:request];
+        [self.view addSubview:storeWeb];
+        [UIView animateWithDuration:0.5 animations:^{
+            storeWeb.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+        }];
+    } else {
+        [self.delegate changeRightButton:NO];
+        [UIView animateWithDuration:0.5 animations:^{
+            storeWeb.frame = CGRectMake(self.tableView.frame.origin.x, -self.tableView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height);
+        } completion:^(BOOL finished) {
+            [storeWeb removeFromSuperview];
+            storeWeb = nil;
+        }];
+    }
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *requestURL = [request URL];
+    NSString *urltype = [requestURL scheme];
+    NSString *allurl = [requestURL relativeString];
+    BOOL showAddWebURLAlert = NO;
+    if ([allurl isEqualToString:@"http://cxchope.sites.my-card.in/soft/cloud_emoticon/index.html"] || [allurl isEqualToString:@"http://www.heartunlock.com/soft/cloud_emoticon/index.html"]) {
+        [self webView:NO];
+        return NO;
+    } else if ([urltype isEqualToString:@"cloudemoticon"]) {
+        NSString *notypeurl = [allurl substringFromIndex:[urltype length]];
+        addStoreURL = [NSString stringWithFormat:@"http%@",notypeurl];
+        showAddWebURLAlert = YES;
+    } else if ([urltype isEqualToString:@"cloudemoticons"]) {
+        NSString *notypeurl = [allurl substringFromIndex:[urltype length]];
+        addStoreURL = [NSString stringWithFormat:@"https%@",notypeurl];
+        showAddWebURLAlert = YES;
+    }
+    if (showAddWebURLAlert) {
+        BOOL isReq = NO;
+        for (NSArray *nowItem in data) {
+            NSString *nowURL = [nowItem objectAtIndex:1];
+            if ([addStoreURL isEqualToString:nowURL]) {
+                isReq = YES;
+                break;
+            }
+        }
+        if (isReq) {
+            [self webView:NO];
+        } else {
+            [self addWebURL];
+        }
+    }
+    
+    return YES;
+}
+
+- (void)addWebURL
+{
+    alertMode = 4;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"AddStoreURL_title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"AddStoreURL_message", nil),addStoreURL] delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"AddSource_save", nil),nil];
+    [alert show];
 }
 
 #pragma mark - Table view data source
@@ -133,9 +215,11 @@
     NSString *nowURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"];
     if ([cell.info.text isEqualToString:nowURL]) {
         [cell.btnFrv setHidden:YES];
+        cell.cellBGView.backgroundColor = [UIColor redColor];
         cell.cellBGView.layer.shadowColor = [[UIColor redColor] CGColor];
     } else {
         [cell.btnFrv setHidden:NO];
+        cell.cellBGView.backgroundColor = [UIColor whiteColor];
         cell.cellBGView.layer.shadowColor = [[UIColor whiteColor] CGColor];
     }
     //[cell loadFrame:tableView.frame.size.width];
@@ -163,9 +247,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertMode == 1) {
+    if (alertMode == 1) { //输入网址
         UITextField *tf = [alertView textFieldAtIndex:0];
         if (buttonIndex == 1) {
+            [self.delegate showBlack:YES];
             [self.delegate reloadData:tf.text ModeTag:2 Local:YES];
         } else {
             editNow = 99999999;
@@ -175,8 +260,22 @@
         editNow = 99999999;
         [self saveToSetting];
         [self.tableView reloadData];
+    } else if (alertMode == 3) { //主菜单
+        if (buttonIndex == 1) {
+            [self webView:YES];
+        } else if (buttonIndex == 2) {
+            alertMode = 1;
+            [self addURL];
+        }
+    } else if (alertMode == 4) {
+        [self webView:NO];
+        if (buttonIndex == 1) {
+            [self.delegate showBlack:YES];
+            [self.delegate reloadData:addStoreURL ModeTag:2 Local:YES];
+        } else {
+            editNow = 99999999;
+        }
     }
-    alertMode = 0;
 }
 -(void)btnSelect:(NSString*)name
 {
@@ -257,9 +356,32 @@
             [data removeObjectAtIndex:editNow];
             editNow = 99999999;
         }
+        
+        
+        for (int i = 0; i < [data count]; i++) {
+            NSArray *nowArr = [data objectAtIndex:i];
+            NSString *ourl = [nowArr objectAtIndex:1];
+            if ([ourl isEqualToString:cURL]) {
+                [data removeObjectAtIndex:i];
+                break;
+            }
+        }
+        
+        NSMutableString *rName = [NSMutableString string];
+        for (int i = 0; i < [cName length]; i++) {
+            NSString *nowChar = [cName substringWithRange:NSMakeRange(i, 1)];
+            if (![nowChar isEqualToString:@"\n"] && ![nowChar isEqualToString:@"\t"]) {
+                [rName insertString:nowChar atIndex:[rName length]];
+            }
+        }
+        [cName setString:rName];
         [data addObject:[NSArray arrayWithObjects:cName,cURL,@"u", nil]];
         [self saveToSetting];
+        float txtheight = [S txtHeightWithText:cURL MaxWidth:self.tableView.frame.size.width];
+        [height addObject:[NSNumber numberWithFloat:txtheight]];
         [self.tableView reloadData];
+        
+        [self.delegate showBlack:NO];
         
         /*
          infoos =         {
@@ -283,15 +405,31 @@
         }
     }
     NSArray *save = [NSArray arrayWithArray:saveArr];
+//    NSLog(@"saveArr=%@",saveArr);
     [setting setObject:save forKey:@"sourcelist"];
     [setting synchronize];
 }
 
 - (void)rightbtn:(id)sender
 {
-    alertMode = 1;
+    alertMode = 3;
+    [self selectAddMode];
+}
+
+- (void)selectAddMode
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SourceAddress", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"SourceStore", nil),NSLocalizedString(@"AddSource_title", nil),nil];
+    editNow = 99999999;
+    [alert show];
+}
+
+- (void)addURL
+{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"AddSource_title", nil) message:NSLocalizedString(@"AddSource_message", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"AddSource_save", nil),nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    //UITextField *tf = [alert textFieldAtIndex:0];
+    //tf.text = @"https://dl.dropboxusercontent.com/s/w85noarzzeabgr7/emoji.xml";
+    
     editNow = 99999999;
     [alert show];
 }

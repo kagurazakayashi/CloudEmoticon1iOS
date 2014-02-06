@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "UMSocial.h"
 
 @implementation AppDelegate
 
@@ -22,8 +23,7 @@
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, windowY, scr.size.width, scr.size.height)];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    [MobClick startWithAppkey:@"52cba0fc56240be2220355c9"];
-//    [MobClick setLogEnabled:YES];
+    [self shareSetting];
     
     //allinfo = [[NSMutableArray alloc] init];
     application.applicationSupportsShakeToEdit = YES;
@@ -67,5 +67,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 }
+
+- (void)shareSetting
+{
+    ///// yashi personal KEY, do not copy /////
+    //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9"];
+    //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"WebDisk"];
+    //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"app.io"];
+    [UMSocialData setAppKey:@"52cba0fc56240be2220355c9"];
+    //[MobClick setLogEnabled:YES];
+}
+
 
 @end

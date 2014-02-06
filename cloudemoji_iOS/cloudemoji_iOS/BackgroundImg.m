@@ -14,13 +14,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor lightGrayColor];
 //        self.bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 //        self.bg.backgroundColor = [UIColor whiteColor];
 //        self.img.alpha = 0.5;
         self.img.clipsToBounds = YES;
-        self.img.backgroundColor = [UIColor clearColor];
+        self.img.backgroundColor = [UIColor lightGrayColor];
 //        [self addSubview:bg];
         [self addSubview:img];
         
@@ -73,11 +73,13 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [NSString stringWithFormat:@"%@/bg%ld.cxc",documentDirectory,(long)imgID];
-    NSData *imgData = UIImageJPEGRepresentation(img.image, 0);
     if ([fileManager fileExistsAtPath:path]) {
         [fileManager removeItemAtPath:path error:nil];
     }
-    [imgData writeToFile:path atomically:YES];
+    if (img.image) {
+        NSData *imgData = UIImageJPEGRepresentation(img.image, 0);
+        [imgData writeToFile:path atomically:YES];
+    }
 }
 
 - (void)loadSetting:(NSInteger)imgID
@@ -88,9 +90,15 @@
     NSNumber *psz0n = [setting objectForKey:settingName];
     NSInteger psz0 = [psz0n integerValue];
     [img setContentMode:psz0];
-    if (imgID == 0) {
-        self.backgroundColor = [UIColor blackColor];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [NSString stringWithFormat:@"%@/bg%ld.cxc",documentDirectory,(long)imgID];
+    if ([fileManager fileExistsAtPath:path]) {
+        [img setImage:[UIImage imageWithContentsOfFile:path]];
     }
+//    if (imgID == 0) {
+//        self.backgroundColor = [UIColor lightGrayColor];
+//    }
 }
 
 - (void)saveSetting:(NSInteger)imgID
@@ -108,6 +116,7 @@
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     BOOL cpic = [[setting objectForKey:@"cpic"] boolValue];
     if (cpic) {
+        [img setImage:nil];
         [img setImage:i];
     } else {
         if (img.image) {

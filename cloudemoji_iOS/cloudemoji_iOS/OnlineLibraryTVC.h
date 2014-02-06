@@ -10,11 +10,17 @@
 #import "TypeMenuView.h"
 #import "BackgroundImg.h"
 #import "OnlineLibraryCell.h"
+#import "EGORefreshTableHeaderView.h"
+#import "NoneView.h"
 @protocol OnlineLibraryDelegate <NSObject>
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local;
 @end
 
-@interface OnlineLibraryTVC : UIViewController <UITableViewDataSource, UITableViewDelegate, TypeMenuViewDelegate>
+@interface OnlineLibraryTVC : UIViewController <UITableViewDataSource, UITableViewDelegate, TypeMenuViewDelegate, EGORefreshTableHeaderDelegate>
+{
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _reloading;
+}
 @property (nonatomic, assign) id<OnlineLibraryDelegate> delegate;
 @property (nonatomic, retain) TypeMenuView *typemenu;
 @property (nonatomic, retain) UITableView *tableView;
@@ -28,6 +34,7 @@
 @property (nonatomic, assign) BOOL showTool;
 @property (nonatomic, assign) float dstitle;
 @property (nonatomic, assign) float dsfoot;
+@property (nonatomic, retain) NoneView *noneview;
 - (void)rightbtn:(id)sender;
 - (void)leftbtn:(id)sender;
 @end

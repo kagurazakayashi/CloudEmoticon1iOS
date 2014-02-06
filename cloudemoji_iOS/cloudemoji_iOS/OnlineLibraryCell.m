@@ -9,7 +9,7 @@
 #import "OnlineLibraryCell.h"
 
 @implementation OnlineLibraryCell
-@synthesize name, info, btnFrv, cellBGView, isfaved, cellmode, btnEdit;
+@synthesize name, info, btnFrv, cellBGView, isfaved, cellmode, btnEdit, btnShare;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -27,26 +27,27 @@
     BOOL css = [[setting objectForKey:@"css"] boolValue];
     
     cellBGView = [[UIView alloc] init];
-    cellBGView.backgroundColor = [UIColor whiteColor];
-    cellBGView.alpha = 0.5;
+    //cellBGView.backgroundColor = [UIColor whiteColor];
+    //cellBGView.alpha = 0.5;
     if (css) {
         cellBGView.layer.shadowColor = [[UIColor whiteColor] CGColor];
         cellBGView.layer.shadowOpacity = 1;
         cellBGView.layer.shadowRadius = 10;
         cellBGView.layer.shadowOffset = CGSizeMake(0, 0);
-        cellBGView.layer.cornerRadius = 10;
-        cellBGView.layer.masksToBounds = NO;
     }
+    cellBGView.layer.cornerRadius = 10;
+    cellBGView.layer.masksToBounds = NO;
     [self addSubview:cellBGView];
     name = [[UILabel alloc] init];
     name.font = [UIFont boldSystemFontOfSize:20.0f];
     name.backgroundColor = [UIColor clearColor];
-    name.textColor = [UIColor blueColor];
+    
+    //name.textColor = [UIColor blueColor];
     info = [[UILabel alloc] init];
     info.font = [UIFont boldSystemFontOfSize:15.0f];
     info.numberOfLines = 0;
     info.backgroundColor = [UIColor clearColor];
-    info.textColor = [UIColor purpleColor];
+    //info.textColor = [UIColor purpleColor];
     info.lineBreakMode = NSLineBreakByCharWrapping;
     
     if (cellmode < 5) {
@@ -61,6 +62,12 @@
         [btnEdit addTarget:self action:@selector(btnEdit:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:btnEdit];
     }
+    
+    btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnShare setImage:[UIImage imageNamed:@"psent.png"] forState:UIControlStateNormal];
+    [btnShare addTarget:self action:@selector(btnShare:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:btnShare];
+    
     if (cellmode == 3 || cellmode == 4) {
         [btnFrv setImage:[UIImage imageNamed:@"pdel.png"] forState:UIControlStateNormal];
     }
@@ -88,11 +95,35 @@
             btnEdit.layer.shadowOpacity = 1;
             btnEdit.layer.shadowRadius = 5;
         }
+        btnShare.layer.shadowColor = [[UIColor cyanColor] CGColor];
+        btnShare.layer.shadowOpacity = 1;
+        btnShare.layer.shadowRadius = 5;
     }
     [self addSubview:name];
     [self addSubview:info];
     
     
+}
+
+- (void)loadColorSetting:(int)tableType
+{
+    NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
+    if (tableType == 0) {
+        cellBGView.alpha = [setting floatForKey:@"TAalpha"];
+        cellBGView.backgroundColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TAcell"]];
+        name.textColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TAtxt"]];
+        info.textColor = name.textColor;
+    } else {
+        cellBGView.alpha = [setting floatForKey:@"TBalpha"];
+        cellBGView.backgroundColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TBcell"]];
+        name.textColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TBtxt"]];
+        info.textColor = name.textColor;
+    }
+}
+- (void)btnShare:(id)sender
+{
+    NSArray *sentInfo = [NSArray arrayWithObjects:[NSString stringWithString:info.text], nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"share" object:sentInfo];
 }
 
 - (void)btnFrv:(id)sender
@@ -203,6 +234,10 @@
     btnFrv.frame = CGRectMake(width - kBK * 2 - 30, kBK * 2, 30, 30);
     if (cellmode == 4) {
         btnEdit.frame = CGRectMake(btnFrv.frame.origin.x - btnFrv.frame.size.width - 10, btnFrv.frame.origin.y, btnFrv.frame.size.width, btnFrv.frame.size.height);
+        
+        btnShare.frame = CGRectMake(btnEdit.frame.origin.x - btnEdit.frame.size.width - 15, btnEdit.frame.origin.y, btnEdit.frame.size.width, btnEdit.frame.size.height);
+    } else {
+        btnShare.frame = CGRectMake(btnFrv.frame.origin.x - btnFrv.frame.size.width - 10, btnFrv.frame.origin.y, btnFrv.frame.size.width, btnFrv.frame.size.height);
     }
 }
 

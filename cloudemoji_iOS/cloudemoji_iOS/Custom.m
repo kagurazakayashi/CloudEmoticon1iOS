@@ -25,42 +25,54 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
-    self.navigationItem.rightBarButtonItem = self.rightbtn;
-    
-    self.vc = [[CustomTVC alloc] init];
-    self.vc.delegate = self;
-    [self.view addSubview:self.vc.view];
-    [super viewWillAppear:YES];
+    if (!self.isEdit) {
+        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+        self.navigationItem.rightBarButtonItem = self.rightbtn;
+        
+        self.vc = [[CustomTVC alloc] init];
+        self.vc.delegate = self;
+        [self.view addSubview:self.vc.view];
+        [super viewWillAppear:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.vc.delegate = nil;
-    self.navigationItem.rightBarButtonItem = nil;
-    self.rightbtn = nil;
-    [self.vc.view removeFromSuperview];
-    self.vc = nil;
-    [super viewWillDisappear:YES];
+    if (!self.isEdit) {
+        self.vc.delegate = nil;
+        self.navigationItem.rightBarButtonItem = nil;
+        self.rightbtn = nil;
+        [self.vc.view removeFromSuperview];
+        self.vc = nil;
+        [super viewWillDisappear:YES];
+    }
 }
 - (void)reloadButton:(BOOL)isEdit
 {
     self.isEdit = isEdit;
-    self.rightbtn = nil;
-    self.navigationItem.rightBarButtonItem = nil;
-    self.leftbtn = nil;
-    self.navigationItem.leftBarButtonItem = nil;
-    if (isEdit) {
-        self.leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
-        self.navigationItem.leftBarButtonItem = self.leftbtn;
-        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
-        self.navigationItem.rightBarButtonItem = self.rightbtn;
-    } else {
-        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
-        self.navigationItem.rightBarButtonItem = self.rightbtn;
-    }
-    
+//    self.rightbtn = nil;
+//    self.navigationItem.rightBarButtonItem = nil;
+//    self.leftbtn = nil;
+//    self.navigationItem.leftBarButtonItem = nil;
+//    if (isEdit) {
+//        self.leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
+//        self.navigationItem.leftBarButtonItem = self.leftbtn;
+//        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
+//        self.navigationItem.rightBarButtonItem = self.rightbtn;
+//    } else {
+//        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+//        self.navigationItem.rightBarButtonItem = self.rightbtn;
+//    }
 }
+
+- (void)openEditWindow:(UIViewController*)editVC
+{
+    [self.navigationController pushViewController:editVC animated:YES];
+//    [self presentViewController:editVC animated:YES completion:^{
+//        //[editVC.edit becomeFirstResponder];
+//    }];
+}
+
 - (void)rightbtn:(id)sender
 {
     if (self.isEdit) {

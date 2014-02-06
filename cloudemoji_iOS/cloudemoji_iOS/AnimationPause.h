@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AnimationPauseViewController.h"
+#import "AnimationPauseVC.h"
 @interface AnimationPause : UIViewController
-@property (nonatomic, retain) AnimationPauseViewController *vc;
+@property (nonatomic, retain) AnimationPauseVC *vc;
 @end

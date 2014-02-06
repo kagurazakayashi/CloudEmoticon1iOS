@@ -11,4 +11,5 @@
 @interface AboutViewController : UIViewController
 @property (nonatomic, retain) UIWebView *web;
 @property (nonatomic, retain) UIBarButtonItem *rightbtn;
+@property (nonatomic, retain) NSURL *url;
 @end

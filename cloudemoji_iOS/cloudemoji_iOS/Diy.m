@@ -33,13 +33,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if (self.isOpenPic == NO) {
-        self.vc = [[DIYViewController alloc] init];
+        self.vc = [[DIYVC alloc] init];
         self.vc.delegate = self;
         [self.view addSubview:self.vc.view];
         [super viewWillAppear:YES];
     }
 }
-
+//
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (self.isOpenPic == NO) {
@@ -96,9 +96,11 @@
     if (self.imgMode == 1) {
         [self.vc.imgA changeImage:image];
         [self.vc.imgA saveSettingImg:0];
+//        [self.vc.imgB loadSetting:1];
     } else if (self.imgMode == 2) {
         [self.vc.imgB changeImage:image];
         [self.vc.imgB saveSettingImg:1];
+//        [self.vc.imgA loadSetting:0];
     }
 }
 

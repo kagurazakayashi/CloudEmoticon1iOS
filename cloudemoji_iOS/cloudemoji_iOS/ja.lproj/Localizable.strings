@@ -1,0 +1,133 @@
+//(本行为注释不翻译)语言包识别：
+"language" = "日本語";
+"SoftwareName" = "雲の顔文字";
+//(本行为注释不翻译)请在这里标注你的名字，你的名字将出现在软件中：
+"translator" = "fatianyu(fatianyu@gmail.com)";
+//(本行为注释不翻译)功能表部分：
+"Favorites" = "ほしい文字リスト";
+"History" = "閲覧履歴";
+"Custom" = "作る";
+"Search" = "検索";
+"Setup" = "設定";
+"Individuation" = "着せかえ";
+"SourceManagement" = "ソースの管理";
+"UpdatesAndOnlineInformation" = "アップデートと情報";
+"About" = "雲の顔文字について";
+"Shake" = "ふるふる";
+"ExitSafeMode" = "セーフモードから退出する";
+"FindApplication" = "appを探す";
+//(本行为注释不翻译)无内容提示部分：
+"none_cloud" = "<- 左でグループを選びなさい~";
+"none_favorites" = "星をクリックしてほしい文字追加できますよ~";
+"none_history" = "まだ履歴がないよ~";
+"none_custom" = "+をクリックして自分の顔文字を作りましょうか？";
+//(本行为注释不翻译)全局部分：
+"cancel" = "キャンセル";
+"Notification" = "ここをクリックして雲の顔文字を開けるよ。";
+"OK" = "OK";
+"Save" = "保存";
+"Retry" = "再試行";
+"Clipboard" = "もうコピーしたよ";
+"MemoryWarning" = "すみません、メモリ不足。";
+//(本行为注释不翻译)网络部分：
+"PrepareUpdate" = "ソースからアップテートをしています、少々お待ちくださいね...";
+"ReadLocal" = "ローカルキャッシュを読んでいます...";
+"CancelOperation" = "操作中止。";
+"WaitServer" = "サーバの返信を待っています...";
+"Downloading" = "ダウンロードしています";
+"DownloadFailed_title" = "ダウンロード失敗";
+"DownloadFailed_message" = "インターネットに接続できませんでした。\n%@";
+"InvalidData_title"= "データの解析が失敗した";
+"InvalidData_message" = "ソースの設定が間違い、無効データいっぱいもらいます。%@";
+"SuccessfullyReceivedData"= "正常にデータを受信した(デートの量は%d)";
+"FormattingData" = "データを削除しています(デートの量は%d)";
+"TryXML" = "XMLを使ってデータをしています...";
+"TryXMLFailed" = "XMLで解析失敗した。%@";
+"TryJSON"= "JSONを使ってデータを解析しています...";
+"TryJSONFailed" = "JSONで解析失敗した。。%@";
+"InternalParsingError"= "解析失敗した";
+"SaveLocalCache" = "ローカルキャッシュを保存しています...";
+"ProcessingData" = "データ処理中...";
+//(本行为注释不翻译)搜索部分：
+"search" = "キーワードから探す";
+//(本行为注释不翻译)关于部分：
+"VersionText" = "バージョン：";
+"ThirdPart" = "次のサードパーティ製品を使用したことがあります\n次のサードパーティ製品の機能を変更したこともあります。：";
+"InstalledLanguages" = "今インストールしている：";
+"AboutInfo" = "ほかには、新バージョンのアップデートやフィードバックや、Android/Windows Phone/MAC/PCシステムのappを探すなど、「アップデートやオンライン情報」をご覧ください。\n\nいま使っている言語パックの作成者：\n%@\n\n程序作者：\n神楽坂雅詩(i@heartunlock.com)";
+//(本行为注释不翻译)系统设置部分：
+"slbl1"= "設定\nもうiOSのシステム設定のなかに入れているよ！\n利用方法：";
+"slbl2" = "1.クリックして：\n\n2.スクリーンで「設置」をクリックして\n\n3.「雲の顔文字」をクリックしなさい。";
+"LocalFile" = "ローカルキャッシュの保存場所：";
+"exitnow" = "終了";
+//(本行为注释不翻译)摇一摇部分：
+"User-defined" = "お好きに入力しなさい：";
+"RandomText_message" = "ネーム：%@\n属しているグループ：%@\n--------颜文字--------\n%@";
+"RandomText_title"= "~出た~";
+"RandomText_btn1" = "コピー";
+//(本行为注释不翻译)自定义颜文字部分：
+"CustomText" = "自分で作った顔文字";
+"Untitled" = "タイトルがまだない顔文字";
+"Blank" = "何でも入力していないよ~";
+"Superposition" = "もっと";
+"Wrap" = "改行";
+"EmoticonInputMethod" = "雅诗顔文字入力メソッド";
+//(本行为注释不翻译)源管理器部分：
+"AddSource_title" = "ソースのアドレス";
+"AddSource_message" = "ソースのアドレスを入力しなさい，XMLとJSONを基盤とする。\nソースのネームは自動判別できます。";
+"AddSource_save" = "ソースを保存して";
+"ReplacementSource_title" = "もう利用している“%@”";
+"ReplacementSource_message"= "今からこのソースからデータをダウンロードする：\n%@";
+"DeleteSource_title"= "ソースを削除する";
+"DeleteSource_message" = "ソースを削除“%@”？";
+"DeleteSource_cancel"= "キャンセル";
+"DeleteSource_delete" = "削除";
+"ReadOnlySource_title" = "このソースは編集できないよ！";
+"ReadOnlySource_message" = "“%@”このソースはメインソースです，\n削除できない。\nソースが長期的な障害がある場合は\nアップデートをやってみよう。";
+"SourceAddress"= "どこからソースを追加しますか";
+"SourceStore" = "ショップから";
+"AddStoreURL_title" = "ネートから";
+"AddStoreURL_message" = "必ず信頼できるそして利用できるソースから追加しなさい。ソースのアドレスは：\n%@\n追加した後、障害があれば，設定の中にセーフモードに入って削除しなさい。";
+//(本行为注释不翻译)自定义主题部分：
+"ContentModeScaleToFill"= "引張ズーム";
+"ContentModeScaleAspectFit" = "センターズーム";
+"ContentModeScaleAspectFill" = "フィリング(おすすめ)";
+"ContentModeRedraw" = "中央寄せ";
+"ContentModeCenter" = "中央寄せ";
+"ContentModeTop" = "下寄せ";
+"ContentModeBottom" = "上寄せ";
+"ContentModeLeft" = "左寄せ";
+"ContentModeRight" = "右寄せ";
+"ContentModeTopLeft" = "左上寄せ";
+"ContentModeTopRight" = "右上寄せ";
+"ContentModeBottomLeft" = "左下寄せ";
+"ContentModeBottomRight" = "右下寄せ";
+"CutOut" = "アラインメントとカット >";
+"ReplaceBackground" = "背景画像を換える";
+"RestoreDefaultBackground" = "背景画像を削除";
+"ReplaceForeground" = "前景画像を換える";
+"RestoreDefaultForeground" = "前景画像を削除";
+"ImageScalingMode_title" = "画像スケーリング方法を選びなさい";
+"ImageScalingMode_cancel" = "そのままで保存する";
+"Previous" = "< 戻る";
+"Disable_title" = "この機能の利用はできなくなる";
+"Disable_message" = "プログラムの設定で許可されていないので、背景画像をロードされていない，操作を続行できない。\n利用したいの場合は，「iOS設置→雲の顔文字→自分で背景画像ロードことができる」，「オン」を設定して，プログラムを再起動しなさい。";
+//(本行为注释不翻译)分享部分
+"SharingThis" = "シェア";
+"QuickConvey" = "クイック伝える";
+"SNS" = "SNS";
+"GenerateQR" = "QRコード表示";
+"SMS" = "メッセージまたはiMessage";
+"e-mail" = "メール";
+"WechatContact" = "WechatContact";
+"Q-zone" = "Q-zone";
+"SinaWeibo" = "SinaWeibo";
+"Renren" = "Renren";
+"TencentWeibo" = "TencentWeibo";
+"WechatMoments" = "WechatMoments";
+"Facebook" = "Facebook";
+"Twitter" = "Twitter";
+"douban" = "douban";
+"GooglePlus" = "GooglePlus";
+"SavedAlbum" = "アルバムで保存したよ。";﻿
+"cc" = "This work is licensed under the Creative Commons 表示 - 継承 4.0 国際 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/deed.ja_JP.";

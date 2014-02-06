@@ -50,14 +50,39 @@
     [super viewWillDisappear:YES];
 }
 
+- (void)changeRightButton:(BOOL)isCloseBtn
+{
+    if (isCloseBtn) {
+        self.navigationItem.rightBarButtonItem = nil;
+        self.rightbtn = nil;
+        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(rightbtn2:)];
+        self.navigationItem.rightBarButtonItem = self.rightbtn;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+        self.rightbtn = nil;
+        self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+        self.navigationItem.rightBarButtonItem = self.rightbtn;
+    }
+}
+
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
     [self.delegate reloadData:URL ModeTag:mtag Local:local];
+}
+    
+- (void)showBlack:(BOOL)isBalck
+{
+    [self.delegate showBlack:isBalck];
 }
 
 - (void)rightbtn:(id)sender
 {
     [self.vc rightbtn:self.rightbtn];
+}
+
+- (void)rightbtn2:(id)sender
+{
+    [self.vc webView:NO];
 }
 
 - (void)didReceiveMemoryWarning

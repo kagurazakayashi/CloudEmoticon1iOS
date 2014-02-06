@@ -31,9 +31,21 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.vc = [[AnimationPauseViewController alloc] init];
+    /*
+     if(UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPad)
+     {
+     [[NSBundlemainBundle]loadNibNamed:@"OtherViewController-iPad"owner:selfoptions:nil];
+     }
+     else
+     {
+     [[NSBundlemainBundle]loadNibNamed:@"OtherViewController"owner:selfoptions:nil];
+     }    
+     
+     }
+     */
+    self.vc = [[AnimationPauseVC alloc] init];
     [self.view addSubview:self.vc.view];
-    self.vc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    //self.vc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [super viewWillAppear:YES];
 }
 

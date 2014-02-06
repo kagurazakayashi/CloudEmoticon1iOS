@@ -33,9 +33,11 @@
     
     float dstitle = [S s].correct.width;
     float dsfoot = [S s].correct.height;
+    float bgy = 0;
     if ([S s].ios < 7.0) {
         dstitle = 0;
         dsfoot = 134;
+        bgy = 0 - dstitle - dsfoot + 40;
     } else {
         dstitle = 84;
         dsfoot = 69;
@@ -49,7 +51,7 @@
     self.tableView.delegate = self;
     
     BackgroundImg *bg = [[BackgroundImg alloc] init];
-    [bg changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [bg changeFrame:CGRectMake(0, bgy, self.view.frame.size.width, self.view.frame.size.height)];
     [bg loadSetting:1];
     [bg loadSettingImg:1];
     

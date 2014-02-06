@@ -11,57 +11,91 @@
 #import "MD5.h"
 
 @implementation RefreshView
-@synthesize info, connData, mode, cURL, mURL, loc;
+@synthesize info, connData, mode, cURL, mURL, loc, pro;
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
+    CGRect newFrame = CGRectMake(frame.origin.x + 50, 20, frame.size.width - 100, 44);
+    self = [super initWithFrame:newFrame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        if ([S s].ios < 7.0) {
-            self.frame = CGRectMake(0, 20, self.frame.size.width, self.frame.size.height);
-        }
-        [self didLoad];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+        //self.window.windowLevel = UIWindowLevelAlert;
+        self.backgroundColor = [UIColor clearColor];
+//        if ([S s].ios < 7.0) {
+//            self.frame = CGRectMake(0, 20, self.frame.size.width, self.frame.size.height);
+//        }
+        //float icoSize = self.frame.size.width * 0.5;
+        UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, newFrame.size.width, newFrame.size.height)];
+        bg.backgroundColor = [UIColor orangeColor];
+//        bg.alpha = 0.5f;
+        bg.layer.cornerRadius = 10;
+        //self.layer.masksToBounds = YES;
+        [self addSubview:bg];
+        pro = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(10, 8, 30, 30)];
+        pro.activityIndicatorViewStyle= UIActivityIndicatorViewStyleWhiteLarge;
+        pro.hidesWhenStopped = NO;
+        [self addSubview:pro];
+        [pro startAnimating];
+        info = [[UILabel alloc] initWithFrame:CGRectMake(pro.frame.origin.x + pro.frame.size.width + 10, 0, newFrame.size.width - pro.frame.origin.x - pro.frame.size.width - 10, newFrame.size.height)];
+        [self infoShow:NSLocalizedString(@"PrepareUpdate", nil)];
+        info.textColor = [UIColor blueColor];
+        info.backgroundColor = [UIColor clearColor];
+        info.textAlignment = NSTextAlignmentCenter;
+        info.font = [UIFont systemFontOfSize:12];
+        info.lineBreakMode = NSLineBreakByWordWrapping;
+        info.numberOfLines = 0;
+        [self addSubview:info];
+        self.connData = [[NSMutableData alloc] init];
+        //[self didLoad];
     }
     return self;
 }
 
 - (void)didLoad
 {
-    self.connData = [[NSMutableData alloc] init];
     float icoSize = self.frame.size.width * 0.5;
     UIImageView *logoimg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width*0.5-icoSize*0.5, self.frame.size.height*0.2, icoSize, icoSize)];
     logoimg.image = [UIImage imageNamed:@"ic_launcher-152.png"];
-    info = [[UILabel alloc] initWithFrame:CGRectMake(0, logoimg.frame.origin.y + logoimg.frame.size.height, self.frame.size.width, 20)];
+    info = [[UILabel alloc] initWithFrame:CGRectMake(0, logoimg.frame.origin.y + logoimg.frame.size.height, self.frame.size.width, 40)];
     [self infoShow:NSLocalizedString(@"PrepareUpdate", nil)];
     info.textColor = [UIColor blueColor];
+    info.backgroundColor = [UIColor clearColor];
     info.textAlignment = NSTextAlignmentCenter;
+    info.lineBreakMode = NSLineBreakByWordWrapping;
+    info.numberOfLines = 0;
     [self addSubview:logoimg];
     [self addSubview:info];
 }
 
 - (void)startreload:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
-    mode = mtag;
-    cURL = URL;
-    mURL = [NSString stringWithFormat:@"%@.yashi",[MD5 md5:URL]];
-    loc = local;
-    
-    if (local) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        [fileManager changeCurrentDirectoryPath:[documentDirectory stringByExpandingTildeInPath]];
-        NSString *path = [documentDirectory stringByAppendingPathComponent:mURL];
-        if ([fileManager fileExistsAtPath:path]) {
-            [self infoShow:NSLocalizedString(@"ReadLocal", nil)];
-            [MobClick event:@"LoadLocal"];
-            self.connData = [NSData dataWithContentsOfFile:path];
-            [self connectionDidFinishLoading:nil];
+    if ([S s].networkBusy == YES) {
+        [self exit];
+    } else {
+        [S s].networkBusy = YES;
+        mode = mtag;
+        cURL = URL;
+        mURL = [NSString stringWithFormat:@"%@.yashi",[MD5 md5:URL]];
+        loc = local;
+        
+        if (local) {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            [fileManager changeCurrentDirectoryPath:[documentDirectory stringByExpandingTildeInPath]];
+            NSString *path = [documentDirectory stringByAppendingPathComponent:mURL];
+            if ([fileManager fileExistsAtPath:path]) {
+                [self infoShow:NSLocalizedString(@"ReadLocal", nil)];
+                [MobClick event:@"LoadLocal"];
+                self.connData = [NSData dataWithContentsOfFile:path];
+                [self connectionDidFinishLoading:nil];
+            } else {
+                [self startAsyConnection];
+            }
         } else {
             [self startAsyConnection];
         }
-    } else {
-        [self startAsyConnection];
     }
+    
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -72,6 +106,8 @@
         [self infoShow:NSLocalizedString(@"CancelOperation", nil)];
         //NSArray *cinf = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedInteger:mode],cURL, nil];
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"conok" object:cinf];
+        [S s].networkBusy = NO;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [self exit];
     }
 }
@@ -180,13 +216,19 @@
         //NSString *cURL = [cinf objectAtIndex:1];
         NSDictionary *info0 = [cinf objectAtIndex:2];
         NSDictionary *emoji = [info0 objectForKey:@"emoji"];
-        NSArray *category = [emoji objectForKey:@"category"];
-        
+        id category = [emoji objectForKey:@"category"];
         //NSLog(@"category(%d)=%@",[category count], category);
         for (int icate = 0; icate < [category count]; icate++) {
-            NSDictionary *cate = [category objectAtIndex:icate];
-            NSString *name = [cate objectForKey:@"name"];
-            NSArray *entry = [cate objectForKey:@"entry"];
+            NSString *name = nil;//[cate objectForKey:@"name"];
+            NSArray *entry = nil;//[cate objectForKey:@"entry"];
+            if ([category isKindOfClass:[NSArray class]]) {
+                NSDictionary *cate = [category objectAtIndex:icate];
+                name = [cate objectForKey:@"name"];
+                entry = [cate objectForKey:@"entry"];
+            } else {
+                name = [category objectForKey:@"name"];
+                entry = [category objectForKey:@"entry"];
+            }
             
             for (int iitem = 0; iitem < [entry count]; iitem++) {
                 NSDictionary *item = [entry objectAtIndex:iitem];
@@ -205,8 +247,9 @@
             }
         }
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"conok" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"conok" object:cinf];
+    [S s].networkBusy = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self exit];
 }
 - (NSString*)removeFirstReturn:(NSString*)str removeT:(BOOL)rT
@@ -262,6 +305,11 @@
 }
 - (void)exit
 {
+        [self.delegate showBlack:NO];
+    
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    //self.window.windowLevel = UIWindowLevelNormal;
+    [pro stopAnimating];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {

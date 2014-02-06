@@ -32,7 +32,7 @@
     aboutAppName.text = [NSString stringWithFormat:@"%@ for iOS",NSLocalizedString(@"SoftwareName", nil)];
     versionText.text = NSLocalizedString(@"VersionText", nil);
     thirdPart.backgroundColor = [UIColor lightGrayColor];
-    NSString *third = @"Toast (Charles Scalesse)\nMobClick (Umeng)\nAnimationPauseViewController (gamy)\nXCImageView (XiaoXiao)";
+    NSString *third = @"Toast (Charles Scalesse)\nMobClick (Umeng)\nAnimationPauseViewController (gamy)\nPunjabiKeyboard (Kulpreet Chilana)\nXCImageView (XiaoXiao)";
     NSString *lenguage = @"简体中文 (Chinese_Simplified)\n正體中文 (Chinese_Traditional)\nEnglish (English)";
     thirdPart.text = [NSString stringWithFormat:@"%@\n%@\n%@\n%@",NSLocalizedString(@"InstalledLanguages", nil),lenguage,NSLocalizedString(@"ThirdPart", nil),third];
     aboutInfo.text = [NSString stringWithFormat:NSLocalizedString(@"AboutInfo", nil),NSLocalizedString(@"translator", nil)];

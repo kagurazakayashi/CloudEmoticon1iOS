@@ -10,6 +10,7 @@
 #import "LibraryTVC.h"
 @protocol LibraryMDelegate <NSObject>
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local;
+- (void)showBlack:(BOOL)isBalck;
 @end
 @interface Library : UIViewController <LibraryDelegate>
 @property (nonatomic,assign) id<LibraryMDelegate> delegate;
