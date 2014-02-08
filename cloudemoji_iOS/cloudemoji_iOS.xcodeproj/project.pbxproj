@@ -73,6 +73,8 @@
 		0025F0E118740F3800ABC753 /* psent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0025F0DD18740F3800ABC753 /* psent@2x.png */; };
 		0025F0E5187410EF00ABC753 /* TypeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025F0E4187410EF00ABC753 /* TypeMenuView.m */; };
 		0025F0E81874141A00ABC753 /* OnlineLibraryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0025F0E71874141A00ABC753 /* OnlineLibraryTVC.m */; };
+		0031483618A61A5800777481 /* libUMAppNetwork_3.5.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0031482C18A61A5800777481 /* libUMAppNetwork_3.5.6.a */; };
+		0031483718A61A5800777481 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0031482D18A61A5800777481 /* UMUFP.bundle */; };
 		003B8462187D40090049F1CD /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 003B8461187D40090049F1CD /* Toast+UIView.m */; };
 		003DD0101898A3D40004A955 /* XAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DD00F1898A3D40004A955 /* XAboutVC.m */; };
 		003DD0191898DE170004A955 /* DazFireworksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003DD0181898DE170004A955 /* DazFireworksController.m */; };
@@ -133,8 +135,6 @@
 		005DFD6F187D108A00B64055 /* notebook.txt in Resources */ = {isa = PBXBuildFile; fileRef = 005DFD6E187D108A00B64055 /* notebook.txt */; };
 		005DFD71187D1B0E00B64055 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 005DFD70187D1B0E00B64055 /* Settings.bundle */; };
 		006D884618968D1A00109F53 /* DIYVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 006D884518968D1A00109F53 /* DIYVC.m */; };
-		006E6B3B1893FF910078A094 /* libUMAppNetwork_3.5.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 006E6B311893FF910078A094 /* libUMAppNetwork_3.5.6.a */; };
-		006E6B3C1893FF910078A094 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 006E6B321893FF910078A094 /* UMUFP.bundle */; };
 		006E6B40189400810078A094 /* AppAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E6B3F189400810078A094 /* AppAD.m */; };
 		006E6B431894009B0078A094 /* AppADTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E6B421894009B0078A094 /* AppADTVC.m */; };
 		00782F7C1892CA38003A1EE0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00782F7B1892CA38003A1EE0 /* AdSupport.framework */; };
@@ -344,6 +344,16 @@
 		0025F0E4187410EF00ABC753 /* TypeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeMenuView.m; sourceTree = "<group>"; };
 		0025F0E61874141A00ABC753 /* OnlineLibraryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineLibraryTVC.h; sourceTree = "<group>"; };
 		0025F0E71874141A00ABC753 /* OnlineLibraryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineLibraryTVC.m; sourceTree = "<group>"; };
+		0031482C18A61A5800777481 /* libUMAppNetwork_3.5.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork_3.5.6.a; sourceTree = "<group>"; };
+		0031482D18A61A5800777481 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
+		0031482E18A61A5800777481 /* UMUFPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBadgeView.h; sourceTree = "<group>"; };
+		0031482F18A61A5800777481 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
+		0031483018A61A5800777481 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
+		0031483118A61A5800777481 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
+		0031483218A61A5800777481 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
+		0031483318A61A5800777481 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
+		0031483418A61A5800777481 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
+		0031483518A61A5800777481 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
 		003B845D187D2EA80049F1CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		003B845E187D2FD10049F1CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		003B8460187D40090049F1CD /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
@@ -429,16 +439,6 @@
 		005DFD70187D1B0E00B64055 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		006D884418968D1A00109F53 /* DIYVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYVC.h; sourceTree = "<group>"; };
 		006D884518968D1A00109F53 /* DIYVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYVC.m; sourceTree = "<group>"; };
-		006E6B311893FF910078A094 /* libUMAppNetwork_3.5.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork_3.5.6.a; sourceTree = "<group>"; };
-		006E6B321893FF910078A094 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
-		006E6B331893FF910078A094 /* UMUFPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBadgeView.h; sourceTree = "<group>"; };
-		006E6B341893FF910078A094 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
-		006E6B351893FF910078A094 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
-		006E6B361893FF910078A094 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
-		006E6B371893FF910078A094 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
-		006E6B381893FF910078A094 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
-		006E6B391893FF910078A094 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
-		006E6B3A1893FF910078A094 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
 		006E6B3E189400810078A094 /* AppAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAD.h; sourceTree = "<group>"; };
 		006E6B3F189400810078A094 /* AppAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAD.m; sourceTree = "<group>"; };
 		006E6B411894009B0078A094 /* AppADTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppADTVC.h; sourceTree = "<group>"; };
@@ -621,8 +621,8 @@
 				00782F7C1892CA38003A1EE0 /* AdSupport.framework in Frameworks */,
 				00411EB81893FA1200F87751 /* libiconv.dylib in Frameworks */,
 				00782F7E1892CA3F003A1EE0 /* CoreData.framework in Frameworks */,
+				0031483618A61A5800777481 /* libUMAppNetwork_3.5.6.a in Frameworks */,
 				00782F951892CB26003A1EE0 /* libGoogleAdMobAds.a in Frameworks */,
-				006E6B3B1893FF910078A094 /* libUMAppNetwork_3.5.6.a in Frameworks */,
 				00ACFE6D18719649008CDF3B /* CoreGraphics.framework in Frameworks */,
 				0003C5991892C34C00BD7150 /* AudioToolbox.framework in Frameworks */,
 				0003C47D189247E800BD7150 /* MessageUI.framework in Frameworks */,
@@ -737,6 +737,23 @@
 				00B8A7E7187E4A4E000AB75D /* OnlineLibrary.m */,
 			);
 			name = "云颜文字";
+			sourceTree = "<group>";
+		};
+		0031482518A618E800777481 /* libUMAppNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				0031482C18A61A5800777481 /* libUMAppNetwork_3.5.6.a */,
+				0031482D18A61A5800777481 /* UMUFP.bundle */,
+				0031482E18A61A5800777481 /* UMUFPBadgeView.h */,
+				0031482F18A61A5800777481 /* UMUFPBannerView.h */,
+				0031483018A61A5800777481 /* UMUFPGridCell.h */,
+				0031483118A61A5800777481 /* UMUFPGridView.h */,
+				0031483218A61A5800777481 /* UMUFPHandleView.h */,
+				0031483318A61A5800777481 /* UMUFPImageView.h */,
+				0031483418A61A5800777481 /* UMUFPTableView.h */,
+				0031483518A61A5800777481 /* UMUFPWebView.h */,
+			);
+			path = libUMAppNetwork;
 			sourceTree = "<group>";
 		};
 		003B845F187D40090049F1CD /* Toast */ = {
@@ -858,23 +875,6 @@
 				00B8A7F6187E510D000AB75D /* Library.m */,
 			);
 			name = "源管理";
-			sourceTree = "<group>";
-		};
-		006E6B301893FF910078A094 /* libUMAppNetwork */ = {
-			isa = PBXGroup;
-			children = (
-				006E6B311893FF910078A094 /* libUMAppNetwork_3.5.6.a */,
-				006E6B321893FF910078A094 /* UMUFP.bundle */,
-				006E6B331893FF910078A094 /* UMUFPBadgeView.h */,
-				006E6B341893FF910078A094 /* UMUFPBannerView.h */,
-				006E6B351893FF910078A094 /* UMUFPGridCell.h */,
-				006E6B361893FF910078A094 /* UMUFPGridView.h */,
-				006E6B371893FF910078A094 /* UMUFPHandleView.h */,
-				006E6B381893FF910078A094 /* UMUFPImageView.h */,
-				006E6B391893FF910078A094 /* UMUFPTableView.h */,
-				006E6B3A1893FF910078A094 /* UMUFPWebView.h */,
-			);
-			path = libUMAppNetwork;
 			sourceTree = "<group>";
 		};
 		006E6B3D1894003A0078A094 /* 广告 */ = {
@@ -1238,11 +1238,11 @@
 		00E6E7B9187BD16800F1F60A /* 第三方类库 */ = {
 			isa = PBXGroup;
 			children = (
+				0031482518A618E800777481 /* libUMAppNetwork */,
 				0059B236189CD192003D507B /* EGOTableViewPullRefresh */,
 				003DD01A1898DE5D0004A955 /* DazStarOutline.png */,
 				003DD0171898DE170004A955 /* DazFireworksController.h */,
 				003DD0181898DE170004A955 /* DazFireworksController.m */,
-				006E6B301893FF910078A094 /* libUMAppNetwork */,
 				00411EB91893FAF900F87751 /* libqrencode */,
 				00782F8A1892CB26003A1EE0 /* libGoogleAdMobAds */,
 				0003C47E1892A7A500BD7150 /* UMSocial */,
@@ -1540,6 +1540,7 @@
 				00411E8A1893E35300F87751 /* UMS_facebook_icon@2x.png in Resources */,
 				00E50DE418727C12003BE168 /* pclock2.png in Resources */,
 				00ACFE7518719649008CDF3B /* InfoPlist.strings in Resources */,
+				0031483718A61A5800777481 /* UMUFP.bundle in Resources */,
 				0025F0E018740F3800ABC753 /* pre@2x.png in Resources */,
 				00E6E79C187B94FE00F1F60A /* Shake_01.png in Resources */,
 				00411E8D1893E35300F87751 /* UMS_renren_icon.png in Resources */,
@@ -1573,7 +1574,6 @@
 				00E50DE318727C12003BE168 /* pclock@2x.png in Resources */,
 				00E6E7A0187B94FE00F1F60A /* 更新背景2.png in Resources */,
 				00411E8F1893E35300F87751 /* UMS_sina_icon.png in Resources */,
-				006E6B3C1893FF910078A094 /* UMUFP.bundle in Resources */,
 				0025F0D018740DC900ABC753 /* pok@2x.png in Resources */,
 				00B0B46A1895605000A1B131 /* color.png in Resources */,
 				00E50DFF187281A8003BE168 /* pinfo@2x.png in Resources */,

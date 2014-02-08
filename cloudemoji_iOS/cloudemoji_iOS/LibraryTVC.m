@@ -78,10 +78,12 @@
 //    rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
 //    self.navigationItem.rightBarButtonItem = rightbtn;
     
-    //NSArray *d1 = [NSArray arrayWithObjects:@"KTachibanaTest",@"http://dl.dropboxusercontent.com/u/120725807/test.xml",@"e", nil];
     NSArray *d2 = [NSArray arrayWithObjects:@"KT Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
+    NSArray *d1 = [NSArray arrayWithObjects:@"YaShi (Server1)",@"http://www.heartunlock.com/ce.xml",@"e", nil];
+    NSArray *d3 = [NSArray arrayWithObjects:@"YaShi (Server2)",@"http://cxchope.sites.my-card.in/ce.xml",@"e", nil];
     [data insertObject:d2 atIndex:0];
-//    [data insertObject:d1 atIndex:0];
+    [data insertObject:d3 atIndex:0];
+    [data insertObject:d1 atIndex:0];
     
     for (NSArray *nowArr in data) {
         NSString *nowUrl = [nowArr objectAtIndex:1];
@@ -344,19 +346,26 @@
         NSMutableString *cName = [[NSMutableString alloc] init];
 //        NSLog(@"infoosKeys=%@",infoosKeys);
 //        NSLog(@"[infoosKeys objectAtIndex:0]=%@",[infoosKeys objectAtIndex:0]);
-        if ([infoosKeys count] == 2) {
+        BOOL isOne = NO;
+        for (NSString *minfokey in infoosKeys) {
+            if ([minfokey isEqualToString:@"info"]) {
+                isOne = YES;
+                break;
+            }
+        }
+        if (isOne) {
             NSArray *kinfo = [infoos objectForKey:@"info"];
             NSDictionary *textarr = [kinfo objectAtIndex:0];
             [cName setString:[textarr objectForKey:@"text"]];
-        } else if ([infoosKeys count] == 1) {
+        } else {
             //NSDictionary *kinfo = [infoos objectForKey:@"info"];
             [cName setString:[infoos objectForKey:@"text"]];
         }
+        [S scoreInfo:info];
         if (editNow < 99999999) {
             [data removeObjectAtIndex:editNow];
             editNow = 99999999;
         }
-        
         
         for (int i = 0; i < [data count]; i++) {
             NSArray *nowArr = [data objectAtIndex:i];
@@ -394,6 +403,36 @@
     }
 }
 
+- (void)scoreInfo:(NSDictionary*)dataDic
+{
+    NSDictionary *emoji = [dataDic objectForKey:@"emoji"];
+    NSDictionary *infoos = [emoji objectForKey:@"infoos"];
+    NSArray *infoosKeys = [infoos allKeys];
+    NSMutableString *cName = [[NSMutableString alloc] init];
+    BOOL isOne = NO;
+    for (NSString *minfokey in infoosKeys) {
+        if ([minfokey isEqualToString:@"info"]) {
+            isOne = YES;
+            break;
+        }
+    }
+    if (isOne) {
+        NSArray *kinfo = [infoos objectForKey:@"info"];
+        NSMutableString *kinfoarr = [NSMutableString string];
+        for (int i = 0; i < [kinfo count]; i++) {
+            NSDictionary *textarr = [kinfo objectAtIndex:i];
+            NSString *nowinfo = [textarr objectForKey:@"text"];
+            if (i == 0) {
+                [cName setString:nowinfo];
+            } else {
+                [kinfoarr setString:[NSString stringWithFormat:@"%@%@\n",kinfoarr,nowinfo]];
+            }
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:cName message:kinfoarr delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (void)saveToSetting
 {
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
@@ -427,9 +466,10 @@
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"AddSource_title", nil) message:NSLocalizedString(@"AddSource_message", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"AddSource_save", nil),nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    //UITextField *tf = [alert textFieldAtIndex:0];
-    //tf.text = @"https://dl.dropboxusercontent.com/s/w85noarzzeabgr7/emoji.xml";
-    
+    //测试！
+    UITextField *tf = [alert textFieldAtIndex:0];
+    tf.text = @"http://";
+    //////
     editNow = 99999999;
     [alert show];
 }

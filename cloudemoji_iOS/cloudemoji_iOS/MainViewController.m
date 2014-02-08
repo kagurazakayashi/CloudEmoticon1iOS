@@ -117,11 +117,13 @@
 //    about.tabBarItem = aboutI;
     self.tab = [[UITabBarController alloc] init];
     self.tab.delegate = self;
-    AppADTVC *adv = [[AppADTVC alloc] init];
-    adv.title = NSLocalizedString(@"FindApplication", nil);
-    UINavigationController *advn = [[UINavigationController alloc] initWithRootViewController:adv];
-    UITabBarItem *advI = [[UITabBarItem alloc] initWithTitle:adv.title image:[UIImage imageNamed:@"pkey.png"] tag:0];
-    adv.tabBarItem = advI;
+    
+//    AppADTVC *adv = [[AppADTVC alloc] init];
+//    adv.title = NSLocalizedString(@"FindApplication", nil);
+//    UINavigationController *advn = [[UINavigationController alloc] initWithRootViewController:adv];
+//    UITabBarItem *advI = [[UITabBarItem alloc] initWithTitle:adv.title image:[UIImage imageNamed:@"pkey.png"] tag:0];
+//    adv.tabBarItem = advI;
+    
     //    self.tab.tabBar.translucent = NO;
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     BOOL safe = [setting boolForKey:@"safemode"];
@@ -144,7 +146,7 @@
         
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(share:) name:@"share" object:nil];
-        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn,advn, nil];
+        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn, nil]; //,advn
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];
@@ -221,7 +223,7 @@
         [setting setObject:nowDate forKey:@"oldData"];
     }
     if (![setting objectForKey:@"nowURL"]) {
-        NSString *nowURL = @"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml";
+        NSString *nowURL = @"http://cxchope.sites.my-card.in/ce.xml";
         [setting setObject:nowURL forKey:@"nowURL"];
     }
     if (![setting objectForKey:@"fav"]) {

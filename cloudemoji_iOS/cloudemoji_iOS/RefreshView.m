@@ -190,8 +190,6 @@
     }
 }
 
-
-
 - (void)readData:(NSDictionary*)dataDic
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -207,6 +205,11 @@
         [writer writeToFile:path atomically:YES];
     }
     [self infoShow:NSLocalizedString(@"ProcessingData", nil)];
+    
+    if (!loc) {
+        [S scoreInfo:dataDic];
+    }
+    
     NSArray *cinf = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedInteger:mode],cURL,dataDic, nil];
     
     if (([cinf count] > 2) && ([[cinf objectAtIndex:0] unsignedIntegerValue] == 1))

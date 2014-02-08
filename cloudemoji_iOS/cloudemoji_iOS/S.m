@@ -56,4 +56,34 @@
     }
     return 0;
 }
+
++ (void)scoreInfo:(NSDictionary*)dataDic
+{
+    NSDictionary *emoji = [dataDic objectForKey:@"emoji"];
+    NSDictionary *infoos = [emoji objectForKey:@"infoos"];
+    NSArray *infoosKeys = [infoos allKeys];
+    NSMutableString *cName = [[NSMutableString alloc] init];
+    BOOL isOne = NO;
+    for (NSString *minfokey in infoosKeys) {
+        if ([minfokey isEqualToString:@"info"]) {
+            isOne = YES;
+            break;
+        }
+    }
+    if (isOne) {
+        NSArray *kinfo = [infoos objectForKey:@"info"];
+        NSMutableString *kinfoarr = [NSMutableString string];
+        for (int i = 0; i < [kinfo count]; i++) {
+            NSDictionary *textarr = [kinfo objectAtIndex:i];
+            NSString *nowinfo = [textarr objectForKey:@"text"];
+            if (i == 0) {
+                [cName setString:nowinfo];
+            } else {
+                [kinfoarr setString:[NSString stringWithFormat:@"%@%@\n",kinfoarr,nowinfo]];
+            }
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:cName message:kinfoarr delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+}
 @end

@@ -16,6 +16,7 @@
 + (S*)s;
 
 + (float)txtHeightWithText:(NSString*)text MaxWidth:(float)width;
++ (void)scoreInfo:(NSDictionary*)dataDic;
 
 @property (nonatomic, retain) NSMutableArray *allinfo;
 @property (nonatomic, assign) BOOL isupdateData;

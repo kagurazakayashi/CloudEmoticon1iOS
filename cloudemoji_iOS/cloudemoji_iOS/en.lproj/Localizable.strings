@@ -52,7 +52,7 @@
 "search" = "Input the name of emotion or characters of it.";
 //关于部分：
 "VersionText" = "Version：";
-"ThirdPart" = "Useing or modified from follow third party softwares \n";
+"ThirdPart" = "Useing or modified from follow third party softwares";
 "InstalledLanguages" = "Installed Language Pack:";
 "AboutInfo" = "If you need mor information, check for updates, send us feedback or download Android/Windows Phone/MAC/PC version, please check 'Update and Online Information'.\n\nLanguage Pack Author\n%@\n\nProgrammed by\n神楽坂雅詩 i@heartunlock.com";
 //系统设置部分：

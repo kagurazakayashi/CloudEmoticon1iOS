@@ -122,7 +122,7 @@
     [s addObject:@"AnimationPauseViewController (gamy)"];
     [s addObject:@"PunjabiKeyboard (Kulpreet Chilana)"];
     [s addObject:@"MobClick (Umeng)"];
-    [s addObject:@"UMAppNetwork (Umeng)"];
+    //[s addObject:@"UMAppNetwork (Umeng)"];
     [s addObject:@"UMSocial (Umeng)"];
     [s addObject:@"ANImageBitmapRep (Alex Nichol)"];
     [s addObject:@"RSColorPickerView (Ryan Sullivan)"];
@@ -132,7 +132,7 @@
     [s addObject:@"XCImageView (XiaoXiao)"];
     [s addObject:@""];
     
-    [s addObject:@"(C) 神楽坂雅詩(CXC) 2013\nwww.heartunlock.com"];
+    [s addObject:@"(C) 神楽坂雅詩(CXC) 2014\nwww.heartunlock.com"];
     
 //    [s addObject:NSLocalizedString(@"cc", nil)];
     
