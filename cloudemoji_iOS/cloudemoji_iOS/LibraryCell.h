@@ -16,6 +16,7 @@
 @property (nonatomic,assign) id<LibraryCellDelegate> delegate;
 @property (nonatomic,retain) UILabel *name;
 @property (nonatomic,retain) UILabel *info;
+@property (nonatomic,retain) UILabel *selectedItem;
 @property (nonatomic,retain) UIButton *btnDel;
 @property (nonatomic,retain) UIButton *btnFrv;
 @property (nonatomic,retain) UIButton *btnEdit;

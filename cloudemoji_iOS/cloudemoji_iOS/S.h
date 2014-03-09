@@ -24,5 +24,7 @@
 @property (nonatomic, assign) CGSize correct;
 @property (nonatomic, assign) int ad;
 @property (nonatomic, assign) BOOL networkBusy;
+@property (nonatomic, assign) BOOL storeBusy;
+@property (nonatomic, retain) NSURL *impURL;
 //@property (nonatomic, retain) ColorConvert *colorconvert;
 @end

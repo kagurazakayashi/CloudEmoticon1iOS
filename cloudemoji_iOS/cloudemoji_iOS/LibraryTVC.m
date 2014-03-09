@@ -78,12 +78,14 @@
 //    rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
 //    self.navigationItem.rightBarButtonItem = rightbtn;
     
+    NSArray *dc = [NSArray arrayWithObjects:NSLocalizedString(@"CacheClear", nil),[self showCache],@"c", nil];
     NSArray *d2 = [NSArray arrayWithObjects:@"KT Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
     NSArray *d1 = [NSArray arrayWithObjects:@"YaShi (Server1)",@"http://www.heartunlock.com/ce.xml",@"e", nil];
     NSArray *d3 = [NSArray arrayWithObjects:@"YaShi (Server2)",@"http://cxchope.sites.my-card.in/ce.xml",@"e", nil];
     [data insertObject:d2 atIndex:0];
     [data insertObject:d3 atIndex:0];
     [data insertObject:d1 atIndex:0];
+    [data insertObject:dc atIndex:0];
     
     for (NSArray *nowArr in data) {
         NSString *nowUrl = [nowArr objectAtIndex:1];
@@ -93,6 +95,16 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imp:) name:@"imp" object:nil];
+    [self imp:nil];
+}
+
+- (void)imp:(NSNotification*)notification
+{
+    if ([S s].impURL) {
+        [self webView:YES];
+        [S s].impURL = nil;
+    }
 }
 
 - (void)viewDidUnload
@@ -106,24 +118,77 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (NSString*)showCache
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSArray *fileList = [fileManager contentsOfDirectoryAtPath:documentDirectory error:nil];
+    int cacheFiles = 0;
+    long long cacheSize = 0;
+    int settingFiles = 0;
+    long long settingSize = 0;
+    for (int i = 0; i < [fileList count]; i++) {
+        NSString *address = [NSString stringWithFormat:@"%@/%@",documentDirectory,[fileList objectAtIndex:i]];
+        NSArray *nowFileName = [[fileList objectAtIndex:i] componentsSeparatedByString:@"."];
+        long long fileSize = [self fileSizeAtPath:address];
+        if ([[nowFileName objectAtIndex:1] isEqualToString:@"yashi"]) {
+            cacheFiles++;
+            cacheSize += fileSize;
+        } else {
+            settingFiles++;
+            settingSize += fileSize;
+        }
+    }
+    NSString *cacheStr = [NSString stringWithFormat:NSLocalizedString(@"CacheInfo", nil),cacheFiles,cacheSize/1024.0f,settingFiles,settingSize/1024.0f];
+    return cacheStr;
+}
+- (void)clearCache
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSArray *fileList = [fileManager contentsOfDirectoryAtPath:documentDirectory error:nil];
+    for (int i = 0; i < [fileList count]; i++) {
+        NSString *address = [NSString stringWithFormat:@"%@/%@",documentDirectory,[fileList objectAtIndex:i]];
+        NSArray *nowFileName = [[fileList objectAtIndex:i] componentsSeparatedByString:@"."];
+        if ([[nowFileName objectAtIndex:1] isEqualToString:@"yashi"]) {
+            [fileManager removeItemAtPath:address error:nil];
+        }
+    }
+    NSArray *dc = [NSArray arrayWithObjects:NSLocalizedString(@"CacheClearOK", nil),[self showCache],@"c", nil];
+    [data replaceObjectAtIndex:0 withObject:dc];
+    [self.tableView reloadData];
+}
+- (long long)fileSizeAtPath:(NSString*)filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
 
 - (void)webView:(BOOL)isShow
 {
     if (isShow) {
+        [S s].storeBusy = YES;
         [self.delegate changeRightButton:YES];
         storeWeb = [[UIWebView alloc] initWithFrame:CGRectMake(self.tableView.frame.origin.x, -self.tableView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height)];
         
         NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
         NSString *server = [setting stringForKey:@"server"];
         NSString *urlString = nil;
-        if ([server length] < 5) {
-            urlString = @"http://cxchope.sites.my-card.in/soft/cloud_emoticon/source/index.html";
+        NSURL *url = nil;
+        if ([S s].impURL) {
+            url = [S s].impURL;
+            weburl = [S s].impURL;
         } else {
-            urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/source/index.html",server];
+            if ([server length] < 5) {
+                urlString = @"http://cxchope.sites.my-card.in/soft/cloud_emoticon/source/index.html";
+            } else {
+                urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/source/index.html",server];
+            }
+            url = [NSURL URLWithString:urlString];
+            weburl = [NSURL URLWithString:urlString];
         }
-        weburl = [NSURL URLWithString:urlString];
-        
-        NSURL *url =[NSURL URLWithString:urlString];
         NSURLRequest *request =[NSURLRequest requestWithURL:url];
         storeWeb.delegate = self;
         [storeWeb loadRequest:request];
@@ -217,12 +282,25 @@
     NSString *nowURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"];
     if ([cell.info.text isEqualToString:nowURL]) {
         [cell.btnFrv setHidden:YES];
-        cell.cellBGView.backgroundColor = [UIColor redColor];
+        [cell.btnEdit setHidden:YES];
+        [cell.btnDel setHidden:YES];
+        [cell.selectedItem setHidden:NO];
+        cell.cellBGView.backgroundColor = [UIColor whiteColor];//redColor
         cell.cellBGView.layer.shadowColor = [[UIColor redColor] CGColor];
     } else {
         [cell.btnFrv setHidden:NO];
+        [cell.btnEdit setHidden:NO];
+        [cell.btnDel setHidden:NO];
+        [cell.selectedItem setHidden:YES];
         cell.cellBGView.backgroundColor = [UIColor whiteColor];
         cell.cellBGView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    }
+    if ([[nowcell objectAtIndex:2] isEqualToString:@"c"]) {
+        [cell.btnFrv setHidden:YES];
+        [cell.btnEdit setHidden:YES];
+        [cell.btnDel setHidden:NO];
+        [cell.selectedItem setHidden:YES];
+        cell.cellBGView.backgroundColor = [UIColor grayColor];
     }
     //[cell loadFrame:tableView.frame.size.width];
     return cell;
@@ -253,6 +331,7 @@
         UITextField *tf = [alertView textFieldAtIndex:0];
         if (buttonIndex == 1) {
             [self.delegate showBlack:YES];
+            [MobClick event:@"urlSetup"];
             [self.delegate reloadData:tf.text ModeTag:2 Local:YES];
         } else {
             editNow = 99999999;
@@ -273,9 +352,12 @@
         [self webView:NO];
         if (buttonIndex == 1) {
             [self.delegate showBlack:YES];
+            [MobClick event:@"storeSetup"];
             [self.delegate reloadData:addStoreURL ModeTag:2 Local:YES];
+            [S s].storeBusy = NO;
         } else {
             editNow = 99999999;
+            [S s].storeBusy = NO;
         }
     }
 }
@@ -319,6 +401,8 @@
             NSString *tName = [nowarr objectAtIndex:0];
             if ([[nowarr objectAtIndex:2] isEqualToString:@"e"]) {
                 [self sysOnly:tName];
+            } else if ([[nowarr objectAtIndex:2] isEqualToString:@"c"]) {
+                [self clearCache];
             } else {
                 alertMode = 2;
                 editNow = i;

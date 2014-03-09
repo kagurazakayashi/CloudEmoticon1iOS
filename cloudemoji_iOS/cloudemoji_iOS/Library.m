@@ -82,6 +82,7 @@
 
 - (void)rightbtn2:(id)sender
 {
+    [S s].storeBusy = NO;
     [self.vc webView:NO];
 }
 

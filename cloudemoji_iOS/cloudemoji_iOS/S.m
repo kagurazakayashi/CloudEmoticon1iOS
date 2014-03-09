@@ -20,6 +20,8 @@
             s = [[S alloc] init];
             s.allinfo = [[NSMutableArray alloc] init];
             s.networkBusy = NO;
+            s.storeBusy = NO;
+            //s.impURL = nil;
             s.ios = [[[UIDevice currentDevice] systemVersion] floatValue];
             s.correct = CGSizeMake(64, 48);
             if (s.ios < 7.0) {

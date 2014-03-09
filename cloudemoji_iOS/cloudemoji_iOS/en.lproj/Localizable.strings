@@ -128,6 +128,16 @@
 "Facebook" = "Facebook";
 "Twitter" = "Twitter";
 "douban" = "Douban";
-"GooglePlus" = "Google+";
-"SavedAlbum" = "Saved to album";﻿
+//"GooglePlus" = "Google+";
+//"SavedAlbum" = "Saved to album";﻿
+//(本行为注释不翻译)SDK部分
+"SdkUseErrTitle" = "SDK调用错误";
+"SdkUseErrInfo" = "回调参数有误。\n如需帮助，请参阅集成文档。";
+"SdkNoDataTitle" = "SDK找不到缓存";
+"SdkNoDataInfo" = "请刷新云颜文字的内容后，返回原来的应用再试一次。";
+//(本行为注释不翻译)缓存部分
+"CacheInfo" = "キャッシュ：%dのファイル，大小：%0.2fKB。\n设置存储：%d个文件，大小：%0.2fKB。";
+"CacheClear" = "キャッシュ情報";
+"CacheClearOK" = "缓存已清理";
+"Use" = "使用中";
 "cc" = "This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.";

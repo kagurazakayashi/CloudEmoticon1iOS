@@ -8,7 +8,7 @@
 
 #import "LibraryCell.h"
 @implementation LibraryCell
-@synthesize name,info,btnDel,btnFrv,cellBGView,btnEdit;
+@synthesize name,info,btnDel,btnFrv,cellBGView,btnEdit,selectedItem;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -59,6 +59,13 @@
         //[btnFrv setImage:[UIImage imageNamed:@"pok2.png"] forState:UIControlStateHighlighted];
         [btnFrv addTarget:self action:@selector(btnFrv:) forControlEvents:UIControlEventTouchDown];
         
+        selectedItem = [[UILabel alloc] init];
+        selectedItem.text = NSLocalizedString(@"Use", nil);
+        selectedItem.backgroundColor = [UIColor colorWithRed:97.0f/255.0f green:198.0f/255.0f blue:235.0f/255.0f alpha:1.0f];
+        selectedItem.font = [UIFont systemFontOfSize:15];
+        selectedItem.textColor = [UIColor whiteColor];
+        selectedItem.textAlignment = UITextAlignmentCenter;
+        
         if (css) {
             name.layer.shadowColor = [name.textColor CGColor];
             name.layer.shadowOffset = CGSizeMake(1, 1);
@@ -77,12 +84,16 @@
             btnFrv.layer.shadowColor = [[UIColor greenColor] CGColor];
             btnFrv.layer.shadowOpacity = 1;
             btnFrv.layer.shadowRadius = 5;
+            selectedItem.layer.shadowColor = [[UIColor colorWithRed:97.0f/255.0f green:198.0f/255.0f blue:235.0f/255.0f alpha:1.0f] CGColor];
+            selectedItem.layer.shadowOpacity = 1;
+            selectedItem.layer.shadowRadius = 5;
         }
         [self addSubview:name];
         [self addSubview:info];
         [self addSubview:btnDel];
         [self addSubview:btnEdit];
         [self addSubview:btnFrv];
+        [self addSubview:selectedItem];
     }
     return self;
 }
@@ -91,6 +102,7 @@
 {
     name.frame = CGRectMake(kBK * 2, kBK * 2, width * 0.5, 30);
     btnDel.frame = CGRectMake(width - kBK * 2 - 30, kBK * 2, 30, 30);
+    selectedItem.frame = CGRectMake(width * 2 - btnDel.frame.origin.x - btnDel.frame.size.width * 2 - 100, btnDel.frame.origin.y, 75, 30);
     btnEdit.frame = CGRectMake(width * 2 - btnDel.frame.origin.x - btnDel.frame.size.width * 2 - 74, btnDel.frame.origin.y, 30, 30);
     btnFrv.frame = CGRectMake(width * 2 - btnDel.frame.origin.x - btnDel.frame.size.width * 3 - 85 , btnDel.frame.origin.y, 30, 30);
     

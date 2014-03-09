@@ -138,6 +138,16 @@
 "Facebook" = "脸书网";
 "Twitter" = "推特网";
 "douban" = "豆瓣";
-"GooglePlus" = "谷歌社交网络";
-"SavedAlbum" = "已保存到相册。";
+//"GooglePlus" = "谷歌社交网络";
+//"SavedAlbum" = "已保存到相册。";
+//(本行为注释不翻译)SDK部分
+"SdkUseErrTitle" = "SDK调用错误";
+"SdkUseErrInfo" = "回调参数有误。\n如需帮助，请参阅集成文档。";
+"SdkNoDataTitle" = "SDK找不到缓存";
+"SdkNoDataInfo" = "请刷新云颜文字的内容后，返回原来的应用再试一次。";
+//(本行为注释不翻译)缓存部分
+"CacheInfo" = "缓存存储：%d个文件，大小：%0.2fKB。\n设置存储：%d个文件，大小：%0.2fKB。";
+"CacheClear" = "缓存信息";
+"CacheClearOK" = "缓存已清理";
+"Use" = "使用中";
 "cc" = "本作品采用知识共享 署名-相同方式共享 4.0 国际 许可协议进行许可。访问 http://creativecommons.org/licenses/by-sa/4.0/deed.zh_CN 查看该许可协议。";

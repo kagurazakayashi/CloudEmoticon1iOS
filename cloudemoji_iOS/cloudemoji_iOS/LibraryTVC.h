@@ -24,6 +24,7 @@
 @property (nonatomic, retain) UIWebView *storeWeb;
 @property (nonatomic, retain) NSString *addStoreURL;
 @property (nonatomic, retain) NSURL *weburl;
+@property (nonatomic, retain) NSURL *impURL;
 - (void)rightbtn:(id)sender;
 - (void)webView:(BOOL)isShow;
 @end

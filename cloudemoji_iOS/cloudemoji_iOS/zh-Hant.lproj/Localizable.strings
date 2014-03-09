@@ -138,6 +138,16 @@
 "Facebook" = "Facebook";
 "Twitter" = "Twitter";
 "douban" = "豆瓣";
-"GooglePlus" = "Google+";
-"SavedAlbum" = "已保存到相冊。";
+//"GooglePlus" = "Google+";
+//"SavedAlbum" = "已保存到相冊。";
+//(本行为注释不翻译)SDK部分
+"SdkUseErrTitle" = "SDK調用錯誤";
+"SdkUseErrInfo" = "回調參數有誤。\n如需幫助，請參閱集成文檔。";
+"SdkNoDataTitle" = "SDK找不到緩存";
+"SdkNoDataInfo" = "請刷新云顏文字的內容後，返回原來的應用再試一次。";
+//(本行为注释不翻译)缓存部分
+"CacheInfo" = "緩存存儲：%d個文件，大小：%0.2fKB。\n設置存儲：%d個文件，大小：%0.2fKB。";
+"CacheClear" = "緩存信息";
+"CacheClearOK" = "緩存已清理";
+"Use" = "使用中";
 "cc" = "本著作以創用CC 姓名標示-相同方式分享 4.0 國際 授權條款釋出。詳細授權條款，請至http://creativecommons.org/licenses/by-sa/4.0/deed.zh_TW 。";

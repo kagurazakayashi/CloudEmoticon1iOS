@@ -8,20 +8,12 @@
 
 #import "MainViewController.h"
 #import "RefreshView.h"
-#import "History.h"
-#import "Favorites.h"
-#import "Custom.h"
 //#import "IASKAppSettingsViewController.h"
-#import "Setting.h"
-#import "AboutViewController.h"
-#import "About.h"
-#import "Search.h"
-#import "Diy.h"
 #import "Toast+UIView.h"
-#import "AnimationPause.h"
 #import "UMSocial.h"
 #import "ShareView.h"
 #import "AppAD.h"
+#import "PasteboardController.h"
 //#import "ColorConvert.h"
 @interface MainViewController ()
 
@@ -29,6 +21,7 @@
 
 @implementation MainViewController
 @synthesize tab, size7title, size7toolbar, sharename, black;
+@synthesize ol,f,h,c,s,setView,diy,lib,about,xabout,yao;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,7 +45,7 @@
     //NSLog(@"数据文件夹：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
 //    self.tabBarController.tabBar.translucent = NO;
     [self didInit];
-    OnlineLibrary *ol = [[OnlineLibrary alloc] init];
+    ol = [[OnlineLibrary alloc] init];
     ol.title = NSLocalizedString(@"SoftwareName", nil);
     UINavigationController *oln = [[UINavigationController alloc] initWithRootViewController:ol];
 //    oln.navigationBar.translucent = NO;
@@ -60,27 +53,27 @@
     UITabBarItem *olI = [[UITabBarItem alloc] initWithTitle:ol.title image:[UIImage imageNamed:@"pcould.png"] tag:0];
     ol.delegate = self;
     ol.tabBarItem = olI;
-    Favorites *f = [[Favorites alloc] init];
+    f = [[Favorites alloc] init];
     f.title = NSLocalizedString(@"Favorites", nil);
     UINavigationController *fn = [[UINavigationController alloc] initWithRootViewController:f];
     UITabBarItem *fI = [[UITabBarItem alloc] initWithTitle:f.title image:[UIImage imageNamed:@"pbook.png"] tag:0];
     f.tabBarItem = fI;
-    History *h = [[History alloc] init];
+    h = [[History alloc] init];
     h.title = NSLocalizedString(@"History", nil);
     UINavigationController *hn = [[UINavigationController alloc] initWithRootViewController:h];
     UITabBarItem *hI = [[UITabBarItem alloc] initWithTitle:h.title image:[UIImage imageNamed:@"pclock.png"] tag:0];
     h.tabBarItem = hI;
-    Custom *c = [[Custom alloc] init];
+    c = [[Custom alloc] init];
     c.title = NSLocalizedString(@"Custom", nil);
     UINavigationController *cn = [[UINavigationController alloc] initWithRootViewController:c];
     UITabBarItem *cI = [[UITabBarItem alloc] initWithTitle:c.title image:[UIImage imageNamed:@"pwri.png"] tag:0];
     c.tabBarItem = cI;
-    Search *s = [[Search alloc] init];
+    s = [[Search alloc] init];
     s.title = NSLocalizedString(@"Search", nil);
     UINavigationController *sn = [[UINavigationController alloc] initWithRootViewController:s];
     UITabBarItem *sI = [[UITabBarItem alloc] initWithTitle:s.title image:[UIImage imageNamed:@"psearch.png"] tag:0];
     s.tabBarItem = sI;
-    SettingViewController *setView = [[SettingViewController alloc] init];
+    setView = [[SettingViewController alloc] init];
 //    IASKAppSettingsViewController *setView = [[IASKAppSettingsViewController alloc] init];
 //    setView.showCreditsFooter = NO;
 //    setView.showDoneButton = NO;
@@ -88,28 +81,28 @@
     UINavigationController *setn = [[UINavigationController alloc] initWithRootViewController:setView];
     UITabBarItem *setViewI = [[UITabBarItem alloc] initWithTitle:setView.title image:[UIImage imageNamed:@"psetting2.png"] tag:0];
     setView.tabBarItem = setViewI;
-    Diy *diy = [[Diy alloc] init];
+    diy = [[Diy alloc] init];
     diy.title = NSLocalizedString(@"Individuation", nil);
     UINavigationController *diyn = [[UINavigationController alloc] initWithRootViewController:diy];
     UITabBarItem *diyi = [[UITabBarItem alloc] initWithTitle:diy.title image:[UIImage imageNamed:@"psetting.png"] tag:0];
     diy.tabBarItem = diyi;
-    Library *lib = [[Library alloc] init];
+    lib = [[Library alloc] init];
     lib.title = NSLocalizedString(@"SourceManagement", nil);
     UINavigationController *libn = [[UINavigationController alloc] initWithRootViewController:lib];
     UITabBarItem *libI = [[UITabBarItem alloc] initWithTitle:lib.title image:[UIImage imageNamed:@"pweb.png"] tag:0];
     lib.delegate = self;
     lib.tabBarItem = libI;
-    AboutViewController *about = [[AboutViewController alloc] init];
+    about = [[AboutViewController alloc] init];
     about.title = NSLocalizedString(@"UpdatesAndOnlineInformation", nil);
     UINavigationController *aboutn = [[UINavigationController alloc] initWithRootViewController:about];
     UITabBarItem *aboutI = [[UITabBarItem alloc] initWithTitle:about.title image:[UIImage imageNamed:@"info2.png"] tag:0];
     about.tabBarItem = aboutI;
-    About *xabout = [[About alloc] init];
+    xabout = [[About alloc] init];
     xabout.title = NSLocalizedString(@"About", nil);
     UINavigationController *xaboutn = [[UINavigationController alloc] initWithRootViewController:xabout];
     UITabBarItem *xaboutI = [[UITabBarItem alloc] initWithTitle:xabout.title image:[UIImage imageNamed:@"pinfo.png"] tag:0];
     xabout.tabBarItem = xaboutI;
-    AnimationPause *yao = [[AnimationPause alloc] init];
+    yao = [[AnimationPause alloc] init];
     yao.title = NSLocalizedString(@"Shake", nil);
     UINavigationController *yaon = [[UINavigationController alloc] initWithRootViewController:yao];
     UITabBarItem *yaoI = [[UITabBarItem alloc] initWithTitle:yao.title image:[UIImage imageNamed:@"psun.png"] tag:0];
@@ -293,8 +286,7 @@
     NSNumber *num = [info objectAtIndex:0];
     NSString *str = [info objectAtIndex:1];
     
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:str];
+    [PasteboardController whiteString:str];
     
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     

@@ -119,6 +119,8 @@
 		0051CC67187B071400D498BA /* psun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC63187B071400D498BA /* psun@2x.png */; };
 		0051CC68187B071400D498BA /* psun2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC64187B071400D498BA /* psun2@2x.png */; };
 		0051CC69187B071400D498BA /* psun.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051CC65187B071400D498BA /* psun.png */; };
+		0059662E18B99BED008E32A3 /* PasteboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059662D18B99BED008E32A3 /* PasteboardController.m */; };
+		0059663218B99E2E008E32A3 /* CESDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059663118B99E2E008E32A3 /* CESDK.m */; };
 		0059B235189CC3DD003D507B /* BlackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059B234189CC3DD003D507B /* BlackView.m */; };
 		0059B244189CD192003D507B /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0059B23A189CD192003D507B /* EGORefreshTableHeaderView.m */; };
 		0059B245189CD192003D507B /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0059B23C189CD192003D507B /* blackArrow.png */; };
@@ -415,6 +417,10 @@
 		0051CC63187B071400D498BA /* psun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "psun@2x.png"; sourceTree = "<group>"; };
 		0051CC64187B071400D498BA /* psun2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "psun2@2x.png"; sourceTree = "<group>"; };
 		0051CC65187B071400D498BA /* psun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psun.png; sourceTree = "<group>"; };
+		0059662C18B99BED008E32A3 /* PasteboardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasteboardController.h; sourceTree = "<group>"; };
+		0059662D18B99BED008E32A3 /* PasteboardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasteboardController.m; sourceTree = "<group>"; };
+		0059663018B99E2E008E32A3 /* CESDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESDK.h; sourceTree = "<group>"; };
+		0059663118B99E2E008E32A3 /* CESDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESDK.m; sourceTree = "<group>"; };
 		0059B22E189CB131003D507B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0059B22F189CB149003D507B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0059B233189CC3DD003D507B /* BlackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackView.h; sourceTree = "<group>"; };
@@ -808,6 +814,24 @@
 			path = libqrencode;
 			sourceTree = "<group>";
 		};
+		0059662F18B99BF4008E32A3 /* 剪贴板管理 */ = {
+			isa = PBXGroup;
+			children = (
+				0059662C18B99BED008E32A3 /* PasteboardController.h */,
+				0059662D18B99BED008E32A3 /* PasteboardController.m */,
+			);
+			name = "剪贴板管理";
+			sourceTree = "<group>";
+		};
+		0059663318B99E33008E32A3 /* 导出到SDK */ = {
+			isa = PBXGroup;
+			children = (
+				0059663018B99E2E008E32A3 /* CESDK.h */,
+				0059663118B99E2E008E32A3 /* CESDK.m */,
+			);
+			name = "导出到SDK";
+			sourceTree = "<group>";
+		};
 		0059B236189CD192003D507B /* EGOTableViewPullRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,6 +1026,8 @@
 				006E6B3D1894003A0078A094 /* 广告 */,
 				00DA91BC1897527400A34BB8 /* 颜色控制 */,
 				00411E641893784300F87751 /* 公用视图 */,
+				0059662F18B99BF4008E32A3 /* 剪贴板管理 */,
+				0059663318B99E33008E32A3 /* 导出到SDK */,
 			);
 			path = cloudemoji_iOS;
 			sourceTree = "<group>";
@@ -1693,10 +1719,12 @@
 				623EE1481877F3B1008FCD42 /* BackgroundImg.m in Sources */,
 				00DA91E2189752B800A34BB8 /* UIImage+ANImageBitmapRep.m in Sources */,
 				0003C3A318921E5A00BD7150 /* NoneView.m in Sources */,
+				0059663218B99E2E008E32A3 /* CESDK.m in Sources */,
 				626480BA1877AEE900A3484C /* OnlineLibraryCell.m in Sources */,
 				00411ECD1893FAF900F87751 /* qrencode.c in Sources */,
 				00ACFF3818719D30008CDF3B /* RefreshView.m in Sources */,
 				00B8A801187E53A2000AB75D /* Diy.m in Sources */,
+				0059662E18B99BED008E32A3 /* PasteboardController.m in Sources */,
 				00411E6E1893CDD700F87751 /* ShareView.m in Sources */,
 				00B8A7E8187E4A4E000AB75D /* OnlineLibrary.m in Sources */,
 				00ACFF481871D2BF008CDF3B /* CustomTVC.m in Sources */,
