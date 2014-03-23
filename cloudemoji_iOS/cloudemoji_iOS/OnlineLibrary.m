@@ -45,6 +45,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    self.title = NSLocalizedString(@"SoftwareName", nil);
     self.vc.delegate = nil;
     self.navigationItem.leftBarButtonItem = nil;
     self.leftbtn = nil;
@@ -67,6 +68,11 @@
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
     [self.delegate reloadData:URL ModeTag:mtag Local:local];
+}
+
+- (void)changeTitle:(NSString*)titleStr
+{
+    self.title = titleStr;
 }
 
 - (void)didReceiveMemoryWarning

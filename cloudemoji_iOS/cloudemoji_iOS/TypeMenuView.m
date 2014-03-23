@@ -7,7 +7,7 @@
 //
 
 #import "TypeMenuView.h"
-
+#import "TypeMenuCell.h"
 @implementation TypeMenuView
 @synthesize tableview,data;
 
@@ -64,16 +64,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TypeMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //TypeMenuCell *cell = [[TypeMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier Width:tableView.frame.size.width];
     if (cell == nil) {
         NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TypeMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.aniSpeed = self.aniSpeed;
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TAtxt"]];
         cell.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(2, 1, cell.frame.size.width - 4, cell.frame.size.height - 2)];
         cell.backgroundView.backgroundColor = [NSKeyedUnarchiver unarchiveObjectWithData:[setting objectForKey:@"TAcell"]];
         cell.backgroundView.alpha = [setting floatForKey:@"TAalpha"];
+        [cell loadTableWidth:tableView.frame.size.width];
     }
     cell.textLabel.text = [data objectAtIndex:indexPath.row];
     return cell;

@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _aniSpeed = 0.5f;
+    
     if ([S s].ios < 7.0) {
         self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 92);
     }
@@ -42,6 +44,7 @@
     //BOOL css = [[setting objectForKey:@"css"] boolValue];
     
     typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot)];
+    typemenu.aniSpeed = _aniSpeed;
     typemenu.delegate = self;
     typemenuD = [[BackgroundImg alloc] init];
     [typemenuD changeFrame:CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
@@ -105,6 +108,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
     [self.delegate reloadData:[[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"] ModeTag:1 Local:![S s].isupdateData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(r:) name:@"r" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTitle:) name:@"changeTitle" object:nil];
     
     [self swipAction0:nil];
     if (showTool) {
@@ -115,6 +119,12 @@
     ADView *ad = [[ADView alloc] initWithViewController:self ShowNow:NO FixHeight:NO];
     [self.view addSubview:ad];
 }
+
+//- (void)changeTitle:(NSNotification*)notification
+//{
+//    NSString *titleStr = [notification object];
+//    self.title = titleStr;
+//}
 
 //- (void)viewDidAppear:(BOOL)animated
 //{
@@ -168,6 +178,7 @@
 
 - (void)loadInfo:(NSString*)type
 {
+    [self.delegate changeTitle:type];
     [data removeAllObjects];
     [height removeAllObjects];
     for (NSArray *itemArr in [S s].allinfo) {
@@ -214,7 +225,7 @@
     //UISwipeGestureRecognizer *swipe = (UISwipeGestureRecognizer *)sender;
     //if (swipe.state == UISwipeGestureRecognizerDirectionRight) {  }
     [blackView setHidden:NO];
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:_aniSpeed animations:^{
         typemenu.frame = CGRectMake(0, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot);
         if (showTool) {
             tableView.frame = CGRectMake(self.view.frame.size.width * 0.3, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
@@ -230,7 +241,7 @@
 - (void)swipAction1:(id)sender
 {
     if (tableView.frame.origin.x > 0) {
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:_aniSpeed animations:^{
             typemenu.frame = CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot);
             tableView.frame = CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
             blackView.frame = tableView.frame;

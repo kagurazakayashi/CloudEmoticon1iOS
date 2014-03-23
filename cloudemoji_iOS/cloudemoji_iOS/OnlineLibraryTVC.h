@@ -14,12 +14,14 @@
 #import "NoneView.h"
 @protocol OnlineLibraryDelegate <NSObject>
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local;
+- (void)changeTitle:(NSString*)titleStr;
 @end
 
 @interface OnlineLibraryTVC : UIViewController <UITableViewDataSource, UITableViewDelegate, TypeMenuViewDelegate, EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
+    float _aniSpeed;
 }
 @property (nonatomic, assign) id<OnlineLibraryDelegate> delegate;
 @property (nonatomic, retain) TypeMenuView *typemenu;

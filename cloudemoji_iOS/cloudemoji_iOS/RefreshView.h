@@ -21,4 +21,7 @@
 @property (nonatomic ,assign) NSUInteger mode;
 @property (nonatomic ,assign) BOOL loc;
 @property (nonatomic ,retain) UIActivityIndicatorView *pro;
+- (NSString*)removeAllReturnTable:(NSString*)str;
+- (NSString*)removeRedundancyReturnTable:(NSString*)str;
+- (NSString*)removeFirstReturnTable:(NSString*)str;
 @end

@@ -131,10 +131,10 @@
     [s addObject:@"EGORefreshTableHeaderView (Devin Doty)"];
     [s addObject:@"XCImageView (XiaoXiao)"];
     [s addObject:@""];
-    
+    [s addObject:NSLocalizedString(@"cc", nil)];
+    [s addObject:@""];
     [s addObject:@"(C) 神楽坂雅詩(CXC) 2014\nwww.heartunlock.com"];
-    
-//    [s addObject:NSLocalizedString(@"cc", nil)];
+
     
 //    for (int i = 0; i < 20; i++) {
 //        [s addObject:@" "];

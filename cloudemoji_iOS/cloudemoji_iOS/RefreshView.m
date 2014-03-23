@@ -165,13 +165,13 @@
     //将字符串xml转为字典
     NSError *xmlerr = nil;
     NSDictionary *dic = [XMLReader dictionaryForXMLString:str error:&xmlerr];
-    if (xmlerr) {
+    if (xmlerr || [dic count] == 0) {
         [self infoShow:[NSString stringWithFormat:NSLocalizedString(@"TryXMLFailed", nil),[xmlerr localizedDescription]]];
         [self infoShow:NSLocalizedString(@"TryJSON", nil)];
         //将json的Data转为字典
         NSError *jsonerr = nil;
         NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:self.connData options:NSJSONReadingMutableContainers error:&jsonerr];
-        if (jsonerr) {
+        if (jsonerr || [jsonDic count] == 0) {
             [self infoShow:[NSString stringWithFormat:NSLocalizedString(@"TryJSONFailed", nil),[jsonerr localizedDescription]]];
             [self dataErr:[NSString stringWithFormat:@"%@。%@。",[xmlerr localizedDescription],[jsonerr localizedDescription]]];
         } else {
@@ -236,11 +236,11 @@
             for (int iitem = 0; iitem < [entry count]; iitem++) {
                 NSDictionary *item = [entry objectAtIndex:iitem];
                 NSString *string = [[item objectForKey:@"string"] objectForKey:@"text"];
-                NSString *nameT = [self removeFirstReturn:name removeT:YES];
-                NSString *stringT = [self removeFirstReturn:string removeT:YES];
+                NSString *nameT = [self removeRedundancyReturnTable:name];
+                NSString *stringT = [self removeRedundancyReturnTable:string];
                 if ([item count] == 3) {
                     NSString *note = [[item objectForKey:@"note"] objectForKey:@"text"];
-                    NSString *noteT = [self removeFirstReturn:note removeT:YES];
+                    NSString *noteT = [self removeRedundancyReturnTable:note];
                     NSArray *l = [NSArray arrayWithObjects:nameT,noteT,stringT, nil];
                     [[S s].allinfo addObject:l];
                 } else {
@@ -255,7 +255,21 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self exit];
 }
-- (NSString*)removeFirstReturn:(NSString*)str removeT:(BOOL)rT
+- (NSString*)removeAllReturnTable:(NSString*)str
+{
+    //NSString *str0 = [self removeRedundancyReturnTable:str];
+    NSString *str1 = [str stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return str2;
+}
+- (NSString*)removeRedundancyReturnTable:(NSString*)str
+{
+    NSString *str1 = [str stringByReplacingOccurrencesOfString:@"\\t" withString:@""];
+    NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
+    NSString *str3 = [str2 stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    return str3;
+}
+- (NSString*)removeFirstReturnTable:(NSString*)str
 {
 //    NSLog(@"str=%@",str);
     NSMutableString *oldChar = [NSMutableString string];

@@ -16,5 +16,6 @@
 @property (nonatomic, assign) id<TypeMenuViewDelegate> delegate;
 @property (nonatomic, retain) UITableView *tableview;
 @property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic ,assign) float aniSpeed;
 //@property (nonatomic, retain) NSMutableArray *height;
 @end

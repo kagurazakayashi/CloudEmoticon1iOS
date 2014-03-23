@@ -136,8 +136,8 @@
 "SdkNoDataTitle" = "SDK找不到缓存";
 "SdkNoDataInfo" = "请刷新云颜文字的内容后，返回原来的应用再试一次。";
 //(本行为注释不翻译)缓存部分
-"CacheInfo" = "Cache：%d files，大小：%0.2fKB。\n设置存储：%d个文件，大小：%0.2fKB。";
-"CacheClear" = "Cache Info";
-"CacheClearOK" = "缓存已清理";
-"Use" = "使用中";
+"CacheInfo" = "キャッシュ：%dのファイル，サイズ：%0.2fKB。\n設置：%dのファイル，サイズ：%0.2fKB。";
+"CacheClear" = "キャッシュ情報";
+"CacheClearOK" = "クリアされている";
+"Use" = "使用";
 "cc" = "This work is licensed under the Creative Commons 表示 - 継承 4.0 国際 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/deed.ja_JP.";
