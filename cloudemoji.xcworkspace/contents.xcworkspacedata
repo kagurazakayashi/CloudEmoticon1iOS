@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:xml2json/xml2json.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CESDK/CESDK.xcodeproj">
    </FileRef>
    <FileRef

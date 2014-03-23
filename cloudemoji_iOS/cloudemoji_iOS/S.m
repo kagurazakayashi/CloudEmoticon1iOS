@@ -58,7 +58,23 @@
     }
     return 0;
 }
-
++ (float)txtWidthWithText:(NSString*)text MaxHeight:(float)height
+{
+    if ([S s].ios >= 7.0)
+    {
+        UILabel *textView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGFLOAT_MAX, height)];
+        textView.font = [UIFont systemFontOfSize:15.0f];
+        textView.text = text;
+        textView.numberOfLines = 0;
+        textView.lineBreakMode = NSLineBreakByCharWrapping;
+        CGRect txtFrame = textView.frame;
+        return [[NSString stringWithFormat:@"%@\n",textView.text] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, txtFrame.size.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:textView.font,NSFontAttributeName, nil] context:nil].size.width;
+    } else {
+        CGSize sizeToFit = [text sizeWithFont:[UIFont systemFontOfSize:15.0f] constrainedToSize:CGSizeMake(CGFLOAT_MAX, height) lineBreakMode:NSLineBreakByCharWrapping];
+        return sizeToFit.width;
+    }
+    return 0;
+}
 + (void)scoreInfo:(NSDictionary*)dataDic
 {
     NSDictionary *emoji = [dataDic objectForKey:@"emoji"];
