@@ -57,8 +57,8 @@ More Info：http://cxchope.sites.my-card.in/soft/cloud_emoticon/
 更多内容请访问：http://cxchope.sites.my-card.in/soft/cloud_emoticon/
 
 更新日志：
-2014.03.?? v1.3.4(AppStore)  AppStore版中型更新(应用v1.3.3RC)。
-2014.03.23 v1.3.3(RC)  点击分类条目时显示等待动画，分类列表细节优化。
+2014.03.30 v1.3.4(AppStore)  AppStore版中型更新(应用v1.3.3RC)。
+2014.03.24 v1.3.3(RC)  点击分类条目时显示等待动画，分类列表细节优化。
 2014.03.23 v1.3.2  更新广告插件版本至6.8.0，依然默认很少为您展示广告。
 2014.03.22 v1.3.1  正式支持JSON数据格式，并提供OSX版数据格式转换工具。
 2014.03.15 v1.3.0  更新应用启动画面，更新数据解析多余字符过滤方法。
