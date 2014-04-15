@@ -9,27 +9,28 @@
 #import "S.h"
 
 @implementation S
+
 @synthesize allinfo = _allinfo;
+
 + (S*)s
 {
     static S *s;
-    @synchronized(self)
-    {
-        if (!s) {
-            //s.colorconvert = [[ColorConvert alloc] init];
-            s = [[S alloc] init];
-            s.allinfo = [[NSMutableArray alloc] init];
-            s.networkBusy = NO;
-            s.storeBusy = NO;
-            //s.impURL = nil;
-            s.ios = [[[UIDevice currentDevice] systemVersion] floatValue];
-            s.correct = CGSizeMake(64, 48);
-            if (s.ios < 7.0) {
-                s.correct = CGSizeMake(0, 0);
-            }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //s.colorconvert = [[ColorConvert alloc] init];
+        s = [[S alloc] init];
+        s.allinfo = [[NSMutableArray alloc] init];
+        s.networkBusy = NO;
+        s.storeBusy = NO;
+        //s.impURL = nil;
+        s.ios = [[[UIDevice currentDevice] systemVersion] floatValue];
+        s.correct = CGSizeMake(64, 48);
+        if (s.ios < 7.0) {
+            s.correct = CGSizeMake(0, 0);
         }
-        return s;
-    }
+    });
+    
+    return s;
 }
 
 + (float)txtHeightWithText:(NSString*)text MaxWidth:(float)width

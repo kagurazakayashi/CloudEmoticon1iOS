@@ -1506,7 +1506,7 @@
 				ORGANIZATIONNAME = Yashi;
 				TargetAttributes = {
 					00ACFE6618719649008CDF3B = {
-						DevelopmentTeam = ZNVDEVDRX3;
+						DevelopmentTeam = Y6TM8J7448;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
