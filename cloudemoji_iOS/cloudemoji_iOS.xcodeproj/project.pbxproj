@@ -1506,7 +1506,7 @@
 				ORGANIZATIONNAME = Yashi;
 				TargetAttributes = {
 					00ACFE6618719649008CDF3B = {
-						DevelopmentTeam = ZNVDEVDRX3;
+						DevelopmentTeam = Y6TM8J7448;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -1918,7 +1918,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
+					"$(SRCROOT)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cloudemoji_iOS/cloudemoji_iOS-Prefix.pch";
@@ -1926,16 +1926,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial_Sdk/frameworks/Wechat,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial_Sdk,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial/frameworks/Wechat,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/libGoogleAdMobAds,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/libUMAppNetwork,
 					"$(PROJECT_DIR)/cloudemoji_iOS/libGoogleAdMobAds/Add-ons/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/cloudemoji_iOS/libGoogleAdMobAds",
 					"$(PROJECT_DIR)/cloudemoji_iOS/UMAnalytics_Sdk",
+					"$(SRCROOT)/cloudemoji_iOS",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial_Sdk/frameworks/Wechat",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial_Sdk",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial/frameworks/Wechat",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial",
+					"$(SRCROOT)/cloudemoji_iOS/libGoogleAdMobAds",
+					"$(SRCROOT)/cloudemoji_iOS/libUMAppNetwork",
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
@@ -1956,7 +1956,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI,
+					"$(SRCROOT)/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cloudemoji_iOS/cloudemoji_iOS-Prefix.pch";
@@ -1964,16 +1964,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial_Sdk/frameworks/Wechat,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial_Sdk,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial/frameworks/Wechat,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/UMSocial,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/libGoogleAdMobAds,
-					/Users/xiaoxiao/Desktop/SelfSync/cloudemoji_apple/cloudemoji_iOS/cloudemoji_iOS/libUMAppNetwork,
 					"$(PROJECT_DIR)/cloudemoji_iOS/libGoogleAdMobAds/Add-ons/GoogleAnalyticsServicesiOS_3.03",
 					"$(PROJECT_DIR)/cloudemoji_iOS/libGoogleAdMobAds",
 					"$(PROJECT_DIR)/cloudemoji_iOS/UMAnalytics_Sdk",
+					"$(SRCROOT)/cloudemoji_iOS",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial_Sdk/frameworks/Wechat",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial_Sdk",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial/frameworks/Wechat",
+					"$(SRCROOT)/cloudemoji_iOS/UMSocial",
+					"$(SRCROOT)/cloudemoji_iOS/libGoogleAdMobAds",
+					"$(SRCROOT)/cloudemoji_iOS/libUMAppNetwork",
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
