@@ -1,3 +1,20 @@
+- (BOOL)shouldAutorotate
+{
+    kAUTOROTATE
+}
+[self va];
+- (void)va
+[self vd];
+- (void)vd
+
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotate) name:@"r" object:nil];
+
+self.vc.view.frame = self.view.frame;
+    [self.vc load];
+
+- (void)load;
+
+
 arm64支持中
 
 Keywords:
@@ -57,6 +74,8 @@ More Info：http://cxchope.sites.my-card.in/soft/cloud_emoticon/
 更多内容请访问：http://cxchope.sites.my-card.in/soft/cloud_emoticon/
 
 更新日志：
+2014.04.06 v1.3.6  提供横屏支持，使用过程中可根据屏幕旋转画面。
+2014.04.05 v1.3.5  更新应用启动画面，启动画面增加“雅诗娘”代言角色。
 2014.03.30 v1.3.4(AppStore)  AppStore版中型更新(应用v1.3.3RC)。
 2014.03.24 v1.3.3(RC)  点击分类条目时显示等待动画，分类列表细节优化。
 2014.03.23 v1.3.2  更新广告插件版本至6.8.0，依然默认很少为您展示广告。

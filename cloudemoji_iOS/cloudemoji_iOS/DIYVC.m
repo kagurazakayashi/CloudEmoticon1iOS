@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         zName = [NSArray arrayWithObjects:NSLocalizedString(@"ContentModeScaleToFill", nil),NSLocalizedString(@"ContentModeScaleAspectFit", nil),NSLocalizedString(@"ContentModeScaleAspectFill", nil),NSLocalizedString(@"ContentModeRedraw", nil),NSLocalizedString(@"ContentModeTop", nil),NSLocalizedString(@"ContentModeBottom", nil),NSLocalizedString(@"ContentModeLeft", nil),NSLocalizedString(@"ContentModeRight", nil),NSLocalizedString(@"ContentModeTopLeft", nil),NSLocalizedString(@"ContentModeTopRight", nil),NSLocalizedString(@"ContentModeBottomLeft", nil),NSLocalizedString(@"ContentModeBottomRight", nil), nil];
-        [self loadUI];
+        //[self loadUI];
         //[self loadData];
     }
     return self;
@@ -31,10 +31,18 @@
     [super viewDidLoad];
 }
 
+- (void)load
+{
+    [self loadUI];
+    [self loadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self loadData];
     [super viewWillAppear:YES];
+    if (leftCellA) {
+        [self loadData];
+    }
 }
 
 - (void)loadData
@@ -87,7 +95,7 @@
         dsfoot = 69;
     }
     //    CGSize diyViewSize = CGSizeMake(360, 367);
-    UIView *diyView = [[UIView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40)];
+    UIView *diyView = [[UIView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 30)];
     diyView.backgroundColor = [UIColor orangeColor];
     
     CGSize ds = CGSizeMake(diyView.frame.size.width, diyView.frame.size.height);
@@ -485,6 +493,7 @@
     if ([self canContinue]) {
         alertmode = 1;
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"ImageScalingMode_title", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"ImageScalingMode_cancel", nil) otherButtonTitles:NSLocalizedString(@"ContentModeScaleToFill", nil),NSLocalizedString(@"ContentModeScaleAspectFit", nil),NSLocalizedString(@"ContentModeScaleAspectFill", nil),NSLocalizedString(@"CutOut", nil), nil];
+        [S s].alertEnabled = NO;
         [alert show];
     }
 }
@@ -514,7 +523,10 @@
                 [setting setObject:[NSNumber numberWithInteger:idx] forKey:@"psz1"];
             }
             [setting synchronize];
+            [S s].alertEnabled = YES;
         }
+    } else {
+        [S s].alertEnabled = YES;
     }
 }
 

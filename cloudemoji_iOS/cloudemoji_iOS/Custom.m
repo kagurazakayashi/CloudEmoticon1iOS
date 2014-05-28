@@ -18,25 +18,30 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.view.backgroundColor = [UIColor orangeColor];
         self.isEdit = NO;
     }
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+kROTATE
+
+- (void)va
 {
     if (!self.isEdit) {
         self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
         self.navigationItem.rightBarButtonItem = self.rightbtn;
         
         self.vc = [[CustomTVC alloc] init];
+        self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y, self.navigationController.navigationBar.frame.size.width, 30);
         self.vc.delegate = self;
         [self.view addSubview:self.vc.view];
-        [super viewWillAppear:YES];
+        self.vc.view.frame = self.view.frame;
+        [self.vc load];
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)vd
 {
     if (!self.isEdit) {
         self.vc.delegate = nil;
@@ -44,7 +49,6 @@
         self.rightbtn = nil;
         [self.vc.view removeFromSuperview];
         self.vc = nil;
-        [super viewWillDisappear:YES];
     }
 }
 - (void)reloadButton:(BOOL)isEdit
@@ -85,11 +89,6 @@
 - (void)leftbtn:(id)sender
 {
     [self.vc.edit leftbtn:self.rightbtn];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

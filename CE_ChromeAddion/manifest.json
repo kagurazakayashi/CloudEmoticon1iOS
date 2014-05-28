@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    
+    "name": "云颜文字",
+    "description": "云颜文字iOS版演示插件版",
+    "version": "0.1",
+    
+    "permissions": [
+                    "http://www.heartunlock.com/demo/ce/index.html"
+                    ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.htm"
+    }
+}

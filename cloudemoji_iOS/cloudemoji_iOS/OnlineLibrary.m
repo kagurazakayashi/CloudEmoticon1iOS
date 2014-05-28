@@ -23,15 +23,12 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+kROTATE
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)va
 {
     self.vc = [[OnlineLibraryTVC alloc] init];
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y, self.navigationController.navigationBar.frame.size.width, 30);
     self.vc.delegate = self;
     self.leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(leftbtn:)];
     self.navigationItem.leftBarButtonItem = self.leftbtn;
@@ -40,10 +37,12 @@
     self.navigationItem.rightBarButtonItem = self.rightbtn;
     
     [self.view addSubview:self.vc.view];
-    [super viewWillAppear:YES];
+    
+    self.vc.view.frame = self.view.frame;
+    [self.vc load];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)vd
 {
     self.title = NSLocalizedString(@"SoftwareName", nil);
     self.vc.delegate = nil;
@@ -53,7 +52,6 @@
     self.rightbtn = nil;
     [self.vc.view removeFromSuperview];
     self.vc = nil;
-    [super viewWillDisappear:YES];
 }
 
 - (void)rightbtn:(id)sender

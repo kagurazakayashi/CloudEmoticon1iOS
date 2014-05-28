@@ -28,6 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+- (void)load
+{
+//    self.view.frame = [S s].viewFrame;
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     
@@ -45,13 +49,23 @@
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    if ([S s].ios >= 7.0) {
+        self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+50, self.view.frame.size.width, self.view.frame.size.height-100);
+    } else {
+        self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-15, self.view.frame.size.width, self.view.frame.size.height+15);
+    }
+    //self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     BackgroundImg *bg = [[BackgroundImg alloc] init];
-    [bg changeFrame:CGRectMake(0, bgy, self.view.frame.size.width, self.view.frame.size.height)];
+    if ([S s].ios < 7.0) {
+        [bg changeFrame:self.tableView.frame];
+    } else {
+        [bg changeFrame:self.view.frame];
+    }
     [bg loadSetting:1];
     [bg loadSettingImg:1];
     

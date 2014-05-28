@@ -39,4 +39,5 @@
 @property (nonatomic, retain) NoneView *noneview;
 - (void)rightbtn:(id)sender;
 - (void)leftbtn:(id)sender;
+- (void)load;
 @end

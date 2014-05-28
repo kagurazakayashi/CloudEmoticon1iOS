@@ -19,5 +19,5 @@
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, assign) id<FavoritesTVCDelegate> delegate;
 @property (nonatomic, retain) NoneView *noneview;
-
+- (void)load;
 @end

@@ -32,6 +32,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     self.vc = [[SettingViewController alloc] init];
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y, self.navigationController.navigationBar.frame.size.width, 30);
     [self.view addSubview:self.vc.view];
     [super viewWillAppear:YES];
 }

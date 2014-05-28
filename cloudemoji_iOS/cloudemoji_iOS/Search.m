@@ -23,24 +23,21 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+kROTATE
+
+- (void)va
 {
     self.vc = [[SearchTVC alloc] init];
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y, self.navigationController.navigationBar.frame.size.width, 30);
     [self.view addSubview:self.vc.view];
-    [super viewWillAppear:YES];
+    self.vc.view.frame = self.view.frame;
+    [self.vc load];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)vd
 {
     [self.vc.view removeFromSuperview];
     self.vc = nil;
-    [super viewWillDisappear:YES];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

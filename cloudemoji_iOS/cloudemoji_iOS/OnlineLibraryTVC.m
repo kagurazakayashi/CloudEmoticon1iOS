@@ -28,27 +28,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _aniSpeed = 0.5f;
     
-    if ([S s].ios < 7.0) {
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 92);
-    }
+}
+
+- (void)load
+{
+//    if ([S s].ios < 7.0f) {
+////        self.view.frame = CGRectMake([S s].viewFrame.origin.x, [S s].viewFrame.origin.y - 6, [S s].viewFrame.size.width, [S s].viewFrame.size.height+6);
+//    } else {
+////        self.view.frame = [S s].viewFrame;
+//    }
+    
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor blackColor];
-    dstitle = [S s].correct.width;// - rfYA
+    dstitle = -15;// - rfYA
+    if ([S s].ios >= 7.0) {
+        dstitle = 50;
+    }
     dsfoot = [S s].correct.height;// + rfYB
     
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     showTool = [[setting objectForKey:@"showLib"] boolValue];
     //BOOL css = [[setting objectForKey:@"css"] boolValue];
     
-    typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot)];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame]; //WithFrame:CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot)
+    if ([S s].ios >= 7.0) {
+        self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+50, self.view.frame.size.width, self.view.frame.size.height-99);
+    } else {
+        self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-15, self.view.frame.size.width, self.view.frame.size.height+15);
+    }
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    typemenu = [[TypeMenuView alloc] initWithFrame:CGRectMake(0, self.tableView.frame.origin.y, self.view.frame.size.width * bl, self.tableView.frame.size.height)]; //WithFrame:CGRectMake(self.view.frame.size.width * bl, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot)
     typemenu.aniSpeed = _aniSpeed;
     typemenu.delegate = self;
     typemenuD = [[BackgroundImg alloc] init];
-    [typemenuD changeFrame:CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
-//    typemenuD.bg.backgroundColor = [UIColor blackColor];
+    //    typemenuD.bg.backgroundColor = [UIColor blackColor];
+    [typemenuD changeFrame:typemenu.frame];
     [typemenuD loadSetting:0];
     [typemenuD loadSettingImg:0];
     [self.view addSubview:typemenuD];
@@ -58,11 +78,6 @@
     blackView.backgroundColor = [UIColor blackColor];
     blackView.alpha = 0.5f;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot)];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
     if (_refreshHeaderView == nil) {
         EGORefreshTableHeaderView *rv = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
         rv.delegate = self;
@@ -71,15 +86,15 @@
     }
     
     tableViewD = [[BackgroundImg alloc] init];
-    [tableViewD changeFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [tableViewD changeFrame:self.tableView.frame];
     [tableViewD loadSetting:1];
     [tableViewD loadSettingImg:1];
-//    if (css) {
-        tableViewD.layer.shadowColor = [[UIColor blackColor] CGColor];
-        tableViewD.layer.shadowOffset = CGSizeMake(-10,0);
-        tableViewD.layer.shadowOpacity = 1;
-        tableViewD.layer.shadowRadius = 10;
-//    }
+    //    if (css) {
+    tableViewD.layer.shadowColor = [[UIColor blackColor] CGColor];
+    tableViewD.layer.shadowOffset = CGSizeMake(-10,0);
+    tableViewD.layer.shadowOpacity = 1;
+    tableViewD.layer.shadowRadius = 10;
+    //    }
     noneview = [[NoneView alloc] initWithFrame:self.tableView.frame];
     noneview.info = NSLocalizedString(@"none_cloud", nil);
     
@@ -106,7 +121,7 @@
     self.navigationItem.leftBarButtonItem = leftbtn;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conok:) name:@"conok" object:nil];
-    [self.delegate reloadData:[[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"] ModeTag:1 Local:![S s].isupdateData];
+    [self.delegate reloadData:[[NSUserDefaults standardUserDefaults] objectForKey:@"nowURL"] ModeTag:1 Local:YES];//![S s].isupdateData
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(r:) name:@"r" object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTitle:) name:@"changeTitle" object:nil];
     
@@ -118,6 +133,7 @@
     }
     ADView *ad = [[ADView alloc] initWithViewController:self ShowNow:NO FixHeight:NO];
     [self.view addSubview:ad];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"whatR" object:nil];
 }
 
 //- (void)changeTitle:(NSNotification*)notification
@@ -235,7 +251,7 @@
         }
         blackView.frame = tableView.frame;
         tableViewD.img.alpha = tableView.alpha;
-        [tableViewD changeFrame:CGRectMake(tableView.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [tableViewD changeFrame:self.tableView.frame];
     }];
 }
 - (void)swipAction1:(id)sender
@@ -247,7 +263,7 @@
             blackView.frame = tableView.frame;
             blackView.alpha = 0;
 //            tableViewD.img.alpha = 0.5;
-            [tableViewD changeFrame:CGRectMake(tableView.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            [tableViewD changeFrame:self.tableView.frame];
         } completion:^(BOOL finished) {
             [blackView setHidden:YES];
         }];
@@ -327,11 +343,14 @@
     } else {
         size = bl;
     }
-    typemenu.frame = CGRectMake(self.view.frame.size.width * size, dstitle, self.view.frame.size.width * size, self.view.frame.size.height - dstitle - dsfoot);
-    [typemenuD changeFrame:CGRectMake(0, dstitle, self.view.frame.size.width * size, self.view.frame.size.height - dstitle - dsfoot)];
-    tableView.frame = CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot);
-    [tableViewD changeFrame:CGRectMake(0, dstitle, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot)];
+    tableView.frame = self.view.frame;
+    [tableViewD changeFrame:self.tableView.frame];
+    
+    typemenu.frame = CGRectMake(0, dstitle, self.view.frame.size.width * bl, self.view.frame.size.height - dstitle - dsfoot);
+    [typemenuD changeFrame:CGRectMake(0, 0, self.view.frame.size.width * bl, self.view.frame.size.height)];
 }
+
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CE_ChromeAddion/CE_ChromeAddion.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:xml2json/xml2json.xcodeproj">
    </FileRef>
    <FileRef

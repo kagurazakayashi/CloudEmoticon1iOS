@@ -13,4 +13,5 @@
     UILabel *show;
     int strID;
 }
+- (void)load;
 @end

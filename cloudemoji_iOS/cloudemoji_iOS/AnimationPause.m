@@ -23,13 +23,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+kROTATE
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)va
 {
     /*
      if(UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPad)
@@ -46,14 +42,14 @@
     self.vc = [[AnimationPauseVC alloc] init];
     [self.view addSubview:self.vc.view];
     //self.vc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [super viewWillAppear:YES];
+    self.vc.view.frame = self.view.frame;
+    [self.vc load];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)vd
 {
     [self.vc.view removeFromSuperview];
     self.vc = nil;
-    [super viewWillDisappear:YES];
 }
 
 - (void)didReceiveMemoryWarning

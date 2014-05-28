@@ -41,4 +41,6 @@
 @property (nonatomic, retain) About *xabout;
 @property (nonatomic, retain) AnimationPause *yao;
 
+@property (nonatomic, assign) BOOL firstRun;
+
 @end

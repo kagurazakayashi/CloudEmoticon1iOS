@@ -19,4 +19,5 @@
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, assign) id<SearchTVCDelegate> delegate;
 @property (nonatomic, retain) UISearchBar *search;
+- (void)load;
 @end

@@ -27,4 +27,5 @@
 @property (nonatomic, retain) NSURL *impURL;
 - (void)rightbtn:(id)sender;
 - (void)webView:(BOOL)isShow;
+- (void)load;
 @end

@@ -74,6 +74,7 @@
     NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"RandomText_message", nil),name,nowGroup,nowString];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"RandomText_title", nil) message:msg delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"RandomText_btn1", nil), nil];
     [MobClick event:@"random"];
+    [S s].alertEnabled = NO;
     [alert show];
 }
 
@@ -85,14 +86,20 @@
         [MobClick event:@"copy_random"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"alt" object:arr];
     }
+    [S s].alertEnabled = YES;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	if ([S s].ios < 7.0) {
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 92);
-    }
+}
+
+- (void)load
+{
+//    if ([S s].ios < 7.0) {
+//        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 92);
+//    }
+//    self.view.frame = [S s].viewFrame;
     float bh = self.view.frame.size.height * 0.5;
     imgUp = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Shake_01.png"]];
     imgUp.frame = CGRectMake(0, 0, self.view.frame.size.width, bh);

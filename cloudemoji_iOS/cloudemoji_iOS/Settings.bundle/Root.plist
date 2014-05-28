@@ -254,9 +254,9 @@
 			<key>Key</key>
 			<string>ad</string>
 			<key>DefaultValue</key>
-			<integer>15</integer>
+			<integer>30</integer>
 			<key>MinimumValue</key>
-			<integer>10</integer>
+			<integer>30</integer>
 			<key>MaximumValue</key>
 			<integer>100</integer>
 		</dict>

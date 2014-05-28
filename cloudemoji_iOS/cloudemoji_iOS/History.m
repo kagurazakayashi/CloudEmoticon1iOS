@@ -18,33 +18,30 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.view.backgroundColor = [UIColor orangeColor];
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+kROTATE
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)va
 {
     self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(rightbtn:)];
     self.navigationItem.rightBarButtonItem = self.rightbtn;
     self.vc = [[HistoryTVC alloc] init];
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y, self.navigationController.navigationBar.frame.size.width, 30);
     [self.view addSubview:self.vc.view];
-    [super viewWillAppear:YES];
+    self.vc.view.frame = self.view.frame;
+    [self.vc load];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)vd
 {
     self.navigationItem.rightBarButtonItem = nil;
     self.rightbtn = nil;
     [self.vc.view removeFromSuperview];
     self.vc = nil;
-    [super viewWillDisappear:YES];
 }
 
 - (void)rightbtn:(id)sender

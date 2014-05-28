@@ -38,21 +38,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+}
+
+- (void)load
+{
+//    self.view.frame = [S s].viewFrame;
     strID = 0;
     
-    float dstitle = [S s].correct.width;
-    float dsfoot = [S s].correct.height;
-    float bgy = 0;
-    if ([S s].ios < 7.0) {
-        dstitle = 0;
-        dsfoot = 134;
-        bgy = 0 - dstitle - dsfoot + 40;
-    } else {
-        dstitle = 84;
-        dsfoot = 69;
-    }
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40)];
+//    float dstitle = [S s].correct.width;
+//    float dsfoot = [S s].correct.height;
+//    float bgy = 0;
+//    if ([S s].ios < 7.0) {
+//        dstitle = 0;
+//        dsfoot = 134;
+//        bgy = 0 - dstitle - dsfoot + 40;
+//    } else {
+//        dstitle = 84;
+//        dsfoot = 69;
+//    }
+    self.view.backgroundColor = [UIColor blackColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -20, self.view.frame.size.width, self.view.frame.size.height)];//CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40)
+    
+//    if ([S s].ios >= 7.0) {
+//        view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+64, self.view.frame.size.width, self.view.frame.size.height);
+//    }
     view.backgroundColor = [UIColor blackColor];
     self.view.backgroundColor = view.backgroundColor;
     [self.view addSubview:view];
@@ -72,7 +81,6 @@
     show.text = [strArr objectAtIndex:0];
     [self.view addSubview:show];
     [self doani];
-    
 }
 
 - (void)doani

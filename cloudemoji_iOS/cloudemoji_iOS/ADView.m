@@ -13,23 +13,33 @@
 - (id)initWithViewController:(UIViewController*)rootViewController ShowNow:(BOOL)shownow FixHeight:(BOOL)fix
 {
     CGSize adSize = GAD_SIZE_320x50;
-    CGRect screen = [UIScreen mainScreen].bounds;
-    float y = screen.size.height - 111;//rootViewController.view.frame.size.height - adSize.height;
-    if ([S s].ios < 7.0) {
-        y = screen.size.height - 178;
-    }
-    if ([S s].ios >= 7.0 && screen.size.height > 1000) {
-        y -= 10;
-    }
-    if (fix && [S s].ios < 7.0) {
-        y -= 20;
-    }
+//    CGRect screen = [UIScreen mainScreen].bounds;
+//    float y = screen.size.height - 111;//rootViewController.view.frame.size.height - adSize.height;
+//    if ([S s].ios < 7.0) {
+//        y = screen.size.height - 178;
+//    }
+//    if ([S s].ios >= 7.0 && screen.size.height > 1000) {
+//        y -= 10;
+//    }
+//    if (fix && [S s].ios < 7.0) {
+//        y -= 20;
+//    }
 //    if (autoheight) {
 //        if ([S s].ios >= 7.0) {
 //            y -= 64;
 //        }
 //    }
-    CGRect sf = CGRectMake(screen.size.width - adSize.width, y, adSize.width, adSize.height+15);
+//    CGRect sf = CGRectMake(screen.size.width - adSize.width, y, adSize.width, adSize.height+15);
+//    CGRect hf = CGRectMake(sf.origin.x, sf.origin.y + sf.size.height, sf.size.width, sf.size.height);
+    
+    CGRect sf = CGRectMake(rootViewController.view.frame.size.width-adSize.width, rootViewController.view.frame.size.height-adSize.height-9-55, adSize.width, adSize.height+15);
+    if ([S s].ios < 7.0) {
+        fix = NO;
+        sf = CGRectMake(rootViewController.view.frame.size.width-adSize.width, rootViewController.view.frame.size.height-adSize.height-15, adSize.width, adSize.height+15);
+    }
+    if (fix) {
+        //sf = CGRectMake(rootViewController.view.frame.size.width-adSize.width, rootViewController.view.frame.size.height-adSize.height-9, adSize.width, adSize.height+15);
+    }
     CGRect hf = CGRectMake(sf.origin.x, sf.origin.y + sf.size.height, sf.size.width, sf.size.height);
     self = [super initWithFrame:hf];
     if (self) {

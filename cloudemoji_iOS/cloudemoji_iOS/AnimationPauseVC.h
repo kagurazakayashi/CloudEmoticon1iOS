@@ -14,4 +14,5 @@
 @property (nonatomic, retain) NSString *nowName;
 @property (nonatomic, retain) NSString *nowString;
 - (void)addAnimations;
+- (void)load;
 @end

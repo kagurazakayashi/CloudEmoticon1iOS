@@ -38,4 +38,5 @@
 @property (nonatomic, assign) id<DIYViewDelegate> delegate;
 @property (nonatomic, retain) BackgroundImg *imgA;
 @property (nonatomic, retain) BackgroundImg *imgB;
+- (void)load;
 @end

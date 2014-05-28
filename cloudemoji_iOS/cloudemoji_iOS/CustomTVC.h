@@ -26,4 +26,5 @@
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) NoneView *noneview;
 - (void)rightbtn:(id)sender;
+- (void)load;
 @end

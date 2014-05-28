@@ -104,4 +104,83 @@
         [alert show];
     }
 }
++ (BOOL)viewIsPortrait:(CGRect)viewFrame
+{
+    if (viewFrame.size.height > viewFrame.size.width) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
++ (int)orientationMode
+{
+    //宣告一個UIDevice指標，並取得目前Device的狀況
+    UIDevice *device = [UIDevice currentDevice] ;
+    //取得當前Device的方向，來當作判斷敘述。（Device的方向型態為Integer）
+    switch (device.orientation) {
+        case UIDeviceOrientationFaceUp:
+            return 0; //NSLog(@"螢幕朝上平躺");
+            break;
+        case UIDeviceOrientationFaceDown:
+            return 0; //NSLog(@"螢幕朝下平躺");
+            break;
+            //系統無法判斷目前Device的方向，有可能是斜置
+        case UIDeviceOrientationUnknown:
+            return 0; //NSLog(@"未知方向");
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            return 2; //NSLog(@"螢幕向左橫置");
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            return 2; //NSLog(@"螢幕向右橫置");
+            break;
+        case UIDeviceOrientationPortrait:
+            return 1; //NSLog(@"螢幕直立");
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            return 1; //NSLog(@"螢幕直立，上下顛倒");
+            break;
+        default:
+            return 0; //NSLog(@"無法辨識");
+            break;
+    }
+    // Return YES for supported orientations
+    return 0; //(interfaceOrientation == UIInterfaceOrientationLandscapeLeft); // 只支持向左横向, YES 表示支持所有方向
+}
+
+//+ (void)sentR:(UIDeviceOrientation)rMode
+//{
+//    
+//}
+//+ (BOOL)isLandscapeWithFrame:(CGRect)frame
+//{
+//    float w = frame.size.width;
+//    float h = frame.size.height;
+//    if (w > h) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+//}
+//+ (CGRect)xyWithFrame:(CGRect)frame
+//{
+//    return CGRectMake(frame.origin.x, frame.origin.y, frame.size.height, frame.size.width);
+//}
+
+//iOS7标题栏高度64
+//iOS6-7工具栏高度49
+//iOS6标题栏高度31
+
+//iOS6横屏上补Tab-31
+//iOS6横屏下补Tab+94
+//iOS6竖屏下补View+94
+//iOS6竖屏下补Tab+49
+//+ (CGRect)tableFrame:(CGRect)viewFrame;
+//{
+//    int orientationMode=[S orientationMode];
+//}
+//+ (CGRect)viewFrame:(CGRect)oldFrame;
+//{
+//    
+//}
 @end

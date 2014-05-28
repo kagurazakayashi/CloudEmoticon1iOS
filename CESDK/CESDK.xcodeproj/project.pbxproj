@@ -463,6 +463,7 @@
 				00252B5618ACB844003E452A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00252B5718ACB844003E452A /* Build configuration list for PBXNativeTarget "CESDKTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +472,7 @@
 				00252B5918ACB844003E452A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

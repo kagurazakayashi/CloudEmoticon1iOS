@@ -77,7 +77,6 @@
         cURL = URL;
         mURL = [NSString stringWithFormat:@"%@.yashi",[MD5 md5:URL]];
         loc = local;
-        
         if (local) {
             NSFileManager *fileManager = [NSFileManager defaultManager];
             NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -110,6 +109,7 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [self exit];
     }
+    [S s].alertEnabled = YES;
 }
 - (void)startAsyConnection
 {
@@ -143,6 +143,7 @@
     NSString *inf = [NSString stringWithFormat:NSLocalizedString(@"DownloadFailed_message", nil),[error localizedDescription]];
     [self infoShow:inf];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"DownloadFailed_title", nil) message:inf delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"Retry", nil), nil];
+    [S s].alertEnabled = NO;
     [alert show];
 }
 - (void)dataErr:(NSString*)errinfo
@@ -236,11 +237,11 @@
             for (int iitem = 0; iitem < [entry count]; iitem++) {
                 NSDictionary *item = [entry objectAtIndex:iitem];
                 NSString *string = [[item objectForKey:@"string"] objectForKey:@"text"];
-                NSString *nameT = [self removeRedundancyReturnTable:name];
-                NSString *stringT = [self removeRedundancyReturnTable:string];
+                NSString *nameT = [self removeFirstReturnTable:name];
+                NSString *stringT = [self removeFirstReturnTable:string];
                 if ([item count] == 3) {
                     NSString *note = [[item objectForKey:@"note"] objectForKey:@"text"];
-                    NSString *noteT = [self removeRedundancyReturnTable:note];
+                    NSString *noteT = [self removeFirstReturnTable:note];
                     NSArray *l = [NSArray arrayWithObjects:nameT,noteT,stringT, nil];
                     [[S s].allinfo addObject:l];
                 } else {

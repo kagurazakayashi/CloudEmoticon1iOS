@@ -35,13 +35,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-//    {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//        self.extendedLayoutIncludesOpaqueBars = NO;
-//        self.modalPresentationCapturesStatusBarAppearance = NO;
-//        self.automaticallyAdjustsScrollViewInsets = YES;
-//    }
+    self.firstRun = YES;
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    if (screenFrame.size.height > screenFrame.size.width) {
+        [S s].screenSize = screenFrame.size;
+    } else {
+        [S s].screenSize = CGSizeMake(screenFrame.size.height, screenFrame.size.width);
+    }
+
+    
+//    [self sentR:self.interfaceOrientation];
+    
+
     //NSLog(@"数据文件夹：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]);
 //    self.tabBarController.tabBar.translucent = NO;
     [self didInit];
@@ -143,18 +148,23 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whatR:) name:@"whatR" object:nil];
     
     [self.view addSubview:self.tab.view];
     [MobClick checkUpdate];
-
 }
+//- (void)whatR:(NSNotification*)notification
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"whatR" object:nil];
+//    [self sentR];
+//}
 
 - (void)share:(NSNotification*)notification
 {
     NSArray *info = [notification object];
     NSString *str = [info objectAtIndex:0];
     //[UMSocialSnsService presentSnsIconSheetView:self appKey:@"52cba0fc56240be2220355c9" shareText:str shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToQzone,UMShareToEmail,UMShareToSms,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToFacebook,UMShareToTwitter,nil] delegate:nil];
-    ShareView *share = [[ShareView alloc] initWithFrame:self.view.frame ShareStr:str ViewController:self];
+    ShareView *share = [[ShareView alloc] initWithFrame:self.tab.selectedViewController.view.frame ShareStr:str ViewController:self];
     [self.view addSubview:share];
 }
 
@@ -170,7 +180,7 @@
 }
 - (void)reloadData:(NSString*)URL ModeTag:(NSUInteger)mtag Local:(BOOL)local
 {
-    RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    RefreshView *rf = [[RefreshView alloc] initWithFrame:CGRectMake(0, 0, self.tab.selectedViewController.view.frame.size.width, self.tab.selectedViewController.view.frame.size.height)];
     rf.delegate = self;
     rf.alpha = 0;
     [self.view addSubview:rf];
@@ -207,6 +217,7 @@
     
 - (void)didInit
 {
+    [S s].alertEnabled = YES;
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     //自动更新源
     NSDate *nowDate = [NSDate date];
@@ -272,8 +283,7 @@
             [S s].isupdateData = NO;
         }
 //        if ((oldAppI*(-1)) >= appI) {
-//            //更新APP
-//            
+
 //            [setting setObject:nowDate forKey:@"oldApp"];
 //        }
         [S s].ad = [setting integerForKey:@"ad"];
@@ -397,23 +407,57 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+//    [self sentR:self.interfaceOrientation];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"r" object:nil];
-    
-//    if(fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
-//    {
-//        NSLog(@"左右");
-//    }
-//    if (self.interfaceOrientation == UIDeviceOrientationPortrait){
-//        NSLog(@"竖直");
-//    }
-//    else if(self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
-//    {
-//        NSLog(@"水平向左");
-//    }
-//    else if(self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
-//    {
-//        NSLog(@"水平向左");
-//    }
+}
+
+- (void)sentR:(UIInterfaceOrientation)rMode
+{
+    //iOS7标题栏高度64
+    //iOS6-7工具栏高度49
+    //iOS6标题栏高度31
+    CGSize screenSize = [S s].screenSize;
+    if (rMode == UIDeviceOrientationPortrait){
+        NSLog(@"按钮下");
+        if ([S s].ios < 7.0f) {
+            self.view.frame = CGRectMake(0, 40, screenSize.width-20, screenSize.height-20);
+            [S s].viewFrame = CGRectMake(0, -6, screenSize.width, screenSize.height-101);
+        } else {
+            [S s].viewFrame = CGRectMake(0, 0, screenSize.width, screenSize.height);
+        }
+    }
+    else if(rMode == UIDeviceOrientationLandscapeLeft)
+    {
+        NSLog(@"按钮右");
+        if ([S s].ios < 7.0f) {
+            self.view.frame = CGRectMake(0, 20, screenSize.width-19, screenSize.height-20);
+            [S s].viewFrame = CGRectMake(0, 0, screenSize.height, screenSize.width-100);
+        } else {
+            [S s].viewFrame = CGRectMake(0, 0, screenSize.height, screenSize.width);
+        }
+    }
+    else if(rMode == UIDeviceOrientationLandscapeRight)
+    {
+        NSLog(@"按钮左");
+        if ([S s].ios < 7.0f) {
+            self.view.frame = CGRectMake(20, 20, screenSize.width-20, screenSize.height);
+            [S s].viewFrame = CGRectMake(0, 0, screenSize.height, screenSize.width-100);
+        } else {
+            [S s].viewFrame = CGRectMake(0, 0, screenSize.height, screenSize.width);
+        }
+    }
+    else
+    {
+        NSLog(@"按钮上");
+        if ([S s].ios < 7.0f) {
+            self.view.frame = CGRectMake(20, 20, screenSize.width-20, screenSize.height-20);
+            [S s].viewFrame = CGRectMake(0, -6, screenSize.width, screenSize.height-101);
+        } else {
+            [S s].viewFrame = CGRectMake(0, 0, screenSize.width, screenSize.height);
+        }
+    }
+    self.firstRun = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"r" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -422,6 +466,30 @@
     [super didReceiveMemoryWarning];
     [self.view makeToast:NSLocalizedString(@"MemoryWarning", nil)];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotate
+{
+    if ([S s].ios < 7.0f) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if ([S s].ios < 7.0f) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if ([S s].ios < 7.0f) {
+        return NO;
+    }
+    return UIInterfaceOrientationMaskAll;
 }
 
 @end

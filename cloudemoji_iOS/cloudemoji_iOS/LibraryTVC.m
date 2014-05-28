@@ -27,6 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)load
+{
+//    self.view.frame = [S s].viewFrame;
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     alertMode = 0;
@@ -49,20 +54,28 @@
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    if ([S s].ios >= 7.0) {
+        self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+50, self.view.frame.size.width, self.view.frame.size.height-100);
+    } else {
+        self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-15, self.view.frame.size.width, self.view.frame.size.height+15);
+    }
+    //self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 40) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     BackgroundImg *bg = [[BackgroundImg alloc] init];
-    [bg changeFrame:CGRectMake(0, bgy, self.view.frame.size.width, self.view.frame.size.height)];
+    if ([S s].ios < 7.0) {
+        [bg changeFrame:self.tableView.frame];
+    } else {
+        [bg changeFrame:self.view.frame];
+    }
     [bg loadSetting:1];
     [bg loadSettingImg:1];
     
     [self.view addSubview:bg];
     [self.view addSubview:self.tableView];
-    
-    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(r:) name:@"r" object:nil];
@@ -75,8 +88,8 @@
         }
     }
     
-//    rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
-//    self.navigationItem.rightBarButtonItem = rightbtn;
+    //    rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+    //    self.navigationItem.rightBarButtonItem = rightbtn;
     
     NSArray *dc = [NSArray arrayWithObjects:NSLocalizedString(@"CacheClear", nil),[self showCache],@"c", nil];
     NSArray *d2 = [NSArray arrayWithObjects:@"KT Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
@@ -336,14 +349,17 @@
         } else {
             editNow = 99999999;
         }
+        [S s].alertEnabled = YES;
     } else if (alertMode == 2 && buttonIndex == 1) {
         [data removeObjectAtIndex:editNow];
         editNow = 99999999;
         [self saveToSetting];
         [self.tableView reloadData];
+        [S s].alertEnabled = YES;
     } else if (alertMode == 3) { //主菜单
         if (buttonIndex == 1) {
             [self webView:YES];
+            [S s].alertEnabled = YES;
         } else if (buttonIndex == 2) {
             alertMode = 1;
             [self addURL];
@@ -359,6 +375,10 @@
             editNow = 99999999;
             [S s].storeBusy = NO;
         }
+        [S s].alertEnabled = YES;
+    }
+    if (buttonIndex == 0) {
+        [S s].alertEnabled = YES;
     }
 }
 -(void)btnSelect:(NSString*)name
@@ -407,6 +427,7 @@
                 alertMode = 2;
                 editNow = i;
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"DeleteSource_title", nil) message:[NSString stringWithFormat:NSLocalizedString(@"DeleteSource_message", nil),tName] delegate:self cancelButtonTitle:NSLocalizedString(@"DeleteSource_cancel", nil) otherButtonTitles:NSLocalizedString(@"DeleteSource_delete", nil),nil];
+                [S s].alertEnabled = NO;
                 [alert show];
             }
             break;
@@ -543,6 +564,7 @@
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SourceAddress", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"SourceStore", nil),NSLocalizedString(@"AddSource_title", nil),nil];
     editNow = 99999999;
+    [S s].alertEnabled = NO;
     [alert show];
 }
 
@@ -555,6 +577,7 @@
     tf.text = @"http://";
     //////
     editNow = 99999999;
+    [S s].alertEnabled = NO;
     [alert show];
 }
 
