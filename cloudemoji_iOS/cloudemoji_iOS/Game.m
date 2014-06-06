@@ -7,7 +7,10 @@
 //
 
 #import "Game.h"
+<<<<<<< HEAD
+=======
 
+>>>>>>> FETCH_HEAD
 @interface Game ()
 
 @end
@@ -23,10 +26,27 @@
     return self;
 }
 
+<<<<<<< HEAD
+kROTATE
+
+- (void)va
+{
+    self.vc = [[GameTVC alloc] init];
+    self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y, self.navigationController.navigationBar.frame.size.width, 30);
+    [self.view addSubview:self.vc.view];
+    self.vc.view.frame = self.view.frame;
+    [self.vc load];
+}
+- (void)vd
+{
+    [self.vc.view removeFromSuperview];
+    self.vc = nil;
+=======
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+>>>>>>> FETCH_HEAD
 }
 
 - (void)didReceiveMemoryWarning

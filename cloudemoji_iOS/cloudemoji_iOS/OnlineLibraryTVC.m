@@ -220,6 +220,7 @@
 {
     [data removeAllObjects];
     [noneview hide:[data count]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadNetDataOK" object:nil];
     [self.tableView reloadData];
 }
 

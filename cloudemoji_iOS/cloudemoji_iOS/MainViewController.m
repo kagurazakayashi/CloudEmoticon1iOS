@@ -14,6 +14,7 @@
 #import "ShareView.h"
 #import "AppAD.h"
 #import "PasteboardController.h"
+
 //#import "ColorConvert.h"
 @interface MainViewController ()
 
@@ -21,7 +22,7 @@
 
 @implementation MainViewController
 @synthesize tab, size7title, size7toolbar, sharename, black;
-@synthesize ol,f,h,c,s,setView,diy,lib,about,xabout,yao;
+@synthesize ol,f,h,c,s,setView,diy,lib,about,xabout,yao,g;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -97,6 +98,11 @@
     UITabBarItem *libI = [[UITabBarItem alloc] initWithTitle:lib.title image:[UIImage imageNamed:@"pweb.png"] tag:0];
     lib.delegate = self;
     lib.tabBarItem = libI;
+    g = [[Game alloc] init];
+    g.title = NSLocalizedString(@"Game", nil);
+    UINavigationController *gn = [[UINavigationController alloc] initWithRootViewController:g];
+    UITabBarItem *gI = [[UITabBarItem alloc] initWithTitle:g.title image:[UIImage imageNamed:@"flag-vector.png"] tag:0];
+    g.tabBarItem = gI;
     about = [[AboutViewController alloc] init];
     about.title = NSLocalizedString(@"UpdatesAndOnlineInformation", nil);
     UINavigationController *aboutn = [[UINavigationController alloc] initWithRootViewController:about];
@@ -144,7 +150,7 @@
         
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(share:) name:@"share" object:nil];
-        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn, nil]; //,advn
+        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,gn,aboutn,xaboutn, nil]; //,advn
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];

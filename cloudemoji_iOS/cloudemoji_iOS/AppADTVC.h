@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 //#import "UMUFPTableView.h"
-#import "UMUFPWebView.h"
+//#import "UMUFPWebView.h"
 @interface AppADTVC : UIViewController //<UMUFPTableViewDataLoadDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     //UMUFPTableView *_mTableView;
-    UMUFPWebView *_mWebView;
+//    UMUFPWebView *_mWebView;
 }
 @end

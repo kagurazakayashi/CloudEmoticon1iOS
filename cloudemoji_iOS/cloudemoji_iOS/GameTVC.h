@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+<<<<<<< HEAD
+@interface GameTVC : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, retain) NSMutableArray *data;
+//@property (nonatomic, retain) NSMutableArray *height;
+@property (nonatomic, retain) UITableView *tableView;
+- (void)load;
+@end
+=======
 @interface GameTVC : UIViewController
 
 @end
+>>>>>>> FETCH_HEAD

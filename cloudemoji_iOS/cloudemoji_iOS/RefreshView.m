@@ -10,6 +10,7 @@
 #import "XMLReader.h"
 #import "MD5.h"
 
+
 @implementation RefreshView
 @synthesize info, connData, mode, cURL, mURL, loc, pro;
 - (id)initWithFrame:(CGRect)frame

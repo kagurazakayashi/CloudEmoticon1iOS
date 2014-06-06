@@ -18,7 +18,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+<<<<<<< HEAD
+        self.view.backgroundColor = [UIColor whiteColor];
+=======
         self.view.backgroundColor = [UIColor orangeColor];
+>>>>>>> FETCH_HEAD
         self.isEdit = NO;
     }
     return self;

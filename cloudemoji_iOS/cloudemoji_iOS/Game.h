@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
+#import "GameTVC.h"
+
+@interface Game : UIViewController
+@property (nonatomic, retain) GameTVC *vc;
+=======
 
 @interface Game : UIViewController
 
+>>>>>>> FETCH_HEAD
 @end
