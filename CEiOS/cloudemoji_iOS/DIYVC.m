@@ -96,11 +96,11 @@
     }
     //    CGSize diyViewSize = CGSizeMake(360, 367);
     UIView *diyView = [[UIView alloc] initWithFrame:CGRectMake(0, dstitle - 20, self.view.frame.size.width, self.view.frame.size.height - dstitle - dsfoot + 30)];
-<<<<<<< HEAD
+//<<<<<<< HEAD
     diyView.backgroundColor = [UIColor whiteColor];
-=======
-    diyView.backgroundColor = [UIColor orangeColor];
->>>>>>> FETCH_HEAD
+//=======
+//    diyView.backgroundColor = [UIColor orangeColor];
+//>>>>>>> FETCH_HEAD
     
     CGSize ds = CGSizeMake(diyView.frame.size.width, diyView.frame.size.height);
     

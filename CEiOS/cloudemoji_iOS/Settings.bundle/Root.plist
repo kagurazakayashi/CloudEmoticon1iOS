@@ -224,14 +224,12 @@
 			<key>Titles</key>
 			<array>
 				<string>Auto</string>
-				<string>heartunlock.com</string>
-				<string>my-card.in</string>
+				<string>uuu.moe</string>
 			</array>
 			<key>Values</key>
 			<array>
 				<string></string>
-				<string>http://www.heartunlock.com/</string>
-				<string>http://cxchope.sites.my-card.in/</string>
+				<string>http://uuu.moe/</string>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>

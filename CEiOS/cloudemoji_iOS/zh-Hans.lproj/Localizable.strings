@@ -64,7 +64,7 @@
 "VersionText" = "版本：";
 "ThirdPart" = "使用了以下第三方产品\n或有功能来自该产品的修改：";
 "InstalledLanguages" = "已安装语言包：";
-"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于 Android/Windows Phone/MAC/PC 系统的版本，请进入“更新和在线信息”功能了解。\n\n当前语言包作者：\n%@\n\n程序作者：\n神楽坂雅詩(i@heartunlock.com)";
+"AboutInfo" = "如果需要 更多详细信息、检查新版本、反馈意见、或下载适用于 Android/Windows Phone/MAC/PC 系统的版本，请进入“更新和在线信息”功能了解。\n\n当前语言包作者：\n%@\n\n程序作者：\n神楽坂雅詩(cxchope@163.com)";
 //(本行为注释不翻译)系统设置部分：
 "slbl1" = "程序设置\n已经集成在iOS系统设置中了哦！\n\n你可以按以下指引找到它：";
 "slbl2" = "1.点击：\n\n2.在主屏幕点击“设置”\n\n3.点击“云颜文字”";

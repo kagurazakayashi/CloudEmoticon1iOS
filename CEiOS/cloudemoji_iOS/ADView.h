@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "GADBannerView.h"
+#import <GoogleMobileAds/GADBannerView.h>
 
 @interface ADView : UIView <GADBannerViewDelegate>
 {

@@ -22,15 +22,6 @@ CGContextRef RSBitmapContextCreateDefault(CGSize size){
 	bytesPerRow += (16 - bytesPerRow%16)%16; // ensure it is a multiple of 16
 	
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
-    
-#define kCGImageAlphaPremultipliedFirst  (kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst)
-    
-#else
-    
-#define kCGImageAlphaPremultipliedFirst  kCGImageAlphaPremultipliedFirst
-    
-#endif
 	CGContextRef ctx = CGBitmapContextCreate(NULL,         //Automatic Alocation
 														  width,        //size_t width
 														  height,       //size_t Height
@@ -190,7 +181,7 @@ UIImage* RSArrowLoopThumbImage(CGSize size, CGSize loopSize){
 	[self setMinimumTrackImage:[myRep image] forState:UIControlStateNormal];
 	[self setMaximumTrackImage:[myRep image] forState:UIControlStateNormal];
 	
-	//[myRep release];
+//	[myRep release];
 }
 
 -(void)setColorPicker:(RSColorPickerView*)cp {

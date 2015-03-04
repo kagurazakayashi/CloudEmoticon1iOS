@@ -17,7 +17,7 @@
 - (void)changeTitle:(NSString*)titleStr;
 @end
 
-@interface OnlineLibraryTVC : UIViewController <UITableViewDataSource, UITableViewDelegate, TypeMenuViewDelegate, EGORefreshTableHeaderDelegate>
+@interface OnlineLibraryTVC : UIViewController <UITableViewDataSource, UITableViewDelegate, TypeMenuViewDelegate, EGORefreshTableDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;

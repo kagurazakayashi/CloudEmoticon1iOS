@@ -20,7 +20,7 @@
 #import "Search.h"
 #import "Diy.h"
 #import "AnimationPause.h"
-#import "Game.h"
+//#import "Game.h"
 //#import "BlackView.h"
 @interface MainViewController : UIViewController <UITabBarControllerDelegate,OnlineLibraryMDelegate,LibraryMDelegate,RefreshViewDelegate>
 @property (nonatomic, retain) UITabBarController *tab;
@@ -41,9 +41,7 @@
 @property (nonatomic, retain) AboutViewController *about;
 @property (nonatomic, retain) About *xabout;
 @property (nonatomic, retain) AnimationPause *yao;
-@property (nonatomic, retain) Game *g;
-@property (nonatomic, assign) BOOL firstRun;
-
+//@property (nonatomic, retain) Game *g;
 @property (nonatomic, assign) BOOL firstRun;
 
 @end

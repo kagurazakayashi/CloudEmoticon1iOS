@@ -64,7 +64,7 @@
 "VersionText" = "版本：";
 "ThirdPart" = "使用了以下第三方產品\n或有功能來自該產品的修改：";
 "InstalledLanguages" = "已安裝語言包：";
-"AboutInfo" = "如果需要 更多詳細資訊、檢查新版本、回饋意見、或下載適用于 Android/Windows Phone/MAC/PC 系統的版本，請進入“更新和線上資訊”功能瞭解。\n\n當前語言包作者：\n%@\n\n程式作者：\n神楽坂雅詩(i@heartunlock.com)";
+"AboutInfo" = "如果需要 更多詳細資訊、檢查新版本、回饋意見、或下載適用于 Android/Windows Phone/MAC/PC 系統的版本，請進入“更新和線上資訊”功能瞭解。\n\n當前語言包作者：\n%@\n\n程式作者：\n神楽坂雅詩(cxchope@163.com)";
 //(本行为注释不翻译)系統設置部分：
 "slbl1" = "程式設置\n已經集成在iOS系統設置中了哦！\n\n你可以按以下指引找到它：";
 "slbl2" = "1.點擊：\n\n2.在主螢幕點擊“設置”\n\n3.點擊“雲顏文字”";

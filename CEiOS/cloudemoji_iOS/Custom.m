@@ -7,6 +7,7 @@
 //
 
 #import "Custom.h"
+//#import "EditViewController.h"
 
 @interface Custom ()
 
@@ -18,11 +19,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-<<<<<<< HEAD
-        self.view.backgroundColor = [UIColor whiteColor];
-=======
+//<<<<<<< HEAD
+        //self.view.backgroundColor = [UIColor whiteColor];
+//=======
         self.view.backgroundColor = [UIColor orangeColor];
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
         self.isEdit = NO;
     }
     return self;
@@ -75,10 +76,26 @@ kROTATE
 
 - (void)openEditWindow:(UIViewController*)editVC
 {
-    [self.navigationController pushViewController:editVC animated:YES];
+    if (editVC && [editVC isKindOfClass:[EditViewController class]]) {
+        NSLog(@"editVC = %@",editVC);
+        [self.navigationController pushViewController:editVC animated:YES];
+    } else {
+        NSLog(@"ERROR!!!");
+    }
+    
 //    [self presentViewController:editVC animated:YES completion:^{
 //        //[editVC.edit becomeFirstResponder];
 //    }];
+}
+- (void)closeEditWindow:(UIViewController*)editVC
+{
+    NSLog(@"self.vc = %@",self.vc);
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+//    self.isEdit = false;
+//    [self vd];
+//    [self va];
+//    [self.navigationController popToViewController:self.vc animated:YES];
 }
 
 - (void)rightbtn:(id)sender

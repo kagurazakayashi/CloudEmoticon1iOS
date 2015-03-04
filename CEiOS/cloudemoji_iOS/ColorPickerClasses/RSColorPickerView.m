@@ -56,7 +56,7 @@ void HSVFromPixel(BMPixel pixel, CGFloat* h, CGFloat* s, CGFloat* v) {
         hsv_hue = fmodf(hsv_hue, 360.0f);
     } else if (rgb_max == pixel.green) {
         hsv_hue = 60.0f * ((pixel.blue - pixel.red) / (rgb_max - rgb_min)) + 120.0f;
-    } else {
+    } else if (rgb_max == pixel.blue) {
         hsv_hue = 60.0f * ((pixel.red - pixel.green) / (rgb_max - rgb_min)) + 240.0f;
     }
     
@@ -362,7 +362,12 @@ void HSVFromPixel(BMPixel pixel, CGFloat* h, CGFloat* s, CGFloat* v) {
 
 - (void)dealloc
 {
+//    [rep release];
+//    [selectionView release];
+//    [loupeLayer release];
     loupeLayer = nil;
+    
+//    [super dealloc];
 }
 
 @end

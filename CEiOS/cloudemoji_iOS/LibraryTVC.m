@@ -93,11 +93,11 @@
     
     NSArray *dc = [NSArray arrayWithObjects:NSLocalizedString(@"CacheClear", nil),[self showCache],@"c", nil];
     NSArray *d2 = [NSArray arrayWithObjects:@"KT Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
-    NSArray *d1 = [NSArray arrayWithObjects:@"YaShi (Server1)",@"http://www.heartunlock.com/ce.xml",@"e", nil];
-    NSArray *d3 = [NSArray arrayWithObjects:@"YaShi (Server2)",@"http://cxchope.sites.my-card.in/ce.xml",@"e", nil];
-    [data insertObject:d2 atIndex:0];
-    [data insertObject:d3 atIndex:0];
+    NSArray *d1 = [NSArray arrayWithObjects:@"YaShi Default",@"http://uuu.moe/ce.xml",@"e", nil];
+    //NSArray *d3 = [NSArray arrayWithObjects:@"YaShi (Server2)",@"http://cxchope.sites.my-card.in/ce.xml",@"e", nil];
+    //[data insertObject:d3 atIndex:0];
     [data insertObject:d1 atIndex:0];
+    [data insertObject:d2 atIndex:0];
     [data insertObject:dc atIndex:0];
     
     for (NSArray *nowArr in data) {
@@ -195,9 +195,9 @@
             weburl = [S s].impURL;
         } else {
             if ([server length] < 5) {
-                urlString = @"http://cxchope.sites.my-card.in/soft/cloud_emoticon/source/index.html";
+                urlString = @"http://emoticon.moe/gotostore.html";
             } else {
-                urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/source/index.html",server];
+                urlString = [NSString stringWithFormat:@"%@/gotostore.html",server];
             }
             url = [NSURL URLWithString:urlString];
             weburl = [NSURL URLWithString:urlString];
@@ -388,7 +388,7 @@
         NSString *nowURL = [nowarr objectAtIndex:1];
         if ([nowURL isEqualToString:name]) {
             NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
-            [setting setObject:nowURL forKey:@"nowURL"];
+            [setting setObject:[NSString stringWithString:nowURL] forKey:@"nowURL"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"ReplacementSource_title", nil),[nowarr objectAtIndex:0]] message:[NSString stringWithFormat:NSLocalizedString(@"ReplacementSource_message", nil),nowURL] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
             [alert show];
             break;
@@ -550,7 +550,7 @@
     }
     NSArray *save = [NSArray arrayWithArray:saveArr];
 //    NSLog(@"saveArr=%@",saveArr);
-    [setting setObject:save forKey:@"sourcelist"];
+    [setting setObject:[NSArray arrayWithArray:save] forKey:@"sourcelist"];
     [setting synchronize];
 }
 

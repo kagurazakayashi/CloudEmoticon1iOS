@@ -14,6 +14,7 @@
 //- (void)loadInfo:(NSString*)type;
 - (void)reloadButton:(BOOL)isEdit;
 - (void)openEditWindow:(UIViewController*)editVC;
+- (void)closeEditWindow:(UIViewController*)editVC;
 @end
 @interface CustomTVC : UIViewController <OnlineLibraryCellDelegate,UIAlertViewDelegate,EditViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) NSMutableArray *data;

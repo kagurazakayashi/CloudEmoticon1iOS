@@ -44,25 +44,26 @@
         [self.view addSubview:bga];
         [self.view addSubview:edit];
         
+//        self.tmpRightBtn = self.navigationItem.rightBarButtonItem;
         rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
         self.navigationItem.rightBarButtonItem = rightbtn;
         UIBarButtonItem *leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
         //[self.rightbtn setEnabled:NO];
         self.navigationItem.leftBarButtonItem = leftbtn;
-        
         self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Save", nil);
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         
-        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
-        {
-            PMCustomKeyboard *customKeyboard = [[PMCustomKeyboard alloc] init];
-            [customKeyboard setTextView:edit];
-        }
-        else {
-            PKCustomKeyboard *customKeyboard = [[PKCustomKeyboard alloc] init];
-            [customKeyboard setTextView:edit];
-        }
+        //开启自定义键盘
+//        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+//        {
+//            PMCustomKeyboard *customKeyboard = [[PMCustomKeyboard alloc] init];
+//            [customKeyboard setTextView:edit];
+//        }
+//        else {
+//            PKCustomKeyboard *customKeyboard = [[PKCustomKeyboard alloc] init];
+//            [customKeyboard setTextView:edit];
+//        }
         
         [edit becomeFirstResponder];
     }
@@ -102,9 +103,14 @@
 
 - (void)close
 {
+//    self.navigationItem.rightBarButtonItem = self.tmpRightBtn;
 //    self.navigationController.navigationBar.translucent = YES;
     //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    self.navigationItem.leftBarButtonItem = nil;
+    [self.delegate EditViewClose];
+    self.delegate = nil;
+    
 //    [self dismissViewControllerAnimated:YES completion:^{
 //        
 //    }];

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PKCustomKeyboard.h"
-#import "PMCustomKeyboard.h"
+//#import "PKCustomKeyboard.h"
+//#import "PMCustomKeyboard.h"
 
 @protocol EditViewDelegate <NSObject>
 - (void)addData:(NSArray*)arr;
+- (void)EditViewClose;
 @end
 
 @interface EditViewController : UIViewController //<UITextViewDelegate>
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) UITextField *ename;
 @property (nonatomic, retain) UIView *bga;
 @property (nonatomic, retain) NSString *tagStr;
+@property (nonatomic, retain) UIBarButtonItem *tmpRightBtn;
 - (void)rightbtn:(id)sender;
 - (void)leftbtn:(id)sender;
 @end

@@ -152,7 +152,7 @@
             }
         }
         [self isFav:isfaved];
-        [setting setObject:fav forKey:@"fav"];
+        [setting setObject:[NSArray arrayWithArray:fav] forKey:@"fav"];
         [setting synchronize];
     } else if (cellmode == 4) {
         NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];

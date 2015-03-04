@@ -44,7 +44,7 @@
     NSString *server = [setting stringForKey:@"server"];
     NSString *urlString = nil;
     if ([server length] < 5) {
-        urlString = @"http://www.heartunlock.com/soft/cloud_emoticon/";
+        urlString = @"https://uuu.moe/?p=739";
     } else {
         urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/",server];
     }

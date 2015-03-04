@@ -29,7 +29,9 @@
 	BOOL badTouch;
 	BOOL bitmapNeedsUpdate;
 	
+//	id<RSColorPickerViewDelegate> delegate;
 }
+
 -(UIColor*)selectionColor;
 -(CGPoint)selection;
 -(void)setSelectionColor:(UIColor *)selectionColor;

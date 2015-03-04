@@ -10,9 +10,9 @@
 #import "RefreshView.h"
 //#import "IASKAppSettingsViewController.h"
 #import "Toast+UIView.h"
-#import "UMSocial.h"
-#import "ShareView.h"
-#import "AppAD.h"
+//#import "UMSocial.h"
+//#import "ShareView.h"
+//#import "AppAD.h"
 #import "PasteboardController.h"
 
 //#import "ColorConvert.h"
@@ -22,7 +22,7 @@
 
 @implementation MainViewController
 @synthesize tab, size7title, size7toolbar, sharename, black;
-@synthesize ol,f,h,c,s,setView,diy,lib,about,xabout,yao,g;
+@synthesize ol,f,h,c,s,setView,diy,lib,about,xabout,yao;//,g;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -98,11 +98,11 @@
     UITabBarItem *libI = [[UITabBarItem alloc] initWithTitle:lib.title image:[UIImage imageNamed:@"pweb.png"] tag:0];
     lib.delegate = self;
     lib.tabBarItem = libI;
-    g = [[Game alloc] init];
-    g.title = NSLocalizedString(@"Game", nil);
-    UINavigationController *gn = [[UINavigationController alloc] initWithRootViewController:g];
-    UITabBarItem *gI = [[UITabBarItem alloc] initWithTitle:g.title image:[UIImage imageNamed:@"flag-vector.png"] tag:0];
-    g.tabBarItem = gI;
+//    g = [[Game alloc] init];
+//    g.title = NSLocalizedString(@"Game", nil);
+//    UINavigationController *gn = [[UINavigationController alloc] initWithRootViewController:g];
+//    UITabBarItem *gI = [[UITabBarItem alloc] initWithTitle:g.title image:[UIImage imageNamed:@"flag-vector.png"] tag:0];
+//    g.tabBarItem = gI;
     about = [[AboutViewController alloc] init];
     about.title = NSLocalizedString(@"UpdatesAndOnlineInformation", nil);
     UINavigationController *aboutn = [[UINavigationController alloc] initWithRootViewController:about];
@@ -150,7 +150,7 @@
         
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(share:) name:@"share" object:nil];
-        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,gn,aboutn,xaboutn, nil]; //,advn
+        self.tab.viewControllers = [NSArray arrayWithObjects:oln,fn,hn,cn,sn,libn,yaon,setn,diyn,aboutn,xaboutn, nil]; //,gn,advn
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alt:) name:@"alt" object:nil];
@@ -170,8 +170,9 @@
     NSArray *info = [notification object];
     NSString *str = [info objectAtIndex:0];
     //[UMSocialSnsService presentSnsIconSheetView:self appKey:@"52cba0fc56240be2220355c9" shareText:str shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToQzone,UMShareToEmail,UMShareToSms,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToFacebook,UMShareToTwitter,nil] delegate:nil];
-    ShareView *share = [[ShareView alloc] initWithFrame:self.tab.selectedViewController.view.frame ShareStr:str ViewController:self];
-    [self.view addSubview:share];
+    //已删除自定义分享模块
+//    ShareView *share = [[ShareView alloc] initWithFrame:self.tab.selectedViewController.view.frame ShareStr:str ViewController:self];
+//    [self.view addSubview:share];
 }
 
 - (void)exit:(id)sender
@@ -233,8 +234,14 @@
         [setting setObject:nowDate forKey:@"oldData"];
     }
     if (![setting objectForKey:@"nowURL"]) {
-        NSString *nowURL = @"http://cxchope.sites.my-card.in/ce.xml";
-        [setting setObject:nowURL forKey:@"nowURL"];
+        NSString *nowURL = @"http://uuu.moe/ce.xml";
+        [setting setObject:[NSString stringWithString:nowURL] forKey:@"nowURL"];
+    } else {
+        if([[setting objectForKey:@"nowURL"] rangeOfString:@"heartunlock.com"].location != NSNotFound)
+        {
+            NSString *nowURL = @"http://uuu.moe/ce.xml";
+            [setting setObject:[NSString stringWithString:nowURL] forKey:@"nowURL"];
+        }
     }
     if (![setting objectForKey:@"fav"]) {
         [setting setObject:[NSMutableArray array] forKey:@"fav"];
@@ -247,19 +254,19 @@
     }
     if (![setting objectForKey:@"TAcell"]) {
         NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor blackColor]];
-        [setting setObject:object forKey:@"TAcell"];
+        [setting setObject:[NSData dataWithData:object] forKey:@"TAcell"];
     }
     if (![setting objectForKey:@"TAtxt"]) {
         NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor yellowColor]];
-        [setting setObject:object forKey:@"TAtxt"];
+        [setting setObject:[NSData dataWithData:object] forKey:@"TAtxt"];
     }
     if (![setting objectForKey:@"TBcell"]) {
         NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor whiteColor]];
-        [setting setObject:object forKey:@"TBcell"];
+        [setting setObject:[NSData dataWithData:object] forKey:@"TBcell"];
     }
     if (![setting objectForKey:@"TBtxt"]) {
         NSData *object = [NSKeyedArchiver archivedDataWithRootObject:[UIColor blackColor]];
-        [setting setObject:object forKey:@"TBtxt"];
+        [setting setObject:[NSData dataWithData:object] forKey:@"TBtxt"];
     }
     if (![setting floatForKey:@"TAalpha"] || [setting floatForKey:@"TAalpha"] == 0) {
         [setting setFloat:0.5f forKey:@"TAalpha"];
@@ -313,6 +320,7 @@
         NSString *nowStr = [nowArr objectAtIndex:2];
         if ([nowStr isEqualToString:str]) {
             NSMutableArray *his = [setting mutableArrayValueForKey:@"his"];
+            NSLog(@"his == %@",his);
             for (int i = 0; i < [his count]; i++) {
                 NSArray *nowArr2 = [his objectAtIndex:i];
                 NSString *str1 = [nowArr objectAtIndex:2];
@@ -322,9 +330,9 @@
                 }
             }
             [his addObject:nowArr];
-            [setting setObject:his forKey:@"his"];
+            [setting setObject:[NSArray arrayWithArray:his] forKey:@"his"];
             [setting synchronize];
-            break;
+            //break;
         }
     }
     

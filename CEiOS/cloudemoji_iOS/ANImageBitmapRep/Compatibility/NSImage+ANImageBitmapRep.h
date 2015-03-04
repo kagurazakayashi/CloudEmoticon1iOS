@@ -6,8 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "TargetConditionals.h"
-
 #if TARGET_OS_IPHONE != 1
 
 #import <Cocoa/Cocoa.h>

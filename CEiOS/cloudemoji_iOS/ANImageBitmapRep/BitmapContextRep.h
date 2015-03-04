@@ -16,8 +16,8 @@
  * does not use floating points, making it more accurate.
  */
 typedef struct {
-    long x;
-    long y;
+	long x;
+	long y;
 } BMPoint;
 
 BMPoint BMPointMake (long x, long y);
@@ -31,9 +31,9 @@ BMPoint BMPointFromPoint (CGPoint point);
  */
 @interface BitmapContextRep : NSObject {
     CGContextRef context;
-    CGImageRef lastImage;
-    unsigned char * bitmapData;
-    BOOL needsUpdate;
+	CGImageRef lastImage;
+	unsigned char * bitmapData;
+	BOOL needsUpdate;
 }
 
 /**
@@ -41,13 +41,6 @@ BMPoint BMPointFromPoint (CGPoint point);
  * @param image The image to wrap in a bitmap context.
  */
 - (id)initWithImage:(ANImageObj *)image;
-
-/**
- * Creates a bitmap context with the information from a CGImageRef.
- * @param image The image to use for initialization. The reference will
- * not be consumed, so you will still need to CGImageRelease() this as expected.
- */
-- (id)initWithCGImage:(CGImageRef)img;
 
 /**
  * Creates a blank bitmap context with specified dimensions.
@@ -107,12 +100,6 @@ BMPoint BMPointFromPoint (CGPoint point);
  * Returns an autoreleased CGImageRef of the current BitmapContext.
  */
 - (CGImageRef)CGImage;
-
-/**
- * Returns a mutable RGBA data array. If you modify this, you should call
- * [context setNeedsUpdate:YES] before calling [context CGImage] or similar.
- */
-- (unsigned char *)bitmapData;
 
 @end
 

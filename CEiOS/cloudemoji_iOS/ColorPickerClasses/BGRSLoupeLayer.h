@@ -35,6 +35,7 @@
 
 @interface BGRSLoupeLayer : CALayer{
    CGPoint loupeCenter;
+   //RSColorPickerView* colorPicker;
 }
 @property (nonatomic) CGPoint loupeCenter;
 @property (nonatomic,assign) RSColorPickerView* colorPicker;

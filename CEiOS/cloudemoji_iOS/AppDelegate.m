@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "UMSocial.h"
+//#import "UMSocial.h"
 #import "CESDK.h"
 
 @implementation AppDelegate
@@ -19,7 +19,7 @@
     //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"WebDisk"];
     //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"Github"];
     //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"app.io"];
-    [UMSocialData setAppKey:@"52cba0fc56240be2220355c9"];
+    //[UMSocialData setAppKey:@"52cba0fc56240be2220355c9"];
     //[MobClick setLogEnabled:YES];
     
     //NSLog(NSLocalizedString(@"SdkNoDataTitle", nil));

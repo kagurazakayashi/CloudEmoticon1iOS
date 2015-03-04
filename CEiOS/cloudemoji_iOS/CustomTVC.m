@@ -116,9 +116,9 @@
 {
     mode = 1;
 //    self.navigationController.navigationBar.translucent = NO;
-    if (!self.edit) {
+//    if (!self.edit) {
         self.edit = [[EditViewController alloc] init];
-    }
+//    }
     self.edit.tagStr = @"";
     self.edit.delegate = self;
     self.edit.title = NSLocalizedString(@"CustomText", nil);
@@ -132,6 +132,15 @@
 //    }];
     
 //    [alert show];
+}
+
+- (void)EditViewClose
+{
+    UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+    self.navigationItem.rightBarButtonItem = rightbtn;
+    [self.delegate closeEditWindow:self.edit];
+    
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 //- (void)willPresentAlertView:(UIAlertView *)alertView
 //{

@@ -10,14 +10,13 @@
 #import "BitmapScaleManipulator.h"
 #import "BitmapCropManipulator.h"
 #import "BitmapRotationManipulator.h"
-#import "BitmapDrawManipulator.h"
 #import "UIImage+ANImageBitmapRep.h"
 
 typedef struct {
-    CGFloat red;
-    CGFloat green;
-    CGFloat blue;
-    CGFloat alpha;
+	CGFloat red;
+	CGFloat green;
+	CGFloat blue;
+	CGFloat alpha;
 } BMPixel;
 
 BMPixel BMPixelMake (CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
@@ -27,11 +26,11 @@ UIColor * UIColorFromBMPixel (BMPixel pixel);
 NSColor * NSColorFromBMPixel (BMPixel pixel);
 #endif
 
-@interface ANImageBitmapRep : BitmapContextRep <BitmapScaleManipulator, BitmapCropManipulator, BitmapRotationManipulator, BitmapDrawManipulator, NSCopying> {
+@interface ANImageBitmapRep : BitmapContextRep <BitmapScaleManipulator, BitmapCropManipulator, BitmapRotationManipulator, NSCopying> {
 #if __has_feature(objc_arc) == 1
-    __strong NSArray * baseClasses;
+	__strong NSArray * baseClasses;
 #else
-    NSArray * baseClasses;
+	NSArray * baseClasses;
 #endif
 }
 
