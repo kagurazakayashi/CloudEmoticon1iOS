@@ -27,6 +27,8 @@
 + (float)txtWidthWithText:(NSString*)text MaxHeight:(float)height;
 + (void)scoreInfo:(NSDictionary*)dataDic;
 + (int)orientationMode;
+
++ (UIColor *)defaultBackgroundColor;
 //+ (void)sentR:(UIDeviceOrientation)rMode;
 //+ (CGRect)tableFrame:(CGRect)viewFrame;
 //+ (CGRect)viewFrame:(CGRect)oldFrame;

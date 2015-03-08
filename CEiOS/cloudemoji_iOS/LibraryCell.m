@@ -29,7 +29,7 @@
             cellBGView.layer.masksToBounds = NO;
         }
 //        UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kBK * 0.5)];
-//        foot.backgroundColor = [UIColor lightGrayColor];
+//        foot.backgroundColor = [S defaultBackgroundColor];
 //        foot.layer.cornerRadius = 10;
 //        [cellBGView addSubview:foot];
         [self addSubview:cellBGView];

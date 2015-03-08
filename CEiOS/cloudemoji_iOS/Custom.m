@@ -20,9 +20,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 //<<<<<<< HEAD
-        //self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor whiteColor];
 //=======
-        self.view.backgroundColor = [UIColor orangeColor];
+//        self.view.backgroundColor = [UIColor orangeColor];
 //>>>>>>> FETCH_HEAD
         self.isEdit = NO;
     }
@@ -74,28 +74,42 @@ kROTATE
 //    }
 }
 
-- (void)openEditWindow:(UIViewController*)editVC
+- (void)openEditWindow:(UIView*)editVC
 {
-    if (editVC && [editVC isKindOfClass:[EditViewController class]]) {
-        NSLog(@"editVC = %@",editVC);
-        [self.navigationController pushViewController:editVC animated:YES];
-    } else {
-        NSLog(@"ERROR!!!");
-    }
+//    if (editVC && [editVC isKindOfClass:[EditViewController class]]) {
+//        NSLog(@"editVC = %@",editVC);
+//        [self.navigationController pushViewController:editVC animated:YES];
+//    } else {
+//        NSLog(@"ERROR!!!");
+//    }
     
 //    [self presentViewController:editVC animated:YES completion:^{
-//        //[editVC.edit becomeFirstResponder];
+        //[editVC.edit becomeFirstResponder];
 //    }];
+    self.leftbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(leftbtn:)];
+    self.navigationItem.leftBarButtonItem = self.leftbtn;
+    
+    self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(rightbtn:)];
+    self.navigationItem.rightBarButtonItem = self.rightbtn;
+    [self.view addSubview:editVC];
 }
-- (void)closeEditWindow:(UIViewController*)editVC
+- (void)closeEditWindow:(UIView*)editVC
 {
-    NSLog(@"self.vc = %@",self.vc);
+//    NSLog(@"self.vc = %@",self.vc);
 //    [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 //    self.isEdit = false;
 //    [self vd];
 //    [self va];
 //    [self.navigationController popToViewController:self.vc animated:YES];
+//    [editVC dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+    self.rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+    self.navigationItem.rightBarButtonItem = self.rightbtn;
+    self.leftbtn = nil;
+    self.navigationItem.leftBarButtonItem = nil;
+    [editVC removeFromSuperview];
 }
 
 - (void)rightbtn:(id)sender

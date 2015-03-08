@@ -75,7 +75,7 @@
     show.textAlignment = NSTextAlignmentCenter;
     show.lineBreakMode = NSLineBreakByWordWrapping;
     show.numberOfLines = 0;
-    show.shadowColor = [UIColor grayColor];
+    show.shadowColor = [S defaultBackgroundColor];
     show.shadowOffset = CGSizeMake(1, 1);
     show.font = [UIFont systemFontOfSize:15];
     show.text = [strArr objectAtIndex:0];

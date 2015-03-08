@@ -77,8 +77,8 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self loadInfo];
-    UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
-    self.navigationItem.rightBarButtonItem = rightbtn;
+//    UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
+//    self.navigationItem.rightBarButtonItem = rightbtn;
     ADView *ad = [[ADView alloc] initWithViewController:self ShowNow:NO FixHeight:YES];
     [self.view addSubview:ad];
 }
@@ -117,11 +117,11 @@
     mode = 1;
 //    self.navigationController.navigationBar.translucent = NO;
 //    if (!self.edit) {
-        self.edit = [[EditViewController alloc] init];
+        self.edit = [[EditView alloc] initWithFrame:self.view.frame];
 //    }
     self.edit.tagStr = @"";
     self.edit.delegate = self;
-    self.edit.title = NSLocalizedString(@"CustomText", nil);
+//    self.edit.title = NSLocalizedString(@"CustomText", nil);
     self.edit.ename.text = @"";
     self.edit.edit.text = @"";
 //    [self.navigationController pushViewController:self.edit animated:YES];
@@ -132,12 +132,12 @@
 //    }];
     
 //    [alert show];
+    
 }
 
 - (void)EditViewClose
 {
-    UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightbtn:)];
-    self.navigationItem.rightBarButtonItem = rightbtn;
+    
     [self.delegate closeEditWindow:self.edit];
     
 //    [self.navigationController popViewControllerAnimated:YES];
@@ -189,13 +189,13 @@
             if ([nowStr isEqualToString:name]) {
 //                self.navigationController.navigationBar.translucent = NO;
                 if (!self.edit) {
-                    self.edit = [[EditViewController alloc] init];
+                    self.edit = [[EditView alloc] initWithFrame:self.view.frame];
                 }
                 self.edit.tagStr = nowStr;
                 self.edit.edit.text = nowStr;
                 self.edit.ename.text = [nowArr objectAtIndex:1];
                 self.edit.delegate = self;
-                self.edit.title = NSLocalizedString(@"CustomText", nil);
+//                self.edit.title = NSLocalizedString(@"CustomText", nil);
                 [self.delegate reloadButton:YES];
                 [self.delegate openEditWindow:self.edit];
 //                [self presentViewController:self.edit animated:YES completion:^{

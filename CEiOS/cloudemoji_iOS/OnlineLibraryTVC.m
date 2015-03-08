@@ -31,6 +31,16 @@
     
 }
 
+- (BOOL)egoRefreshTableDataSourceIsLoading:(UIView *)view
+{
+    return YES;
+}
+
+- (void)egoRefreshTableDidTriggerRefresh:(EGORefreshPos)aRefreshPos
+{
+    [self reloadTableViewDataSource];
+}
+
 - (void)load
 {
 //    if ([S s].ios < 7.0f) {
@@ -38,7 +48,7 @@
 //    } else {
 ////        self.view.frame = [S s].viewFrame;
 //    }
-    
+    _aniSpeed = 0.5f;
     data = [[NSMutableArray alloc] init];
     height = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor blackColor];
@@ -78,23 +88,24 @@
     blackView.backgroundColor = [UIColor blackColor];
     blackView.alpha = 0.5f;
     
-    if (_refreshHeaderView == nil) {
-        EGORefreshTableHeaderView *rv = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-        rv.delegate = self;
-        [self.tableView addSubview:rv];
-        _refreshHeaderView = rv;
-    }
+    //下拉刷新
+//    if (_refreshHeaderView == nil) {
+//        EGORefreshTableHeaderView *rv = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+//        rv.delegate = self;
+//        [self.tableView addSubview:rv];
+//        _refreshHeaderView = rv;
+//    }
     
     tableViewD = [[BackgroundImg alloc] init];
     [tableViewD changeFrame:self.tableView.frame];
     [tableViewD loadSetting:1];
     [tableViewD loadSettingImg:1];
-    //    if (css) {
-    tableViewD.layer.shadowColor = [[UIColor blackColor] CGColor];
-    tableViewD.layer.shadowOffset = CGSizeMake(-10,0);
-    tableViewD.layer.shadowOpacity = 1;
-    tableViewD.layer.shadowRadius = 10;
-    //    }
+    if ([[setting objectForKey:@"css"] boolValue]) {
+        tableViewD.layer.shadowColor = [[UIColor blackColor] CGColor];
+        tableViewD.layer.shadowOffset = CGSizeMake(-10,0);
+        tableViewD.layer.shadowOpacity = 1;
+        tableViewD.layer.shadowRadius = 10;
+    }
     noneview = [[NoneView alloc] initWithFrame:self.tableView.frame];
     noneview.info = NSLocalizedString(@"none_cloud", nil);
     

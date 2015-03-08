@@ -141,7 +141,7 @@
         [btnExit setTitle:NSLocalizedString(@"exitnow", nil) forState:UIControlStateNormal];
         [btnExit addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchDown];
         btnExit.frame = CGRectMake(self.view.frame.size.width * 0.5 - 100, self.view.frame.size.height * 0.5 - 100, 200, 200);
-        btnExit.backgroundColor = [UIColor lightGrayColor];
+        btnExit.backgroundColor = [S defaultBackgroundColor];
         [exitn.view addSubview:btnExit];
         
         self.tab.viewControllers = [NSArray arrayWithObjects:libn,diyn,xaboutn,xexitn, nil];
@@ -224,6 +224,7 @@
     
 - (void)didInit
 {
+    //初始化设置
     [S s].alertEnabled = YES;
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     //自动更新源
@@ -234,12 +235,12 @@
         [setting setObject:nowDate forKey:@"oldData"];
     }
     if (![setting objectForKey:@"nowURL"]) {
-        NSString *nowURL = @"http://uuu.moe/ce.xml";
+        NSString *nowURL = @"http://emoticon.moe/emoticon/yashi.xml";
         [setting setObject:[NSString stringWithString:nowURL] forKey:@"nowURL"];
     } else {
         if([[setting objectForKey:@"nowURL"] rangeOfString:@"heartunlock.com"].location != NSNotFound)
         {
-            NSString *nowURL = @"http://uuu.moe/ce.xml";
+            NSString *nowURL = @"http://emoticon.moe/emoticon/yashi.xml";
             [setting setObject:[NSString stringWithString:nowURL] forKey:@"nowURL"];
         }
     }
@@ -320,7 +321,7 @@
         NSString *nowStr = [nowArr objectAtIndex:2];
         if ([nowStr isEqualToString:str]) {
             NSMutableArray *his = [setting mutableArrayValueForKey:@"his"];
-            NSLog(@"his == %@",his);
+//            NSLog(@"his == %@",his);
             for (int i = 0; i < [his count]; i++) {
                 NSArray *nowArr2 = [his objectAtIndex:i];
                 NSString *str1 = [nowArr objectAtIndex:2];

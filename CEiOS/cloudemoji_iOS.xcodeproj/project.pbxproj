@@ -178,6 +178,7 @@
 		53295D961A924BD400D10976 /* DazFireworksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53295D951A924BD400D10976 /* DazFireworksController.m */; };
 		53295D9B1A924C8900D10976 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53295D981A924C8900D10976 /* libMobClickLibrary.a */; };
 		53295D9F1A924D6200D10976 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53295D9E1A924D6200D10976 /* Toast+UIView.m */; };
+		536FDA1D1AA72E5000375704 /* EditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FDA1C1AA72E5000375704 /* EditView.m */; };
 		53C2A7041A934C4600852C14 /* MainViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 00ACFF3318719C3C008CDF3B /* MainViewController.h */; };
 		621659AE1879184C00770D3D /* S.m in Sources */ = {isa = PBXBuildFile; fileRef = 621659AD1879184C00770D3D /* S.m */; };
 		623EE1481877F3B1008FCD42 /* BackgroundImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 623EE1471877F3B1008FCD42 /* BackgroundImg.m */; };
@@ -439,6 +440,8 @@
 		53295D9A1A924C8900D10976 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		53295D9D1A924D6200D10976 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		53295D9E1A924D6200D10976 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
+		536FDA1B1AA72E5000375704 /* EditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditView.h; sourceTree = "<group>"; };
+		536FDA1C1AA72E5000375704 /* EditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditView.m; sourceTree = "<group>"; };
 		621659AC1879184C00770D3D /* S.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S.h; sourceTree = "<group>"; };
 		621659AD1879184C00770D3D /* S.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S.m; sourceTree = "<group>"; };
 		621659E61879A3F400770D3D /* Keyboard_Blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Keyboard_Blank.png; sourceTree = "<group>"; };
@@ -1068,6 +1071,8 @@
 				0097FB4B187A9BA60034843E /* EditViewController.m */,
 				00B8A7EF187E4FD3000AB75D /* Custom.h */,
 				00B8A7F0187E4FD3000AB75D /* Custom.m */,
+				536FDA1B1AA72E5000375704 /* EditView.h */,
+				536FDA1C1AA72E5000375704 /* EditView.m */,
 			);
 			name = "自定义";
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				003DD0101898A3D40004A955 /* XAboutVC.m in Sources */,
 				53295D811A92450E00D10976 /* BitmapContextManipulator.m in Sources */,
 				0086C9E418DECAAC006FABC6 /* TypeMenuCell.m in Sources */,
+				536FDA1D1AA72E5000375704 /* EditView.m in Sources */,
 				53295D7C1A92450E00D10976 /* NSImage+ANImageBitmapRep.m in Sources */,
 				53295D851A92450E00D10976 /* BGRSLoupeLayer.m in Sources */,
 				0084108C18758C9800806872 /* MD5.m in Sources */,
@@ -1445,11 +1451,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cloudemoji_iOS/cloudemoji_iOS-Prefix.pch";
 				INFOPLIST_FILE = "cloudemoji_iOS/cloudemoji_iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/cloudemoji_iOS",
 					"$(PROJECT_DIR)/cloudemoji_iOS/UMAnalytics_Sdk",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/AccountManager",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/Core",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/Friendship",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/Leaderboard",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/PluginManager",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/Libraries/AFNetworking",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -1475,11 +1487,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cloudemoji_iOS/cloudemoji_iOS-Prefix.pch";
 				INFOPLIST_FILE = "cloudemoji_iOS/cloudemoji_iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/cloudemoji_iOS",
 					"$(PROJECT_DIR)/cloudemoji_iOS/UMAnalytics_Sdk",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/AccountManager",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/Core",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/Friendship",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/Leaderboard",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/KTPlay/PluginManager",
+					"$(PROJECT_DIR)/cloudemoji_iOS/KTPlaySDK/Libraries/AFNetworking",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";

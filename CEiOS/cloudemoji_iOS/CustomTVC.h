@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "OnlineLibraryCell.h"
-#import "EditViewController.h"
+#import "EditView.h"
 #import "NoneView.h"
 @protocol CustomTVCDelegate <NSObject>
 //- (void)loadInfo:(NSString*)type;
 - (void)reloadButton:(BOOL)isEdit;
-- (void)openEditWindow:(UIViewController*)editVC;
-- (void)closeEditWindow:(UIViewController*)editVC;
+- (void)openEditWindow:(UIView*)editVC;
+- (void)closeEditWindow:(UIView*)editVC;
 @end
 @interface CustomTVC : UIViewController <OnlineLibraryCellDelegate,UIAlertViewDelegate,EditViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, retain) NSMutableArray *data;
 @property (nonatomic, retain) NSMutableArray *height;
-@property (nonatomic, retain) EditViewController *edit;
+@property (nonatomic, retain) EditView *edit;
 @property (nonatomic, assign) id<CustomTVCDelegate> delegate;
 @property (nonatomic, assign) NSUInteger alertMode;
 @property (nonatomic, assign) NSUInteger editNow;

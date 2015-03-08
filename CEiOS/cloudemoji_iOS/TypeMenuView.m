@@ -17,7 +17,7 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         data = [[NSMutableArray alloc] init];
-        
+        self.aniSpeed = 0.5f;
         self.tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         self.tableview.dataSource = self;
         self.tableview.delegate = self;

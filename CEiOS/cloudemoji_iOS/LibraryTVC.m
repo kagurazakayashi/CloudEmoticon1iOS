@@ -93,7 +93,7 @@
     
     NSArray *dc = [NSArray arrayWithObjects:NSLocalizedString(@"CacheClear", nil),[self showCache],@"c", nil];
     NSArray *d2 = [NSArray arrayWithObjects:@"KT Current",@"http://dl.dropboxusercontent.com/u/73985358/Emoji/_KT_Current.xml",@"e", nil];
-    NSArray *d1 = [NSArray arrayWithObjects:@"YaShi Default",@"http://uuu.moe/ce.xml",@"e", nil];
+    NSArray *d1 = [NSArray arrayWithObjects:@"YaShi Default",@"http://emoticon.moe/emoticon/yashi.xml",@"e", nil];
     //NSArray *d3 = [NSArray arrayWithObjects:@"YaShi (Server2)",@"http://cxchope.sites.my-card.in/ce.xml",@"e", nil];
     //[data insertObject:d3 atIndex:0];
     [data insertObject:d1 atIndex:0];
@@ -313,7 +313,7 @@
         [cell.btnEdit setHidden:YES];
         [cell.btnDel setHidden:NO];
         [cell.selectedItem setHidden:YES];
-        cell.cellBGView.backgroundColor = [UIColor grayColor];
+        cell.cellBGView.backgroundColor = [S defaultBackgroundColor];
     }
     //[cell loadFrame:tableView.frame.size.width];
     return cell;

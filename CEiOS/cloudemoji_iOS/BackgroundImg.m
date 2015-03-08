@@ -14,13 +14,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [S defaultBackgroundColor];
 //        self.bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 //        self.bg.backgroundColor = [UIColor whiteColor];
 //        self.img.alpha = 0.5;
         self.img.clipsToBounds = YES;
-        self.img.backgroundColor = [UIColor lightGrayColor];
+        self.img.backgroundColor = [S defaultBackgroundColor];
 //        [self addSubview:bg];
         [self addSubview:img];
         
@@ -97,7 +97,7 @@
         [img setImage:[UIImage imageWithContentsOfFile:path]];
     }
 //    if (imgID == 0) {
-//        self.backgroundColor = [UIColor lightGrayColor];
+//        self.backgroundColor = [S defaultBackgroundColor];
 //    }
 }
 

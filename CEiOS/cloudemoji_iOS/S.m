@@ -148,6 +148,11 @@
     return 0; //(interfaceOrientation == UIInterfaceOrientationLandscapeLeft); // 只支持向左横向, YES 表示支持所有方向
 }
 
++ (UIColor *)defaultBackgroundColor
+{
+    return [UIColor colorWithRed:176/255.0f green:224/255.0f blue:230/255.0f alpha:1];
+}
+
 //+ (void)sentR:(UIDeviceOrientation)rMode
 //{
 //    
