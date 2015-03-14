@@ -43,11 +43,11 @@
     NSUserDefaults *setting = [NSUserDefaults standardUserDefaults];
     NSString *server = [setting stringForKey:@"server"];
     NSString *urlString = nil;
-    if ([server length] < 5) {
-        urlString = @"https://uuu.moe/?p=739";
-    } else {
-        urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/",server];
-    }
+//    if ([server length] < 5) {
+        urlString = @"https://uuu.moe/?p=582";
+//    } else {
+//        urlString = [NSString stringWithFormat:@"%@soft/cloud_emoticon/",server];
+//    }
     url = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:url];
     [self.navigationController popViewControllerAnimated:NO];

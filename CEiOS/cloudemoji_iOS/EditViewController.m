@@ -78,21 +78,21 @@
     return self;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
 //    NSString *tmpStr = @"" ;
 //    tmpStr = edit.text;
 //    tmpStr = [tmpStr stringByReplacingCharactersInRange:range withString:string];
 //    NSLog(@"tmpStr=%@",tmpStr);
-    
+//    
 //    NSString *nowTxt = [NSString stringWithFormat:@"%@%@",edit.text,text];
 //    if ([tmpStr length] == 0) {
 //        [self.rightbtn setEnabled:NO];
 //    } else {
 //        [self.rightbtn setEnabled:YES];
 //    }
-    return YES;
-}
+//    return YES;
+//}
 
 //- (void)keyboardWillChangeFrame:(NSNotification *)notification
 //{

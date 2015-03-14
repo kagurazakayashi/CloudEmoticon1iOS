@@ -63,10 +63,10 @@
         [self addSubview:btnEdit];
     }
     
-    btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnShare setImage:[UIImage imageNamed:@"psent.png"] forState:UIControlStateNormal];
-    [btnShare addTarget:self action:@selector(btnShare:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:btnShare];
+//    btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btnShare setImage:[UIImage imageNamed:@"psent.png"] forState:UIControlStateNormal];
+//    [btnShare addTarget:self action:@selector(btnShare:) forControlEvents:UIControlEventTouchDown];
+//    [self addSubview:btnShare];
     
     if (cellmode == 3 || cellmode == 4) {
         [btnFrv setImage:[UIImage imageNamed:@"pdel.png"] forState:UIControlStateNormal];
@@ -95,9 +95,9 @@
             btnEdit.layer.shadowOpacity = 1;
             btnEdit.layer.shadowRadius = 5;
         }
-        btnShare.layer.shadowColor = [[UIColor cyanColor] CGColor];
-        btnShare.layer.shadowOpacity = 1;
-        btnShare.layer.shadowRadius = 5;
+//        btnShare.layer.shadowColor = [[UIColor cyanColor] CGColor];
+//        btnShare.layer.shadowOpacity = 1;
+//        btnShare.layer.shadowRadius = 5;
     }
     [self addSubview:name];
     [self addSubview:info];

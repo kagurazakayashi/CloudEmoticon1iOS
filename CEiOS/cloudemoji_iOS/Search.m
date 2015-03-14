@@ -18,9 +18,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        UIBarButtonItem *rightbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(rightbtn:)];
+        self.navigationItem.rightBarButtonItem = rightbtn;
     }
     return self;
+}
+
+- (void)rightbtn:(id)sender
+{
+    if (self.vc) {
+        [self.vc.search resignFirstResponder];
+    }
 }
 
 kROTATE

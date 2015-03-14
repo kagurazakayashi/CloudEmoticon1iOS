@@ -15,7 +15,7 @@
 - (void)shareSetting
 {
     ///// yashi personal KEY, do not copy /////
-    //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9"];
+    [MobClick startWithAppkey:@"52cba0fc56240be2220355c9"];
     //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"WebDisk"];
     //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"Github"];
     //[MobClick startWithAppkey:@"52cba0fc56240be2220355c9" reportPolicy:REALTIME channelId:@"app.io"];
